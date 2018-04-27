@@ -331,7 +331,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr = np.arange(0,1100*900), exten
     # For each file in directory...
     for i in range(0, len(files)):
         # Read data and header of RADOLAN binary file
-        data, metadata = _wrl_io.read_RADOLAN_composite(inFolder + "\\" + files[i])
+        data, metadata = _wrl_io.read_RADOLAN_composite(os.path.join(inFolder, files[i]))
         # append datetime object to index list. Pandas automatically interprets this list as timeseries.
         ind.append(metadata['datetime'])
          
