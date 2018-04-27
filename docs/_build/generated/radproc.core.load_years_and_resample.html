@@ -1,0 +1,321 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>radproc.core.load_years_and_resample &mdash; radproc</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="radproc" href="../index.html"/>
+        <link rel="up" title="Core functions and Data I/O" href="../core.html"/>
+        <link rel="next" title="radproc.core.hdf5_to_years" href="radproc.core.hdf5_to_years.html"/>
+        <link rel="prev" title="radproc.core.load_month" href="radproc.core.load_month.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> radproc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../raw.html">Raw Data Processing</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core functions and Data I/O</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.coordinates_degree_to_stereographic.html">radproc.core.coordinates_degree_to_stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.import_idarray_from_txt.html">radproc.core.import_idarray_from_txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.load_months_from_hdf5.html">radproc.core.load_months_from_hdf5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.load_month.html">radproc.core.load_month</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.core.load_years_and_resample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_years.html">radproc.core.hdf5_to_years</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_months.html">radproc.core.hdf5_to_months</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_days.html">radproc.core.hdf5_to_days</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_hours.html">radproc.core.hdf5_to_hours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_hydrologicalSeasons.html">radproc.core.hdf5_to_hydrologicalSeasons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">radproc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../reference.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="../core.html">Core functions and Data I/O</a> &raquo;</li>
+        
+      <li>radproc.core.load_years_and_resample</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated/radproc.core.load_years_and_resample.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="radproc-core-load-years-and-resample">
+<h1>radproc.core.load_years_and_resample<a class="headerlink" href="#radproc-core-load-years-and-resample" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="radproc.core.load_years_and_resample">
+<code class="descclassname">radproc.core.</code><code class="descname">load_years_and_resample</code><span class="sig-paren">(</span><em>HDFFile</em>, <em>year_start</em>, <em>year_end=0</em>, <em>freq='years'</em><span class="sig-paren">)</span><a class="headerlink" href="#radproc.core.load_years_and_resample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imports all months of the specified years, merges them together to one DataFrame     and resamples the latter to [annual | monthly | daily | hourly] precipitation sums.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><dl class="docutils">
+<dt>HDFFile</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path and name of the HDF5 file containing monthly datasets.</dd>
+<dt>year_start</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>First year for which data are to be loaded.</dd>
+<dt>year_end</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">integer (optional, default: start_year)</span><dd>Last year for which data are to be loaded.</dd>
+<dt>freq</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string (optional, default: &#8220;years&#8221;)</span><dd><p class="first">Target frequency
+available frequencies for downsampling:</p>
+<blockquote class="last">
+<div>&#8220;years&#8221;, &#8220;months&#8221;, &#8220;days&#8221;, &#8220;hours&#8221;</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><dl class="docutils">
+<dt>df</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span><dd>resampled to the target frequency and containing [annual | monthly | daily | hourly] precipitation sums.</dd>
+</dl>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Examples:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>The mean annual precipitation sum can be calculated with the following syntax:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">radproc</span> <span class="k">as</span> <span class="nn">rp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meanPrecip</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">load_years_and_resample</span><span class="p">(</span><span class="s2">r&quot;C:\Data\RADOLAN.h5&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="s2">&quot;years&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="go"># The resulting pandas Series can be exported to an ESRI Grid:    </span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span><span class="o">.</span><span class="n">export_to_raster</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">meanPrecip</span><span class="p">,</span> <span class="n">idRaster</span><span class="o">=</span><span class="n">rp</span><span class="o">.</span><span class="n">import_idarray_from_raster</span><span class="p">(</span><span class="s2">r&quot;C:\GIS_data\idraster&quot;</span><span class="p">),</span> <span class="n">outRaster</span><span class="o">=</span><span class="s2">r&quot;P:\GIS_data\N_mean10_15&quot;</span><span class="p">)</span>       
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="radproc.core.hdf5_to_years.html" class="btn btn-neutral float-right" title="radproc.core.hdf5_to_years" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="radproc.core.load_month.html" class="btn btn-neutral" title="radproc.core.load_month" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2018, Jennifer Kreklow.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0dev0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

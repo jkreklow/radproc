@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ArcGIS-based functions &mdash; radproc</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="radproc" href="index.html"/>
+        <link rel="up" title="Library Reference" href="reference.html"/>
+        <link rel="next" title="radproc.arcgis.raster_to_array" href="generated/radproc.arcgis.raster_to_array.html"/>
+        <link rel="prev" title="radproc.core.hdf5_to_hydrologicalSeasons" href="generated/radproc.core.hdf5_to_hydrologicalSeasons.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> radproc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="raw.html">Raw Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core functions and Data I/O</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ArcGIS-based functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.raster_to_array.html">radproc.arcgis.raster_to_array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.create_idraster_germany.html">radproc.arcgis.create_idraster_germany</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.clip_idraster.html">radproc.arcgis.clip_idraster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.import_idarray_from_raster.html">radproc.arcgis.import_idarray_from_raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.create_idarray.html">radproc.arcgis.create_idarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.save_idarray_to_txt.html">radproc.arcgis.save_idarray_to_txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.export_to_raster.html">radproc.arcgis.export_to_raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.export_dfrows_to_gdb.html">radproc.arcgis.export_dfrows_to_gdb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.attribute_table_to_df.html">radproc.arcgis.attribute_table_to_df</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.join_df_columns_to_attribute_table.html">radproc.arcgis.join_df_columns_to_attribute_table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.idTable_nineGrid.html">radproc.arcgis.idTable_nineGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.idTable_to_valueTable.html">radproc.arcgis.idTable_to_valueTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.valueTable_nineGrid.html">radproc.arcgis.valueTable_nineGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.rastervalues_to_points.html">radproc.arcgis.rastervalues_to_points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.zonalstatistics.html">radproc.arcgis.zonalstatistics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Raw Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">radproc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="reference.html">Library Reference</a> &raquo;</li>
+        
+      <li>ArcGIS-based functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/arcgis.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-radproc.arcgis"></span><div class="section" id="arcgis-based-functions">
+<h1>ArcGIS-based functions<a class="headerlink" href="#arcgis-based-functions" title="Permalink to this headline">¶</a></h1>
+<p>Collection of all functions based on arcpy.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Generate and clip ID-raster</li>
+<li>Import ID-raster to ID-array</li>
+<li>Export ID-array to textfile</li>
+<li>Export pandas Series to raster</li>
+<li>Export all rows of a DataFrame to rasters in a File-Geodatabase</li>
+<li>Import attribute table or dbf table to DataFrame</li>
+<li>Join DataFrame columns to attribute table of a Feature Class</li>
+<li>Extract values from rasters at point locations and the eight surrounding cells</li>
+<li>Extract values from rasters to new fields in a Point Feature Class</li>
+<li>Calculate zonal statistics and join to zone Feature Class</li>
+</ul>
+</div></blockquote>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.raster_to_array.html#radproc.arcgis.raster_to_array" title="radproc.arcgis.raster_to_array"><code class="xref py py-obj docutils literal"><span class="pre">raster_to_array</span></code></a></td>
+<td>Imports all values of raster and converts them to one-dimensional array.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.create_idraster_germany.html#radproc.arcgis.create_idraster_germany" title="radproc.arcgis.create_idraster_germany"><code class="xref py py-obj docutils literal"><span class="pre">create_idraster_germany</span></code></a></td>
+<td>Creates an ID raster in stereographic projection for the extended national RADOLAN grid (900 x 1100 km) or the national grid (900 x 900 km).</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.clip_idraster.html#radproc.arcgis.clip_idraster" title="radproc.arcgis.clip_idraster"><code class="xref py py-obj docutils literal"><span class="pre">clip_idraster</span></code></a></td>
+<td>Clips a raster to the extent of the clip feature.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.import_idarray_from_raster.html#radproc.arcgis.import_idarray_from_raster" title="radproc.arcgis.import_idarray_from_raster"><code class="xref py py-obj docutils literal"><span class="pre">import_idarray_from_raster</span></code></a></td>
+<td>Imports all values of raster and converts them to one-dimensional array.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.create_idarray.html#radproc.arcgis.create_idarray" title="radproc.arcgis.create_idarray"><code class="xref py py-obj docutils literal"><span class="pre">create_idarray</span></code></a></td>
+<td>Creates an ID-Array for a study area.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.save_idarray_to_txt.html#radproc.arcgis.save_idarray_to_txt" title="radproc.arcgis.save_idarray_to_txt"><code class="xref py py-obj docutils literal"><span class="pre">save_idarray_to_txt</span></code></a></td>
+<td>to do...</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.export_to_raster.html#radproc.arcgis.export_to_raster" title="radproc.arcgis.export_to_raster"><code class="xref py py-obj docutils literal"><span class="pre">export_to_raster</span></code></a></td>
+<td>Exports series to raster by inserting target values at their corresponding ID values in the ID raster.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.export_dfrows_to_gdb.html#radproc.arcgis.export_dfrows_to_gdb" title="radproc.arcgis.export_dfrows_to_gdb"><code class="xref py py-obj docutils literal"><span class="pre">export_dfrows_to_gdb</span></code></a></td>
+<td>Exports all rows of a DataFrame to rasters in a File-Geodatabase.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.attribute_table_to_df.html#radproc.arcgis.attribute_table_to_df" title="radproc.arcgis.attribute_table_to_df"><code class="xref py py-obj docutils literal"><span class="pre">attribute_table_to_df</span></code></a></td>
+<td>Load data from dbf table into a Pandas Data Frame for subsequent analysis.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.join_df_columns_to_attribute_table.html#radproc.arcgis.join_df_columns_to_attribute_table" title="radproc.arcgis.join_df_columns_to_attribute_table"><code class="xref py py-obj docutils literal"><span class="pre">join_df_columns_to_attribute_table</span></code></a></td>
+<td>Join DataFrame columns to attribute table of a feature class or shapefile.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.idTable_nineGrid.html#radproc.arcgis.idTable_nineGrid" title="radproc.arcgis.idTable_nineGrid"><code class="xref py py-obj docutils literal"><span class="pre">idTable_nineGrid</span></code></a></td>
+<td>Gets the IDs of point locations from an ID raster and calculates the IDs of the eight surrounding cells for every point.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.idTable_to_valueTable.html#radproc.arcgis.idTable_to_valueTable" title="radproc.arcgis.idTable_to_valueTable"><code class="xref py py-obj docutils literal"><span class="pre">idTable_to_valueTable</span></code></a></td>
+<td>Selects the values defined in an ID Table from a data Series.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.valueTable_nineGrid.html#radproc.arcgis.valueTable_nineGrid" title="radproc.arcgis.valueTable_nineGrid"><code class="xref py py-obj docutils literal"><span class="pre">valueTable_nineGrid</span></code></a></td>
+<td>Selects the values of a nine cell grid around point locations.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.arcgis.rastervalues_to_points.html#radproc.arcgis.rastervalues_to_points" title="radproc.arcgis.rastervalues_to_points"><code class="xref py py-obj docutils literal"><span class="pre">rastervalues_to_points</span></code></a></td>
+<td>Extract values from a list of rasters to new fields in a point Feature Class.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.arcgis.zonalstatistics.html#radproc.arcgis.zonalstatistics" title="radproc.arcgis.zonalstatistics"><code class="xref py py-obj docutils literal"><span class="pre">zonalstatistics</span></code></a></td>
+<td>Calculate Zonal Statistics as Table, join output to copy of zone Feature Class and import resulting table into DataFrame.</td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-radproc.arcgis"></span></div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="generated/radproc.arcgis.raster_to_array.html" class="btn btn-neutral float-right" title="radproc.arcgis.raster_to_array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="generated/radproc.core.hdf5_to_hydrologicalSeasons.html" class="btn btn-neutral" title="radproc.core.hdf5_to_hydrologicalSeasons" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2018, Jennifer Kreklow.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0dev0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

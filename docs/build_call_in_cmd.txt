@@ -1,0 +1,1 @@
+sphinx-build -b html P:\JENNY\FORSCHUNG\Skripte\dist_api\docs\source P:\JENNY\FORSCHUNG\Skripte\dist_api\docs\_build

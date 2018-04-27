@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Raw Data Processing &mdash; radproc</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="radproc" href="index.html"/>
+        <link rel="up" title="Library Reference" href="reference.html"/>
+        <link rel="next" title="radproc.raw.unzip_RW_binaries" href="generated/radproc.raw.unzip_RW_binaries.html"/>
+        <link rel="prev" title="Library Reference" href="reference.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> radproc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Raw Data Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.unzip_RW_binaries.html">radproc.raw.unzip_RW_binaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.unzip_YW_binaries.html">radproc.raw.unzip_YW_binaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_dataframe.html">radproc.raw.radolan_binaries_to_dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_hdf5.html">radproc.raw.radolan_binaries_to_hdf5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.create_idraster_and_process_radolan_data.html">radproc.raw.create_idraster_and_process_radolan_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.process_radolan_data.html">radproc.raw.process_radolan_data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core functions and Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Raw Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">radproc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="reference.html">Library Reference</a> &raquo;</li>
+        
+      <li>Raw Data Processing</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/raw.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-radproc.raw"></span><div class="section" id="raw-data-processing">
+<h1>Raw Data Processing<a class="headerlink" href="#raw-data-processing" title="Permalink to this headline">¶</a></h1>
+<p>Functions for raw data processing.</p>
+<p>Unzip, import, clip and convert RADOLAN raw data and write DataFrames to HDF5.</p>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.raw.unzip_RW_binaries.html#radproc.raw.unzip_RW_binaries" title="radproc.raw.unzip_RW_binaries"><code class="xref py py-obj docutils literal"><span class="pre">unzip_RW_binaries</span></code></a></td>
+<td>Unzips RADOLAN RW binary data saved in monthly .tar or tar.gz archives (e.g.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.raw.unzip_YW_binaries.html#radproc.raw.unzip_YW_binaries" title="radproc.raw.unzip_YW_binaries"><code class="xref py py-obj docutils literal"><span class="pre">unzip_YW_binaries</span></code></a></td>
+<td>Unzips RADOLAN YW binary data.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_dataframe.html#radproc.raw.radolan_binaries_to_dataframe" title="radproc.raw.radolan_binaries_to_dataframe"><code class="xref py py-obj docutils literal"><span class="pre">radolan_binaries_to_dataframe</span></code></a></td>
+<td>Import all RADOLAN binary files in a directory into a pandas DataFrame, optionally clipping the data to the extent of an investigation area specified by an ID array.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_hdf5.html#radproc.raw.radolan_binaries_to_hdf5" title="radproc.raw.radolan_binaries_to_hdf5"><code class="xref py py-obj docutils literal"><span class="pre">radolan_binaries_to_hdf5</span></code></a></td>
+<td>Wrapper for radolan_binaries_to_dataframe() to import and clip all RADOLAN binary files of one month in a directory into a pandas DataFrame and save the resulting DataFrame as a dataset to an HDF5 file.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/radproc.raw.create_idraster_and_process_radolan_data.html#radproc.raw.create_idraster_and_process_radolan_data" title="radproc.raw.create_idraster_and_process_radolan_data"><code class="xref py py-obj docutils literal"><span class="pre">create_idraster_and_process_radolan_data</span></code></a></td>
+<td>Convert all RADOLAN binary data into an HDF5 file with monthly DataFrames for a given study area.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/radproc.raw.process_radolan_data.html#radproc.raw.process_radolan_data" title="radproc.raw.process_radolan_data"><code class="xref py py-obj docutils literal"><span class="pre">process_radolan_data</span></code></a></td>
+<td>Converts all RADOLAN binary data into an HDF5 file with monthly DataFrames for a given study area without generating a new ID raster.</td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="module-radproc.raw"></span></div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="generated/radproc.raw.unzip_RW_binaries.html" class="btn btn-neutral float-right" title="radproc.raw.unzip_RW_binaries" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="reference.html" class="btn btn-neutral" title="Library Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2018, Jennifer Kreklow.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1.0dev0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

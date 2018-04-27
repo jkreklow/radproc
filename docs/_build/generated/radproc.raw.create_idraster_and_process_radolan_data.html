@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>radproc.raw.create_idraster_and_process_radolan_data &mdash; radproc</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="radproc" href="../index.html"/>
+        <link rel="up" title="Raw Data Processing" href="../raw.html"/>
+        <link rel="next" title="radproc.raw.process_radolan_data" href="radproc.raw.process_radolan_data.html"/>
+        <link rel="prev" title="radproc.raw.radolan_binaries_to_hdf5" href="radproc.raw.radolan_binaries_to_hdf5.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> radproc
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0dev0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../raw.html">Raw Data Processing</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="radproc.raw.unzip_RW_binaries.html">radproc.raw.unzip_RW_binaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.raw.unzip_YW_binaries.html">radproc.raw.unzip_YW_binaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.raw.radolan_binaries_to_dataframe.html">radproc.raw.radolan_binaries_to_dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.raw.radolan_binaries_to_hdf5.html">radproc.raw.radolan_binaries_to_hdf5</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.raw.create_idraster_and_process_radolan_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.raw.process_radolan_data.html">radproc.raw.process_radolan_data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html">Core functions and Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">radproc</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../reference.html">Library Reference</a> &raquo;</li>
+        
+          <li><a href="../raw.html">Raw Data Processing</a> &raquo;</li>
+        
+      <li>radproc.raw.create_idraster_and_process_radolan_data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/generated/radproc.raw.create_idraster_and_process_radolan_data.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="radproc-raw-create-idraster-and-process-radolan-data">
+<h1>radproc.raw.create_idraster_and_process_radolan_data<a class="headerlink" href="#radproc-raw-create-idraster-and-process-radolan-data" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="radproc.raw.create_idraster_and_process_radolan_data">
+<code class="descclassname">radproc.raw.</code><code class="descname">create_idraster_and_process_radolan_data</code><span class="sig-paren">(</span><em>inFolder</em>, <em>HDFFile</em>, <em>projectionFile</em>, <em>clipFeature</em>, <em>extendedNationalGrid=True</em><span class="sig-paren">)</span><a class="headerlink" href="#radproc.raw.create_idraster_and_process_radolan_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert all RADOLAN binary data into an HDF5 file with monthly DataFrames for a given study area.</p>
+<p>First, an ID raster is generated and clipped to study area.
+The national ID Raster (idras_ger) and the clipped one (idras) are saved in directory of HDF5 file.</p>
+<p>Afterwards, all RADOLAN binary files in a directory tree are imported, 
+clipped to study area, converted into monthly pandas DataFrame and stored in an HDF5 file.</p>
+<p>The names for the HDF5 datasets are derived from the names of the input folders (year and month).
+The directory tree containing the raw binary RADOLAN data is expected to have the following format:</p>
+<p><em>&lt;inFolder&gt;/&lt;year&gt;/&lt;month&gt;/&lt;binaries with RADOLAN data&gt;</em></p>
+<p>&#8211;&gt; <em>&lt;inFolder&gt;</em>/YYYY/MM</p>
+<p>&#8211;&gt; <em>C:/Data/RADOLAN</em>/2008/5</p>
+<p>In this example, the output dataset will have the path 2008/5 within the HDF5 file.</p>
+<p>If necessary, a textfile containing all directories which could not be processed due to data format errors is created in directory of HDF5 file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><dl class="docutils">
+<dt>inFolder</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path to the directory containing RADOLAN binary files stored in directory tree of following structure::
+<em>&lt;inFolder&gt;</em>/YYYY/MM &#8211;&gt; <em>C:/Data/RADOLAN</em>/2008/5</dd>
+<dt>HDFFile</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path and name of the HDF5 file.
+If the specified HDF5 file already exists, the new dataset will be appended; if the HDF5 file doesn&#8217;t exist, it will be created.</dd>
+<dt>projectionFile</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path to a file containing stereographic projection definition. File type may be Feature Class, Shapefile, prj-file or grid.</dd>
+<dt>clipFeature</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path to the clip feature defining the extent of the study area. File type may be Shapefile or Feature Class.</dd>
+<dt>extendedNationalGrid</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">bool (optional, default: True)</span><dd>True: extended 900 x 1100 national RADOLAN grid, False: 900x900 national grid.</dd>
+</dl>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div>No return value
+Function creates datasets for every month in HDF5 file specified in parameter HDFFile.
+Additionally, two ID Rasters and - if necessary - a textfile containing
+all directories which could not be processed due to data format errors are created in directory of HDF5 file.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Notes:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>See Getting Started/File system description for further details on data processing.
+If you don&#8217;t want to clip your data to a study area, use the function process_radaolan_data instead.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="radproc.raw.process_radolan_data.html" class="btn btn-neutral float-right" title="radproc.raw.process_radolan_data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="radproc.raw.radolan_binaries_to_hdf5.html" class="btn btn-neutral" title="radproc.raw.radolan_binaries_to_hdf5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016-2018, Jennifer Kreklow.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0dev0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
