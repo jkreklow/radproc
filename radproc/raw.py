@@ -29,7 +29,7 @@ Unzip, import, clip and convert RADOLAN raw data and write DataFrames to HDF5.
 """
 
 from __future__ import absolute_import, division, print_function
-from future.builtins import range
+from builtins import range, int
 
 
 import numpy as np
