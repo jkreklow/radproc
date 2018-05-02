@@ -28,6 +28,10 @@ Unzip, import, clip and convert RADOLAN raw data and write DataFrames to HDF5.
 .. moduleauthor:: Jennifer Kreklow
 """
 
+from __future__ import absolute_import, division, print_function
+from builtins import range, int
+
+
 import numpy as np
 import pandas as pd
 import os, sys
@@ -318,7 +322,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr = np.arange(0,1100*900), exten
         # List all files in directory
         files = os.listdir(inFolder)
     except:
-        print "Directory %s can not be found. Please check your input parameter!" % inFolder
+        print("Directory %s can not be found. Please check your input parameter!" % inFolder)
         sys.exit()
     ind = []
     
@@ -401,7 +405,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr = np.arange(0,1100*900), e
     elif "/" in inFolder:
         x = inFolder.split("/")
     else:
-        print "Directory %s can not be found. Please check your input parameter!" % inFolder
+        print("Directory %s can not be found. Please check your input parameter!" % inFolder)
         sys.exit()
     
     # Deduce group names from directory path
@@ -419,7 +423,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr = np.arange(0,1100*900), e
     elif len(x[-3]) == 1 or len(x[-3]) == 2:
         month = x[-3]
     else:
-        print "No suitable directory path format! Month could not be found!"
+        print("No suitable directory path format! Month could not be found!")
         sys.exit()
     
     # Identify years in the same way but one element further in front of list x 
@@ -430,7 +434,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr = np.arange(0,1100*900), e
     elif len(x[-4]) == 4:
         year = x[-4]
     else:
-        print "No suitable directory path format! Year could not be found!"
+        print("No suitable directory path format! Year could not be found!")
         sys.exit()
     
     # Path (Group) and Label of HDF5 dataset to be created
@@ -461,9 +465,9 @@ def _process_year(yearFolder, HDFFile, idArr, extendedNationalGrid):
     for monthFolder in monthFolders:
         try:
             radolan_binaries_to_hdf5(inFolder = monthFolder, HDFFile = HDFFile, idArr = idArr, extendedNationalGrid = extendedNationalGrid)
-            print monthFolder + " imported, clipped and saved"
+            print(monthFolder + " imported, clipped and saved")
         except:
-            print "Error at " + monthFolder
+            print("Error at " + monthFolder)
             failed.append(monthFolder)
             continue
     return failed
@@ -531,7 +535,7 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, projectionFile, 
         import radproc.arcgis as _arcgis        
     except:
         # QGIS could be used instead some day...
-        print "ArcGIS not available! Exit script!"
+        print("ArcGIS not available! Exit script!")
         sys.exit()
     
     idRasGermany = os.path.join(os.path.split(HDFFile)[0], "idras_ger")
@@ -619,3 +623,8 @@ def process_radolan_data(inFolder, HDFFile, idArr=np.arange(0,1100*900), extende
         for fail in fails:
             txtFile.write("%s\n" % fail)
         txtFile.close()
+
+
+if __name__ == "__main__":
+    import six
+    print(six.PY3)

@@ -27,5 +27,5 @@ setup(
   classifiers = [],
   #packages = ['radproc.heavyrain', 'radproc.io', 'radproc.wradlib_io'],
   py_modules = ['radproc.api','radproc.heavyrain', 'radproc.core', 'radproc.wradlib_io', 'radproc.raw', 'radproc.arcgis', 'radproc.dwd_gauge'],
-  install_requires = ['numpy', 'pandas', 'tables']
+  install_requires = ['numpy', 'pandas', 'tables', 'future']
 )
