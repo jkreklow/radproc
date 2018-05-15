@@ -1,5 +1,0 @@
-requirements_file: requirements.txt
-
-conda:
-	file: readthedocs_environment.yml
-	
