@@ -1,1 +1,3 @@
 nbsphinx
+sphinx.ext.autodoc
+sphinx.ext.autosummary
