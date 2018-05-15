@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-DWD MR90 gauge data processing
-==============================
+================================
+ DWD MR90 gauge data processing
+================================
 
 Collection of functions for processing DWD gauge data in MR90 format.
 
@@ -22,6 +23,7 @@ Convert gauge data to pandas DataFrames with same format as RADOLAN data and sav
 .. moduleauthor:: Jennifer Kreklow
 """
 
+from __future__ import division, print_function
 import numpy as np
 import pandas as pd
 import os, sys, gc
@@ -256,7 +258,7 @@ def dwd_gauges_to_hdf5(inFolder, HDFFile):
     """
     Import all textfiles containing DWD rain gauge data in MR90 format from input folder into a DataFrame and save it as monthly HDF5 datasets.
     
-    Frequency is downsampled from 1 to 5-minute intervals to adjust temporal resolution to best-resolved RADOLAN data produt YW.
+    Frequency is downsampled from 1 to 5-minute intervals to adjust temporal resolution to RADOLAN product YW.
     Time zone is converted from MEZ to UTC.
 
     :Parameters:
@@ -300,7 +302,7 @@ def dwd_gauges_to_hdf5(inFolder, HDFFile):
     hdf = pd.HDFStore(HDFFile, mode = "a")
 
     for year in np.unique(gaugeDF.index.year):
-        for month in xrange(1, 13):
+        for month in range(1, 13):
             try:
                 ind = "%i-%02i" %(year, month)
                 HDFDataset = "%i/%i" %(year, month)

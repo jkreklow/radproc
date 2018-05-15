@@ -1,5 +1,5 @@
-radproc.arcgis.clip_idraster
-============================
+radproc\.arcgis\.clip\_idraster
+===============================
 
 .. currentmodule:: radproc.arcgis
 

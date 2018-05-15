@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# Copyright (c) 2016-2018, Kreklow.
+# Distributed under the MIT License. See LICENSE.txt for more info.
 """
-ArcGIS-based functions
-======================
+========================
+ ArcGIS-based Functions
+========================
 
 Collection of all functions based on arcpy.
 
@@ -9,7 +13,8 @@ Collection of all functions based on arcpy.
     - Import ID-raster to ID-array
     - Export ID-array to textfile
     - Export pandas Series to raster
-    - Export all rows of a DataFrame to rasters in a File-Geodatabase
+    - Export all rows of a DataFrame to rasters in a File-Geodatabase,
+        optionally calculating statistics rasters (mean, sum, max, ...)
     - Import attribute table or dbf table to DataFrame
     - Join DataFrame columns to attribute table of a Feature Class
     - Extract values from rasters at point locations and the eight surrounding cells
@@ -26,7 +31,6 @@ Collection of all functions based on arcpy.
    clip_idraster
    import_idarray_from_raster
    create_idarray
-   save_idarray_to_txt   
    export_to_raster
    export_dfrows_to_gdb
    attribute_table_to_df
@@ -43,6 +47,7 @@ Collection of all functions based on arcpy.
     :synopsis: Python package radproc (Radar data processing), Module arcgis
 .. moduleauthor:: Jennifer Kreklow
 """
+from __future__ import division, print_function
 
 import numpy as np
 import pandas as pd
@@ -53,7 +58,7 @@ try:
     import arcpy
 
 except ImportError:
-    print "Import Error! Module arcpy not found"
+    print("Import Error! Module arcpy not found")
     pass
 
 
@@ -67,13 +72,13 @@ try:
         # raise a custom exception
         raise LicenseError
 except LicenseError:
-    print "Spatial Analyst license is unavailable"
+    print("Spatial Analyst license is unavailable")
 
 
 
 def raster_to_array(raster):
     """
-    Imports all values of raster and converts them to one-dimensional array.
+    Imports all values of a raster and converts them to one-dimensional array.
     
     :Parameters:
     ------------
@@ -101,6 +106,7 @@ def raster_to_array(raster):
     # Remove all NoData values (-9999) to keep only ID values --> only cells located in investigation area   
     arr = arr_incl_nodata[arr_incl_nodata != -9999]
     return arr
+
 
 def create_idraster_germany(projectionFile, outRaster, extendedNationalGrid = True):
     """
@@ -164,6 +170,7 @@ def clip_idraster(idRaster, clipFeature, outRaster):
             Path to the raster dataset to be clipped. Also defines the projection of the output raster.
         clipFeature : string
             Path to the clip feature defining the extent of the output raster. File type may be Shapefile or Feature Class.
+            The clip Feature does not need to be provided in the RADOLAN projection. See below for further details.
         outRaster : string
             Path and name for the output raster to be created.
         
@@ -172,6 +179,17 @@ def clip_idraster(idRaster, clipFeature, outRaster):
     
         outRaster : string
             Path and name of the generated output raster.
+            
+    :Note:
+    ------
+    
+        The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
+        As there is no transformation method available yet, it is not possible to directly perform
+        any geoprocessing tasks with RADOLAN and geodata with other spatial references.
+        Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
+        The clip function uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
+        Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
+        
     """
     
     # Mask raster and reduce extent to clip feature 
@@ -237,12 +255,6 @@ def create_idarray(projectionFile, idRasterGermany, clipFeature, idRaster, exten
     idArr = import_idarray_from_raster(idRaster=idRas)
     return idArr
 
-
-def save_idarray_to_txt(idArr, txtFile):
-    """
-    to do...
-    """
-    pass
 
 
 def export_to_raster(series, idRaster, outRaster):
@@ -350,6 +362,16 @@ def export_dfrows_to_gdb(dataDF, idRaster, outGDBPath, GDBName, statistics=""):
                 index = index.replace(" ", "_")
             if "+" in index:
                 index = index.replace("+", "_")
+            if "." in index:
+                index = index.replace(".", "")
+            if ">=" in index:
+                index = index.replace(">=", "ge")
+            if "<=" in index:
+                index = index.replace("<=", "le")
+            if "___" in index:
+                index = index.replace("___", "_")
+            if "__" in index:
+                index = index.replace("__", "_")
             outRaster = "R_" + index
         
         try:
@@ -498,6 +520,7 @@ def idTable_to_valueTable(idTable, dataSeries):
     selectedValues = dataSeries[idTable.values.reshape(idTable.shape[0]*idTable.shape[1])]
     valueTable = pd.DataFrame(selectedValues.values.reshape(idTable.shape[0],idTable.shape[1]),index = idTable.index)
     return valueTable
+
 
 def valueTable_nineGrid(inPointFC, idRaster, outPointFC, indexField, dataSeries):
     """

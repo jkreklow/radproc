@@ -1,5 +1,5 @@
-radproc.arcgis.create_idarray
-=============================
+radproc\.arcgis\.create\_idarray
+================================
 
 .. currentmodule:: radproc.arcgis
 

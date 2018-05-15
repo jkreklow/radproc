@@ -1,5 +1,5 @@
-radproc.arcgis.raster_to_array
-==============================
+radproc\.arcgis\.raster\_to\_array
+==================================
 
 .. currentmodule:: radproc.arcgis
 

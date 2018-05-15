@@ -1,5 +1,5 @@
-radproc.wradlib_io.read_RADOLAN_composite
-=========================================
+radproc\.wradlib\_io\.read\_RADOLAN\_composite
+==============================================
 
 .. currentmodule:: radproc.wradlib_io
 

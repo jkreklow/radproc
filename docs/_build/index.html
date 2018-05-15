@@ -25,25 +25,18 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="radproc" href="#"/>
-        <link rel="next" title="Getting Started" href="gettingstarted.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="gettingstarted.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -65,7 +58,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -91,6 +84,7 @@
             
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Library Reference</a></li>
 </ul>
 
@@ -103,7 +97,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">radproc</a>
@@ -111,9 +105,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -155,15 +150,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-an-arcgis-compatible-library-for-radolan-composite-processing-and-analysis">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-an-arcgis-compatible-library-for-radolan-composite-processing-and-analysis">
 <h1>radproc: An ArcGIS-compatible Library for RADOLAN Composite Processing and Analysis<a class="headerlink" href="#radproc-an-arcgis-compatible-library-for-radolan-composite-processing-and-analysis" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.1.0dev0</td>
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.1.0</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">January 02, 2018</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 15, 2018</td>
 </tr>
 </tbody>
 </table>
@@ -171,11 +185,11 @@
 It provides functions for processing, analysis and export of RADOLAN (Radar Online Adjustment) composites and rain gauge data in MR90 format.
 The German Weather Service (DWD) provides the RADOLAN RW composites for free in the Climate Data Center
 but the data processing represents a big challenge for many potential users.
-radproc&#8217;s goal is to lower the barrier for using these data, especially in conjunction with ArcGIS.
-Therefore, radproc provides an ArcGIS-compatible data processing workflow based on pandas DataFrames and HDF5.
-Moreover, radproc&#8217;s arcgis module includes a collection of functions for data exchange between pandas and ArcGIS.</p>
+radproc’s goal is to lower the barrier for using these data, especially in conjunction with ArcGIS.
+Therefore, radproc provides an automated ArcGIS-compatible data processing workflow based on pandas DataFrames and HDF5.
+Moreover, radproc’s arcgis module includes a collection of functions for data exchange between pandas and ArcGIS.</p>
 <div class="section" id="radproc-s-main-features">
-<h2>radproc&#8217;s main features<a class="headerlink" href="#radproc-s-main-features" title="Permalink to this headline">¶</a></h2>
+<h2>Radproc’s Main Features<a class="headerlink" href="#radproc-s-main-features" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="raw-data-processing">
 <h3>Raw Data processing<a class="headerlink" href="#raw-data-processing" title="Permalink to this headline">¶</a></h3>
 <blockquote>
@@ -184,7 +198,7 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
 <li>Automatically reading in all binary RADOLAN composites from a predefined directory structure</li>
 <li>Optionally clipping the composites to a study area in order to reduce data size</li>
 <li>Default data structure: Monthly pandas DataFrames with full support for time series analysis and spatial location of each pixel</li>
-<li>Efficient data storage in HDF5 format with fast data access</li>
+<li>Efficient data storage in HDF5 format with fast data access and optional data compression</li>
 <li>Easy downsampling of time series</li>
 <li>Reading in DWD rain gauge data in MR90 format into the same data structure as RADOLAN.</li>
 </ul>
@@ -195,7 +209,7 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
 <blockquote>
 <div><ul class="simple">
 <li>Export of single RADOLAN composites or analysis results into projected raster datasets or ESRI grids for your study area</li>
-<li>Export of all DataFrame rows into raster datasets in a new file geodatabase, optionally including several statistics rasters.</li>
+<li>Export of all DataFrame rows into raster datasets in a new file geodatabase, optionally including several statistics rasters</li>
 <li>Import of dbf tables (stand-alone or attribute tables of feature classes) into pandas DataFrames</li>
 <li>Joining DataFrame columns to attribute tables</li>
 <li>Extended value extraction from rasters to points (optionally including the eight surrounding cells)</li>
@@ -208,10 +222,10 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
 <blockquote>
 <div><ul class="simple">
 <li>Calculation of precipitation sums for arbitrary periods of time</li>
+<li>Heavy rainfall analysis, e.g. identification, counting and export of rainfall intervals exceeding defined thresholds</li>
 <li>Data quality assessment</li>
 <li>Comparison of RADOLAN and rain gauge data</li>
-<li>Heavy rainfall analysis, e.g. identification and export of rainfall intervals exceeding a defined threshold</li>
-<li>Erosivity analysis, e.g. calculation of monthly, seasonal or annual R-factors</li>
+<li><em>In preparation: Erosivity analysis, e.g. calculation of monthly, seasonal or annual R-factors</em></li>
 </ul>
 </div></blockquote>
 <div class="toctree-wrapper compound">
@@ -222,34 +236,37 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
 <li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#file-system-description">File system description</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/Notebooktest.html">Dies ist ein Testnotebook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/Notebooktest_rst.html">Dies ist ein Testnotebook</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Library Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="core.html">Core functions and Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Functions and Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 gauge data processing</a></li>
 </ul>
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h4>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
 <li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
 </div>
+</div>
+</div>
+</div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -269,7 +286,7 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -287,7 +304,8 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -305,14 +323,11 @@ Moreover, radproc&#8217;s arcgis module includes a collection of functions for d
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

@@ -1,13 +1,14 @@
-Library Reference
-=================
+===================
+ Library Reference
+===================
 
 .. toctree::
    :maxdepth: 2
 
-   raw
-   core
-   arcgis
-   heavyrain
-   wradlib_io
-   dwd_gauge
+   raw.rst
+   core.rst
+   arcgis.rst
+   heavyrain.rst
+   wradlib_io.rst
+   dwd_gauge.rst
    

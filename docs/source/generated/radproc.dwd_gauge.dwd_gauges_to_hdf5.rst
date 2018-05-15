@@ -1,5 +1,5 @@
-radproc.dwd_gauge.dwd_gauges_to_hdf5
-====================================
+radproc\.dwd\_gauge\.dwd\_gauges\_to\_hdf5
+==========================================
 
 .. currentmodule:: radproc.dwd_gauge
 

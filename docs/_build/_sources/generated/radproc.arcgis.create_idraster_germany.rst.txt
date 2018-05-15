@@ -1,5 +1,5 @@
-radproc.arcgis.create_idraster_germany
-======================================
+radproc\.arcgis\.create\_idraster\_germany
+==========================================
 
 .. currentmodule:: radproc.arcgis
 

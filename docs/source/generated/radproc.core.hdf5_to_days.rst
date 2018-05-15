@@ -1,5 +1,5 @@
-radproc.core.hdf5_to_days
-=========================
+radproc\.core\.hdf5\_to\_days
+=============================
 
 .. currentmodule:: radproc.core
 

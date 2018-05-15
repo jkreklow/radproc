@@ -1,5 +1,5 @@
-radproc.core.load_month
-=======================
+radproc\.core\.load\_month
+==========================
 
 .. currentmodule:: radproc.core
 

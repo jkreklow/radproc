@@ -1,5 +1,5 @@
-radproc.core.import_idarray_from_txt
-====================================
+radproc\.core\.import\_idarray\_from\_txt
+=========================================
 
 .. currentmodule:: radproc.core
 

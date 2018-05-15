@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="radproc" href="../index.html"/>
-        <link rel="up" title="Raw Data Processing" href="../raw.html"/>
-        <link rel="next" title="radproc.raw.radolan_binaries_to_hdf5" href="radproc.raw.radolan_binaries_to_hdf5.html"/>
-        <link rel="prev" title="radproc.raw.unzip_YW_binaries" href="radproc.raw.unzip_YW_binaries.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="radproc.raw.radolan_binaries_to_hdf5" href="radproc.raw.radolan_binaries_to_hdf5.html" />
+    <link rel="prev" title="radproc.raw.unzip_YW_binaries" href="radproc.raw.unzip_YW_binaries.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,19 +85,23 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../raw.html">Raw Data Processing</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="radproc.raw.unzip_RW_binaries.html">radproc.raw.unzip_RW_binaries</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.raw.unzip_YW_binaries.html">radproc.raw.unzip_YW_binaries</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.raw.radolan_binaries_to_dataframe</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.raw.radolan_binaries_to_hdf5.html">radproc.raw.radolan_binaries_to_hdf5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.raw.create_idraster_and_process_radolan_data.html">radproc.raw.create_idraster_and_process_radolan_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.raw.process_radolan_data.html">radproc.raw.process_radolan_data</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../raw.html#id1">Raw Data Processing</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="radproc.raw.unzip_RW_binaries.html">radproc.raw.unzip_RW_binaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radproc.raw.unzip_YW_binaries.html">radproc.raw.unzip_YW_binaries</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">radproc.raw.radolan_binaries_to_dataframe</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radproc.raw.radolan_binaries_to_hdf5.html">radproc.raw.radolan_binaries_to_hdf5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radproc.raw.create_idraster_and_process_radolan_data.html">radproc.raw.create_idraster_and_process_radolan_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="radproc.raw.process_radolan_data.html">radproc.raw.process_radolan_data</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../core.html">Core functions and Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
 </ul>
@@ -121,7 +117,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">radproc</a>
@@ -129,9 +125,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -177,11 +174,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-raw-radolan-binaries-to-dataframe">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-raw-radolan-binaries-to-dataframe">
 <h1>radproc.raw.radolan_binaries_to_dataframe<a class="headerlink" href="#radproc-raw-radolan-binaries-to-dataframe" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="radproc.raw.radolan_binaries_to_dataframe">
-<code class="descclassname">radproc.raw.</code><code class="descname">radolan_binaries_to_dataframe</code><span class="sig-paren">(</span><em>inFolder</em>, <em>idArr=array([     0</em>, <em>1</em>, <em>2</em>, <em>...</em>, <em>989997</em>, <em>989998</em>, <em>989999])</em>, <em>extendedNationalGrid=True</em><span class="sig-paren">)</span><a class="headerlink" href="#radproc.raw.radolan_binaries_to_dataframe" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">radproc.raw.</code><code class="descname">radolan_binaries_to_dataframe</code><span class="sig-paren">(</span><em>inFolder</em>, <em>idArr=None</em><span class="sig-paren">)</span><a class="headerlink" href="#radproc.raw.radolan_binaries_to_dataframe" title="Permalink to this definition">¶</a></dt>
 <dd><p>Import all RADOLAN binary files in a directory into a pandas DataFrame,
 optionally clipping the data to the extent of an investigation area specified by an ID array.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -194,13 +210,13 @@ optionally clipping the data to the extent of an investigation area specified by
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>inFolder</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path to the directory containing RADOLAN binary files.
-All files ending with &#8216;-bin&#8217; or &#8216;-bin.gz&#8217; are read in.</dd>
-<dt>idArr</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">one-dimensional numpy array (optional, default: extended national RADOLAN grid)</span><dd>containing ID values to select RADOLAN data of the cells located in the investigation area.</dd>
-<dt>extendedNationalGrid</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">bool (optional, default: True)</span><dd>True: extended 900 x 1100 national RADOLAN grid, False: 900x900 national grid.</dd>
+<dt>inFolder <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Path to the directory containing RADOLAN binary files.
+All files ending with ‘-bin’ or ‘-bin.gz’ are read in.</dd>
+<dt>idArr <span class="classifier-delimiter">:</span> <span class="classifier">one-dimensional numpy array (optional, default: None)</span></dt>
+<dd>containing ID values to select RADOLAN data of the cells located in the investigation area.
+If no idArr is specified, the ID array is automatically generated from RADOLAN metadata
+and RADOLAN precipitation data are not clipped to any investigation area.</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -213,13 +229,15 @@ All files ending with &#8216;-bin&#8217; or &#8216;-bin.gz&#8217; are read in.</
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>df</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame containing...</span><dd><ul class="first last simple">
+<dt>df <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame containing…</span></dt>
+<dd><ul class="first last simple">
 <li>RADOLAN data of the cells located in the investigation area</li>
 <li>datetime row index with defined frequency depending on the RADOLAN product and time zone UTC</li>
 <li>ID values as column names</li>
 </ul>
 </dd>
+<dt>metadata <span class="classifier-delimiter">:</span> <span class="classifier">dictionary</span></dt>
+<dd>containing metadata from the last imported RADOLAN binary file</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -227,31 +245,31 @@ All files ending with &#8216;-bin&#8217; or &#8216;-bin.gz&#8217; are read in.</
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name" colspan="2">Format description and examples:</th></tr>
-<tr class="field-odd field"><td>&nbsp;</td><td class="field-body"></td>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"></td>
 </tr>
 </tbody>
 </table>
-<p>Every row of the output DataFrame equals a precipitation raster of the investigation area at the specific date.
+<blockquote>
+<div><p>Every row of the output DataFrame equals a precipitation raster of the investigation area at the specific date.
 Every column equals a time series of the precipitation at a specific raster cell.</p>
 <p>Data can be accessed and sliced with the following Syntax:</p>
 <p><strong>df.loc[row_index, column_name]</strong></p>
-<p>with row index as string in date format &#8216;YYYY-MM-dd hh:mm&#8217; and column names as integer values</p>
-<p>Examples:</p>
+<p>with row index as string in date format ‘YYYY-MM-dd hh:mm’ and column names as integer values</p>
+<p><strong>Examples::</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01 00:50&#39;</span><span class="p">,</span><span class="mi">414773</span><span class="p">]</span> <span class="c1">#--&gt; returns single float value of specified date and cell</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01 00:50&#39;</span><span class="p">,</span> <span class="p">:]</span> <span class="c1">#--&gt; returns entire row (= raster) of specified date as one-dimensional DataFrame</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01&#39;</span><span class="p">,</span> <span class="p">:]</span> <span class="c1">#--&gt; returns DataFrame with all rows of specified day (because time of day is omitted)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[,</span> <span class="mi">414773</span><span class="p">]</span> <span class="c1">#--&gt; returns time series of the specified cell as Series</span>
 </pre></div>
 </div>
+</div></blockquote>
 </dd></dl>
 
 </div>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -273,7 +291,7 @@ Every column equals a time series of the precipitation at a specific raster cell
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -291,7 +309,8 @@ Every column equals a time series of the precipitation at a specific raster cell
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -309,14 +328,11 @@ Every column equals a time series of the precipitation at a specific raster cell
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

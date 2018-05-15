@@ -28,16 +28,19 @@
 # needs_sphinx = '1.0'
 
 import sys, os, glob
-#sys.path.insert(0, r"P:\JENNY\FORSCHUNG\Skripte\dist_api\radproc")
+#sys.path.insert(0, os.path.abspath('../'))
+#sys.path.insert(0, r"P:\JENNY\FORSCHUNG\RADPROC\version_010sampledatatest\radproc")
+sys.path.insert(0, os.path.abspath('.'))
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary']
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary', 'nbsphinx']
 
 # get all rst files, do it manually
 rst_files = glob.glob('*.rst')
-autosummary_generate = rst_files
+#autosummary_generate = rst_files
+autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -57,7 +60,7 @@ copyright = u'2016-2018, Jennifer Kreklow'
 author = u'Jennifer Kreklow'
 
 
-import radproc
+#import radproc
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
@@ -66,7 +69,8 @@ import radproc
 #version = u'0.1'
 
 # The full version, including alpha/beta/rc tags.
-version = radproc.__version__
+#version = radproc.__version__
+version = "0.1.0"
 #release = u'0.1.0dev0'
 release = version
 

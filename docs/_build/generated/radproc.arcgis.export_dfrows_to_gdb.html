@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="radproc" href="../index.html"/>
-        <link rel="up" title="ArcGIS-based functions" href="../arcgis.html"/>
-        <link rel="next" title="radproc.arcgis.attribute_table_to_df" href="radproc.arcgis.attribute_table_to_df.html"/>
-        <link rel="prev" title="radproc.arcgis.export_to_raster" href="radproc.arcgis.export_to_raster.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="radproc.arcgis.attribute_table_to_df" href="radproc.arcgis.attribute_table_to_df.html" />
+    <link rel="prev" title="radproc.arcgis.export_to_raster" href="radproc.arcgis.export_to_raster.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,16 +85,16 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../core.html">Core functions and Data I/O</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.raster_to_array.html">radproc.arcgis.raster_to_array</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.create_idraster_germany.html">radproc.arcgis.create_idraster_germany</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.clip_idraster.html">radproc.arcgis.clip_idraster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.import_idarray_from_raster.html">radproc.arcgis.import_idarray_from_raster</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.create_idarray.html">radproc.arcgis.create_idarray</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.save_idarray_to_txt.html">radproc.arcgis.save_idarray_to_txt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.export_to_raster.html">radproc.arcgis.export_to_raster</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.arcgis.export_dfrows_to_gdb</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.attribute_table_to_df.html">radproc.arcgis.attribute_table_to_df</a></li>
@@ -114,7 +106,7 @@
 <li class="toctree-l3"><a class="reference internal" href="radproc.arcgis.zonalstatistics.html">radproc.arcgis.zonalstatistics</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
 </ul>
@@ -130,7 +122,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">radproc</a>
@@ -138,9 +130,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -165,7 +158,7 @@
         
           <li><a href="../reference.html">Library Reference</a> &raquo;</li>
         
-          <li><a href="../arcgis.html">ArcGIS-based functions</a> &raquo;</li>
+          <li><a href="../arcgis.html">ArcGIS-based Functions</a> &raquo;</li>
         
       <li>radproc.arcgis.export_dfrows_to_gdb</li>
     
@@ -186,7 +179,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-arcgis-export-dfrows-to-gdb">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-arcgis-export-dfrows-to-gdb">
 <h1>radproc.arcgis.export_dfrows_to_gdb<a class="headerlink" href="#radproc-arcgis-export-dfrows-to-gdb" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="radproc.arcgis.export_dfrows_to_gdb">
@@ -203,20 +215,20 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>dataDF</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span><dd>containing rows to be exported. Column names must be ID values.</dd>
-<dt>idRaster</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path to raster dataset containing ID values. Also defines the projection of the output raster.</dd>
-<dt>outGDBPath</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path for the File-Geodatabase to be created.</dd>
-<dt>GDBName</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Name for the File-Geodatabase to be created.</dd>
-<dt>statistics</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">list of strings (optional)</span><dd><p class="first">Types of statistics rasters, that are to be calculated out of all DataFrame rows.
-e.g. &#8220;Mean&#8221; will calculate the average of all rows for every raster cell.
+<dt>dataDF <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span></dt>
+<dd>containing rows to be exported. Column names must be ID values.</dd>
+<dt>idRaster <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Path to raster dataset containing ID values. Also defines the projection of the output raster.</dd>
+<dt>outGDBPath <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Path for the File-Geodatabase to be created.</dd>
+<dt>GDBName <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Name for the File-Geodatabase to be created.</dd>
+<dt>statistics <span class="classifier-delimiter">:</span> <span class="classifier">list of strings (optional)</span></dt>
+<dd><p class="first">Types of statistics rasters, that are to be calculated out of all DataFrame rows.
+e.g. “Mean” will calculate the average of all rows for every raster cell.
 The following strings are possible as parameters:</p>
 <blockquote class="last">
-<div>[&#8220;mean&#8221; | &#8220;sum&#8221; | &#8220;min&#8221; | &#8220;max&#8221; | &#8220;median&#8221; | &#8220;std&#8221; | &#8220;range&#8221;]</div></blockquote>
+<div>[“mean” | “sum” | “min” | “max” | “median” | “std” | “range”]</div></blockquote>
 </dd>
 </dl>
 </div></blockquote>
@@ -238,9 +250,7 @@ The following strings are possible as parameters:</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -262,7 +272,7 @@ The following strings are possible as parameters:</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -280,7 +290,8 @@ The following strings are possible as parameters:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -298,14 +309,11 @@ The following strings are possible as parameters:</p>
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

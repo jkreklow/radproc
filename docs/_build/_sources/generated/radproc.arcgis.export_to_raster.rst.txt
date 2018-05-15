@@ -1,5 +1,5 @@
-radproc.arcgis.export_to_raster
-===============================
+radproc\.arcgis\.export\_to\_raster
+===================================
 
 .. currentmodule:: radproc.arcgis
 

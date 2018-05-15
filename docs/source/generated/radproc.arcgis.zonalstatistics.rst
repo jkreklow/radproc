@@ -1,5 +1,5 @@
-radproc.arcgis.zonalstatistics
-==============================
+radproc\.arcgis\.zonalstatistics
+================================
 
 .. currentmodule:: radproc.arcgis
 

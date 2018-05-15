@@ -1,5 +1,5 @@
-radproc.core.coordinates_degree_to_stereographic
-================================================
+radproc\.core\.coordinates\_degree\_to\_stereographic
+=====================================================
 
 .. currentmodule:: radproc.core
 

@@ -1,5 +1,5 @@
-radproc.arcgis.import_idarray_from_raster
-=========================================
+radproc\.arcgis\.import\_idarray\_from\_raster
+==============================================
 
 .. currentmodule:: radproc.arcgis
 

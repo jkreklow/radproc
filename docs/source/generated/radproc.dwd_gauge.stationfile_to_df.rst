@@ -1,5 +1,5 @@
-radproc.dwd_gauge.stationfile_to_df
-===================================
+radproc\.dwd\_gauge\.stationfile\_to\_df
+========================================
 
 .. currentmodule:: radproc.dwd_gauge
 

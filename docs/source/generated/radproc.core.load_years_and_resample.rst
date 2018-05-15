@@ -1,5 +1,5 @@
-radproc.core.load_years_and_resample
-====================================
+radproc\.core\.load\_years\_and\_resample
+=========================================
 
 .. currentmodule:: radproc.core
 

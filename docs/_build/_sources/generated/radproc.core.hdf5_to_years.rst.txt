@@ -1,5 +1,5 @@
-radproc.core.hdf5_to_years
-==========================
+radproc\.core\.hdf5\_to\_years
+==============================
 
 .. currentmodule:: radproc.core
 

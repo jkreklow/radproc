@@ -1,5 +1,5 @@
-radproc.core.load_months_from_hdf5
-==================================
+radproc\.core\.load\_months\_from\_hdf5
+=======================================
 
 .. currentmodule:: radproc.core
 

@@ -1,31 +1,34 @@
 from setuptools import setup
 #from setuptools import find_packages
+#from distutils.core import setup
 import os
 
-version = '0.1.0dev0'
+version = '0.1.0'
 
 def write_version_py(filename='radproc/version.py'):
     content = "# THIS FILE IS GENERATED FROM RADPROC SETUP.PY\nversion = '%s'" % version
-    f = open(filename, 'w')
-    f.write(content)
-    f.close()
+    with open(filename, 'w') as f:
+        f.write(content)
 
 write_version_py()
     
 setup(
   name = 'radproc',
-  packages = ['radproc'], # this must be the same as the name above
+  #packages = ['radproc'], # this must be the same as the name above
+  #packages = find_packages(),
+  packages = ['radproc', 'radproc.sampledata'],
+  package_data={'radproc': ['sampledata/radolan_proj.prj']},
+  include_package_data = True,
   version = version,
   description = 'Library for RADOLAN composite processing, analysis and data exchange with ArcGIS.',
-  #long_description=open('README.txt').read(),
+  #long_description=open('README.rst').read(),
   author = 'Jennifer Kreklow',
   author_email = 'kreklow@phygeo.uni-hannover.de',
   #url = 'https://github.com/peterldowns/mypackage', # use the URL to the github repo
   #download_url = 'https://github.com/peterldowns/mypackage/archive/0.1.tar.gz', # I'll explain this in a second
   license = 'MIT',
-  keywords = ['RADOLAN', 'weather radar', 'ArcGIS', 'precipitation', 'heavy rainfall', 'erosivity', ], 
+  keywords = ['RADOLAN', 'weather radar', 'ArcGIS', 'precipitation', 'heavy rainfall'], 
   classifiers = [],
-  #packages = ['radproc.heavyrain', 'radproc.io', 'radproc.wradlib_io'],
-  py_modules = ['radproc.api','radproc.heavyrain', 'radproc.core', 'radproc.wradlib_io', 'radproc.raw', 'radproc.arcgis', 'radproc.dwd_gauge'],
-  install_requires = ['numpy', 'pandas', 'tables', 'future']
+  #py_modules = ['radproc.api','radproc.heavyrain', 'radproc.core', 'radproc.wradlib_io', 'radproc.raw', 'radproc.arcgis', 'radproc.dwd_gauge'],
+  install_requires = ['numpy', 'pandas', 'tables']
 )
