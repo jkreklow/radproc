@@ -1,0 +1,13 @@
+# Things to always exclude
+global-exclude .git*
+global-exclude .ipynb_checkpoints
+global-exclude *.py[co]
+
+# Top-level Config
+include LICENSE.txt
+include MANIFEST.in
+include README.rst
+include setup.py
+include *.rst
+recursive-include docs *.rst
+

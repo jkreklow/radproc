@@ -1,5 +1,5 @@
-radproc.raw.unzip_RW_binaries
-=============================
+radproc\.raw\.unzip\_RW\_binaries
+=================================
 
 .. currentmodule:: radproc.raw
 

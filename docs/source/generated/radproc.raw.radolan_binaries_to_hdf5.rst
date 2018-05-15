@@ -1,5 +1,5 @@
-radproc.raw.radolan_binaries_to_hdf5
-====================================
+radproc\.raw\.radolan\_binaries\_to\_hdf5
+=========================================
 
 .. currentmodule:: radproc.raw
 

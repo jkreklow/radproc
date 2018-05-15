@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="radproc" href="../index.html"/>
-        <link rel="up" title="Core functions and Data I/O" href="../core.html"/>
-        <link rel="next" title="radproc.core.import_idarray_from_txt" href="radproc.core.import_idarray_from_txt.html"/>
-        <link rel="prev" title="Core functions and Data I/O" href="../core.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="radproc.core.save_idarray_to_txt" href="radproc.core.save_idarray_to_txt.html" />
+    <link rel="prev" title="Core Functions and Data I/O" href="../core.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,10 +85,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core functions and Data I/O</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.core.coordinates_degree_to_stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.save_idarray_to_txt.html">radproc.core.save_idarray_to_txt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.import_idarray_from_txt.html">radproc.core.import_idarray_from_txt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.load_months_from_hdf5.html">radproc.core.load_months_from_hdf5</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.load_month.html">radproc.core.load_month</a></li>
@@ -108,8 +102,8 @@
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_hydrologicalSeasons.html">radproc.core.hdf5_to_hydrologicalSeasons</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
 </ul>
@@ -125,7 +119,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">radproc</a>
@@ -133,9 +127,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -160,7 +155,7 @@
         
           <li><a href="../reference.html">Library Reference</a> &raquo;</li>
         
-          <li><a href="../core.html">Core functions and Data I/O</a> &raquo;</li>
+          <li><a href="../core.html">Core Functions and Data I/O</a> &raquo;</li>
         
       <li>radproc.core.coordinates_degree_to_stereographic</li>
     
@@ -181,7 +176,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-core-coordinates-degree-to-stereographic">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-core-coordinates-degree-to-stereographic">
 <h1>radproc.core.coordinates_degree_to_stereographic<a class="headerlink" href="#radproc-core-coordinates-degree-to-stereographic" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="radproc.core.coordinates_degree_to_stereographic">
@@ -197,10 +211,10 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>Lambda_degree</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">float</span><dd>Degree of latitude [°N / °S]</dd>
-<dt>Phi_degree</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">Float</span><dd>Degree of longitude [°E / °W]</dd>
+<dt>Lambda_degree <span class="classifier-delimiter">:</span> <span class="classifier">float</span></dt>
+<dd>Degree of latitude [°N / °S]</dd>
+<dt>Phi_degree <span class="classifier-delimiter">:</span> <span class="classifier">Float</span></dt>
+<dd>Degree of longitude [°E / °W]</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -213,8 +227,8 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>(x, y)</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">Tuple with two elements of type float</span><dd>Cartesian coordinates x and y in stereographic projection [km]</dd>
+<dt>(x, y) <span class="classifier-delimiter">:</span> <span class="classifier">Tuple with two elements of type float</span></dt>
+<dd>Cartesian coordinates x and y in stereographic projection [km]</dd>
 </dl>
 </div></blockquote>
 </dd></dl>
@@ -223,18 +237,16 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="radproc.core.import_idarray_from_txt.html" class="btn btn-neutral float-right" title="radproc.core.import_idarray_from_txt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="radproc.core.save_idarray_to_txt.html" class="btn btn-neutral float-right" title="radproc.core.save_idarray_to_txt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../core.html" class="btn btn-neutral" title="Core functions and Data I/O" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../core.html" class="btn btn-neutral" title="Core Functions and Data I/O" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -247,7 +259,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -265,7 +277,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -283,14 +296,11 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

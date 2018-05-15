@@ -4,8 +4,9 @@
 # Distributed under the MIT License. See LICENSE.txt for more info.
 
 """
-Core Functions and Data I/O
-===========================
+=============================
+ Core Functions and Data I/O
+=============================
 
 Core functions like coordinate conversion and import of ID-array from textfile. 
 Data import from HDF5-file and data aggregation.
@@ -15,6 +16,7 @@ Data import from HDF5-file and data aggregation.
    :toctree: generated/
 
    coordinates_degree_to_stereographic
+   save_idarray_to_txt
    import_idarray_from_txt
    load_months_from_hdf5
    load_month
@@ -32,7 +34,7 @@ Data import from HDF5-file and data aggregation.
 .. moduleauthor:: Jennifer Kreklow
 """
 
-
+from __future__ import division, print_function
 import numpy as np
 import pandas as pd
 import sys
@@ -77,6 +79,29 @@ def coordinates_degree_to_stereographic(Lambda_degree, Phi_degree):
     return (x, y)
 
 
+def save_idarray_to_txt(idArr, txtFile):
+    """
+    Write cell ID values to text file.
+    
+    :Parameters:
+    ------------
+    
+        idArr : one-dimensional numpy array
+            containing ID values of dtype int32    
+        txtFile : string
+            Path and name of a new textfile to write cell ID values into. Writing format: One value per line.
+    
+    :Returns:
+    ---------
+    
+        No return value
+    """
+    
+    with open(txtFile, "w") as f:
+        for ID in idArr:
+            f.write("%i\n" %ID)
+
+
 def import_idarray_from_txt(txtFile):
     """
     Imports cell ID values from text file into one-dimensional numpy-array.
@@ -93,10 +118,10 @@ def import_idarray_from_txt(txtFile):
         idArr : one-dimensional numpy-array of dtype int32
     """
     
-    f = open(txtFile, "r")
-    ID_list = []
-    lines = f.readlines()
-    f.close()
+    with open(txtFile, "r") as f:
+        ID_list = []
+        lines = f.readlines()
+
     for line in lines:
         ID_list.append(int(line))
     
@@ -105,7 +130,7 @@ def import_idarray_from_txt(txtFile):
 
 
   
-def load_months_from_hdf5(HDFFile, year,  months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]):
+def load_months_from_hdf5(HDFFile, year,  months=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]):
     """
     Imports the specified months of one year and merges them to one DataFrame.
 
@@ -125,17 +150,16 @@ def load_months_from_hdf5(HDFFile, year,  months = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1
         df : pandas DataFrame
     """
     
-    f = pd.HDFStore(HDFFile, "r")
-    # Dataset des ersten Monats in DataFrame importieren
-    dataset = "%4i/%i" % (year,months[0])
-    df = f[dataset]
-    fr = df.index.freq
-    # Datasets aller weiteren Monate importieren und an DataFrame anhängen
-    for i in range(1,len(months)):
-        dataset = "%4i/%i" % (year,months[i])
-        df = df.append(f[dataset])
-    df = df.asfreq(fr)
-    f.close()
+    with pd.HDFStore(HDFFile, "r") as f:
+        # Dataset des ersten Monats in DataFrame importieren
+        dataset = "%4i/%i" % (year,months[0])
+        df = f[dataset]
+        fr = df.index.freq
+        # Datasets aller weiteren Monate importieren und an DataFrame anhängen
+        for i in range(1,len(months)):
+            dataset = "%4i/%i" % (year,months[i])
+            df = df.append(f[dataset])
+            df = df.asfreq(fr)
     
     return df
 
@@ -160,16 +184,15 @@ def load_month(HDFFile, year, month):
         df : pandas DataFrame
     """
 
-    f = pd.HDFStore(HDFFile, "r")
-    # Dataset des ersten Monats in DataFrame importieren
-    dataset = "%4i/%i" % (year, month)
-    df = f[dataset]
-    f.close()
+    with pd.HDFStore(HDFFile, "r") as f:
+        # Dataset des ersten Monats in DataFrame importieren
+        dataset = "%4i/%i" % (year, month)
+        df = f[dataset]
     
     return df
 
 
-def load_years_and_resample(HDFFile, year_start, year_end = 0, freq = "years"):
+def load_years_and_resample(HDFFile, year_start, year_end=0, freq="years"):
     """Imports all months of the specified years, merges them together to one DataFrame \
     and resamples the latter to [annual | monthly | daily | hourly] precipitation sums. 
     
@@ -195,6 +218,7 @@ def load_years_and_resample(HDFFile, year_start, year_end = 0, freq = "years"):
         
     :Examples:
     ----------
+    
         The mean annual precipitation sum can be calculated with the following syntax:
             
         >>> import radproc as rp
@@ -212,99 +236,100 @@ def load_years_and_resample(HDFFile, year_start, year_end = 0, freq = "years"):
     elif freq.lower() == "hours":
         frequency = 'H'
     else:
-        print 'No valid frequency! Please enter one of the following arguments: \
-        "years", "months", "days", "hours"'
+        print('No valid frequency! Please enter one of the following arguments: \
+        "years", "months", "days", "hours"')
         sys.exit()
         
     try:
         if year_end == 0 or (year_end != 0 and year_start > year_end):
             year_end = year_start
-            print "year_end set to year_start."
-        years = np.arange(year_start, year_end + 1)     
-        f = pd.HDFStore(HDFFile, "r")
+            print("year_end set to year_start.")
+        years = np.arange(year_start, year_end + 1)
         
-        pd_version = int(pd.__version__.split('.')[-2])
+        with pd.HDFStore(HDFFile, "r") as f:
         
-        for year in years:
-            # Load dataset of first month into DataFrame
-            dataset = "%4i/%i" % (year,1)
-            df = f[dataset]
-            #reduce data size by resampling
-            if pd_version < 19 and frequency != 'A-DEC':
-                df = df.resample(frequency, how = 'sum', closed = 'right', label = 'right')
-            elif pd_version >= 19 and frequency != 'A-DEC':
-                df = df.resample(frequency, closed = 'right', label = 'right').sum()
-            # resample to months if years are target frequency
-            elif pd_version < 19 and frequency == 'A-DEC':
-                df = df.resample('M', how = 'sum', closed = 'right', label = 'right')
-            elif pd_version >= 19 and frequency == 'A-DEC':  
-                df = df.resample('M', closed = 'right', label = 'right').sum()
+            pd_version = int(pd.__version__.split('.')[-2])
             
-            # Load datasets of other months, resample and append to DataFrame of first month
-            for month in range(2,13):
-                dataset = "%4i/%i" % (year,month)
-                dfm = f[dataset]
-                
+            for year in years:
+                # Load dataset of first month into DataFrame
+                dataset = "%4i/%i" % (year,1)
+                df = f[dataset]
+                #reduce data size by resampling
                 if pd_version < 19 and frequency != 'A-DEC':
-                    dfm = dfm.resample(frequency, how = 'sum', closed = 'right', label = 'right')
+                    df = df.resample(frequency, how = 'sum', closed = 'right', label = 'right')
                 elif pd_version >= 19 and frequency != 'A-DEC':
-                    dfm = dfm.resample(frequency, closed = 'right', label = 'right').sum()
+                    df = df.resample(frequency, closed = 'right', label = 'right').sum()
                 # resample to months if years are target frequency
                 elif pd_version < 19 and frequency == 'A-DEC':
-                    dfm = dfm.resample('M', how = 'sum', closed = 'right', label = 'right')
+                    df = df.resample('M', how = 'sum', closed = 'right', label = 'right')
                 elif pd_version >= 19 and frequency == 'A-DEC':  
-                    dfm = dfm.resample('M', closed = 'right', label = 'right').sum()                    
+                    df = df.resample('M', closed = 'right', label = 'right').sum()
                 
-                df = df.append(dfm)
+                # Load datasets of other months, resample and append to DataFrame of first month
+                for month in range(2,13):
+                    dataset = "%4i/%i" % (year,month)
+                    dfm = f[dataset]
+                    
+                    if pd_version < 19 and frequency != 'A-DEC':
+                        dfm = dfm.resample(frequency, how = 'sum', closed = 'right', label = 'right')
+                    elif pd_version >= 19 and frequency != 'A-DEC':
+                        dfm = dfm.resample(frequency, closed = 'right', label = 'right').sum()
+                    # resample to months if years are target frequency
+                    elif pd_version < 19 and frequency == 'A-DEC':
+                        dfm = dfm.resample('M', how = 'sum', closed = 'right', label = 'right')
+                    elif pd_version >= 19 and frequency == 'A-DEC':  
+                        dfm = dfm.resample('M', closed = 'right', label = 'right').sum()                    
+                    
+                    df = df.append(dfm)
+                    
+                # Check for pandas version and apply appropriate syntax for resample method
+                # to keep compatibility to older versions and avoid FutureWarnings in newer versions.
+                if int(pd.__version__.split('.')[-2]) < 19:
+                    df = df.resample(frequency, how = 'sum', closed = 'right', label = 'right')
+                else:
+                    df = df.resample(frequency, closed = 'right', label = 'right').sum()
                 
-            # Check for pandas version and apply appropriate syntax for resample method
-            # to keep compatibility to older versions and avoid FutureWarnings in newer versions.
-            if int(pd.__version__.split('.')[-2]) < 19:
-                df = df.resample(frequency, how = 'sum', closed = 'right', label = 'right')
-            else:
-                df = df.resample(frequency, closed = 'right', label = 'right').sum()
+                # for first year: copy to new year DataFrame
+                if year == years[0]:
+                    dfY = df.copy()
+                    del df
+                # for following years: append to year DataFrame
+                else:
+                    dfY = dfY.append(df)
             
-            # for first year: copy to new year DataFrame
-            if year == years[0]:
-                dfY = df.copy()
-                del df
-            # for following years: append to year DataFrame
-            else:
-                dfY = dfY.append(df)
-        
-        try:
-            # set frequency
-            dfY = dfY.asfreq(frequency)
-        except ValueError:
-            # for gauge data, "ValueError: cannot reindex from a duplicate axis" occurs, obviously due to duplicate index labels.
-            # To avoid this, rows with duplicate labels are removed and only the first occurrence is kept.
-            # the ~ operator reverses the boolean values from the duplicated method in order to keep only NOT duplicated labels.
-            dfY = dfY[~dfY.index.duplicated(keep='first')]
-            dfY = dfY.asfreq(frequency)
-        
-        # Years and months have default setting to set index at end of definded interval.
-        # Day Index uses date of last interval (next day at ~6h) which is confusing. So shift index back to correct day.
-        if frequency == 'D' and dfY.index.day[0] == 2:
-            dfY.index = dfY.index.shift(-1)
-        f.close()
+            try:
+                # set frequency
+                dfY = dfY.asfreq(frequency)
+            except ValueError:
+                # for gauge data, "ValueError: cannot reindex from a duplicate axis" occurs, obviously due to duplicate index labels.
+                # To avoid this, rows with duplicate labels are removed and only the first occurrence is kept.
+                # the ~ operator reverses the boolean values from the duplicated method in order to keep only NOT duplicated labels.
+                dfY = dfY[~dfY.index.duplicated(keep='first')]
+                dfY = dfY.asfreq(frequency)
+            
+            # Years and months have default setting to set index at end of definded interval.
+            # Day Index uses date of last interval (next day at ~6h) which is confusing. So shift index back to correct day.
+            if frequency == 'D' and dfY.index.day[0] == 2:
+                dfY.index = dfY.index.shift(-1)
+            
         return dfY
 
     except IOError:
-        print "Error! HDF5 file can not be opened!\n \
-Please check if directory path is correct and file is currently used by any other application."
+        print("Error! HDF5 file can not be opened!\n \
+Please check if directory path is correct and file is currently used by any other application.")
     except KeyError:
-        print 'Error at %i/%i' %(year, month)
+        print('Error at %i/%i' %(year, month))
     except TypeError:
-        print 'Error! Please enter years as integer numbers and path to HDF5 file as string!\n \
-Example: resample_to_years(r"P:\User\Data\HDF5\RW.h5", 2008, 2010)'
+        print('Error! Please enter years as integer numbers and path to HDF5 file as string!\n \
+Example: rp.load_years_and_resample(r"P:\User\Data\HDF5\RW.h5", 2008, 2010)')
     except:
-        print "An unexpected error occurred"
+        print("An unexpected error occurred")
         raise
 
 
 # Wrapper functions to faciliate resampling and avoid errors:
 #------------------------------------------------------------    
-def hdf5_to_years(HDFFile, year_start, year_end = 0):
+def hdf5_to_years(HDFFile, year_start, year_end=0):
     """
     Wrapper for load_years_and_resample() to import all months of the specified years, merge them together to one DataFrame \
     and resample the latter to annual precipitation sums. 
@@ -328,7 +353,7 @@ def hdf5_to_years(HDFFile, year_start, year_end = 0):
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "years")
 
 
-def hdf5_to_months(HDFFile, year_start, year_end = 0):
+def hdf5_to_months(HDFFile, year_start, year_end=0):
     """
     Wrapper for load_years_and_resample() to import all months of the specified years, merge them together to one DataFrame \
     and resample the latter to monthly precipitation sums. 
@@ -352,7 +377,7 @@ def hdf5_to_months(HDFFile, year_start, year_end = 0):
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "months")
 
 
-def hdf5_to_days(HDFFile, year_start, year_end = 0):
+def hdf5_to_days(HDFFile, year_start, year_end=0):
     """
     Wrapper for load_years_and_resample() to import all months of the specified years, merge them together to one DataFrame \
     and resample the latter to daily precipitation sums. 
@@ -375,7 +400,7 @@ def hdf5_to_days(HDFFile, year_start, year_end = 0):
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "days")
 
 
-def hdf5_to_hours(HDFFile, year_start, year_end = 0):
+def hdf5_to_hours(HDFFile, year_start, year_end=0):
     """
     Wrapper for load_years_and_resample() to import all months of the specified years, merge them together to one DataFrame \
     and resample the latter to hourly precipitation sums. 
@@ -428,7 +453,7 @@ def hdf5_to_hydrologicalSeasons(HDFFile, year_start, year_end=0):
     """
     if year_end == 0 or (year_end != 0 and year_start > year_end):
         year_end = year_start
-        print "year_end set to year_start."
+        print("year_end set to year_start.")
     
     dfm = hdf5_to_months(HDFFile, year_start, year_end)
     dfm = dfm.truncate('%i-05' % year_start,'%i-10' % year_end)

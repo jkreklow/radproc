@@ -1,5 +1,5 @@
-radproc.arcgis.rastervalues_to_points
-=====================================
+radproc\.arcgis\.rastervalues\_to\_points
+=========================================
 
 .. currentmodule:: radproc.arcgis
 

@@ -1,5 +1,5 @@
-radproc.arcgis.idTable_to_valueTable
-====================================
+radproc\.arcgis\.idTable\_to\_valueTable
+========================================
 
 .. currentmodule:: radproc.arcgis
 

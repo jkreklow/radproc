@@ -25,26 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="radproc" href="index.html"/>
-        <link rel="next" title="Library Reference" href="reference.html"/>
-        <link rel="prev" title="radproc: An ArcGIS-compatible Library for RADOLAN Composite Processing and Analysis" href="index.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials" href="notebooks.html" />
+    <link rel="prev" title="radproc: An ArcGIS-compatible Library for RADOLAN Composite Processing and Analysis" href="index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -66,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -97,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#file-system-description">File system description</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Library Reference</a></li>
 </ul>
 
@@ -109,7 +103,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">radproc</a>
@@ -117,9 +111,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -161,11 +156,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="getting-started">
+<span id="ref-getting-started"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="system-requirements">
-<h2>System requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
-<p>To be able to use all features offered by radproc, you need...</p>
+<span id="ref-requirements"></span><h2>System requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
+<p>To be able to use all features offered by radproc, you need…</p>
 <ul class="simple">
 <li>a 64-Bit operating system (32-Bit systems can not allocate more than 3 GB memory, which is not sufficient for radar data processing)</li>
 <li>Python version 2.7 (64-Bit). It is strongly recommended to use the Anaconda distribution since this already includes all needed scientific site-packages.</li>
@@ -175,9 +189,12 @@
 </ul>
 </div>
 <div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>radproc is distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).</p>
-<p>To install radproc using Anaconda and pip...</p>
+<span id="ref-installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>First, install ArcMap for Desktop and its extension 64-Bit background processing.</p>
+<p>Next, download and install the latest Anaconda distribution from <a class="reference external" href="https://www.anaconda.com/download/">https://www.anaconda.com/download/</a> (Windows, 64-Bit, Python version 2.7).</p>
+<p>radproc is currently distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
+You can download the radproc wheel from the GitHub repository at <a class="reference external" href="https://www.github.com">https://www.github.com</a></p>
+<p>To install radproc using Anaconda and pip…</p>
 <ol class="arabic">
 <li><p class="first">Open the Windows terminal by typing CMD into the Windows search (Administrator rights may be necessary!).</p>
 </li>
@@ -191,7 +208,7 @@ You can check by opening Spyder or Jupyter Notebook and entering:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">To enable your Anaconda distribution to &#8220;see&#8221; the arcpy package from your separate ArcGIS Python installation,
+<li><p class="first">To enable your Anaconda distribution to “see” the arcpy package from your separate ArcGIS Python installation,
 you need to <strong>copy the Path file DTBGGP64.pth</strong> which is usually located at <em>C:\Python27\ArcGISx6410.4\Lib\site-packages</em>
 into the corresponding site-packages folder of your Anaconda distribution, e.g. <em>C:\ProgramData\Anaconda2\Lib\site-packages</em></p>
 <p>To check if arcpy is now visible for Anaconda, import arcpy to Spyder or Jupyter Notebook:</p>
@@ -202,7 +219,7 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
 </ol>
 </div>
 <div class="section" id="file-system-description">
-<h2>File system description<a class="headerlink" href="#file-system-description" title="Permalink to this headline">¶</a></h2>
+<span id="ref-filesystem"></span><h2>File system description<a class="headerlink" href="#file-system-description" title="Permalink to this headline">¶</a></h2>
 <a class="reference internal image-reference" href="_images/Workflow.png"><img alt="_images/Workflow.png" src="_images/Workflow.png" style="width: 675px; height: 375px;" /></a>
 <p>File system and processing workflow used by radproc.</p>
 </div>
@@ -210,15 +227,13 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="reference.html" class="btn btn-neutral float-right" title="Library Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="notebooks.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral" title="radproc: An ArcGIS-compatible Library for RADOLAN Composite Processing and Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
@@ -234,7 +249,7 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -252,7 +267,8 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -270,14 +286,11 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

@@ -1,7 +1,11 @@
-Getting Started
-===============
+.. _ref-getting-started:
+
+=================
+ Getting Started
+=================
 
 .. _ref-requirements:
+
 System requirements
 ~~~~~~~~~~~~~~~~~~~
 
@@ -14,9 +18,15 @@ To be able to use all features offered by radproc, you need...
 * for processing of RADOLAN data in 5-minute resolution at least 16 GB RAM are recommended
 
 .. _ref-installation:
+
 Installation
 ~~~~~~~~~~~~
-radproc is distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
+First, install ArcMap for Desktop and its extension 64-Bit background processing.
+
+Next, download and install the latest Anaconda distribution from https://www.anaconda.com/download/ (Windows, 64-Bit, Python version 2.7).
+
+radproc is currently distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
+You can download the radproc wheel from the GitHub repository at https://www.github.com
 
 To install radproc using Anaconda and pip...
 
@@ -40,6 +50,7 @@ To install radproc using Anaconda and pip...
 
 
 .. _ref-filesystem:
+
 File system description
 ~~~~~~~~~~~~~~~~~~~~~~~
 .. image:: images/Workflow.png

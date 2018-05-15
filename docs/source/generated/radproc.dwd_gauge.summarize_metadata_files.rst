@@ -1,5 +1,5 @@
-radproc.dwd_gauge.summarize_metadata_files
-==========================================
+radproc\.dwd\_gauge\.summarize\_metadata\_files
+===============================================
 
 .. currentmodule:: radproc.dwd_gauge
 

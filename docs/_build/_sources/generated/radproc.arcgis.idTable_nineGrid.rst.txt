@@ -1,5 +1,5 @@
-radproc.arcgis.idTable_nineGrid
-===============================
+radproc\.arcgis\.idTable\_nineGrid
+==================================
 
 .. currentmodule:: radproc.arcgis
 

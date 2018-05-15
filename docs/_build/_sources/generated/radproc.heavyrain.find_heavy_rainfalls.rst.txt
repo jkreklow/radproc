@@ -1,5 +1,5 @@
-radproc.heavyrain.find_heavy_rainfalls
-======================================
+radproc\.heavyrain\.find\_heavy\_rainfalls
+==========================================
 
 .. currentmodule:: radproc.heavyrain
 

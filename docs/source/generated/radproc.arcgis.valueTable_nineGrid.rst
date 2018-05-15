@@ -1,5 +1,5 @@
-radproc.arcgis.valueTable_nineGrid
-==================================
+radproc\.arcgis\.valueTable\_nineGrid
+=====================================
 
 .. currentmodule:: radproc.arcgis
 

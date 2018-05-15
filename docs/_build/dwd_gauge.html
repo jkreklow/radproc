@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="radproc" href="index.html"/>
-        <link rel="up" title="Library Reference" href="reference.html"/>
-        <link rel="next" title="radproc.dwd_gauge.stationfile_to_df" href="generated/radproc.dwd_gauge.stationfile_to_df.html"/>
-        <link rel="prev" title="radproc.wradlib_io.read_RADOLAN_composite" href="generated/radproc.wradlib_io.read_RADOLAN_composite.html"/> 
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="radproc.dwd_gauge.stationfile_to_df" href="generated/radproc.dwd_gauge.stationfile_to_df.html" />
+    <link rel="prev" title="radproc.wradlib_io.read_RADOLAN_composite" href="generated/radproc.wradlib_io.read_RADOLAN_composite.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,11 +85,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="core.html">Core functions and Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Functions and Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">DWD MR90 gauge data processing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/radproc.dwd_gauge.stationfile_to_df.html">radproc.dwd_gauge.stationfile_to_df</a></li>
@@ -118,7 +111,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">radproc</a>
@@ -126,9 +119,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -172,7 +166,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <span class="target" id="module-radproc.dwd_gauge"></span><div class="section" id="dwd-mr90-gauge-data-processing">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<span class="target" id="module-radproc.dwd_gauge"></span><div class="section" id="dwd-mr90-gauge-data-processing">
 <h1>DWD MR90 gauge data processing<a class="headerlink" href="#dwd-mr90-gauge-data-processing" title="Permalink to this headline">¶</a></h1>
 <p>Collection of functions for processing DWD gauge data in MR90 format.</p>
 <p>Convert gauge data to pandas DataFrames with same format as RADOLAN data and saves them as HDF5 datasets.</p>
@@ -197,9 +210,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -221,7 +232,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -239,7 +250,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -257,14 +269,11 @@
     <script type="text/javascript" src="_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

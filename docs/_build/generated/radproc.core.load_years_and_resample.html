@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="radproc" href="../index.html"/>
-        <link rel="up" title="Core functions and Data I/O" href="../core.html"/>
-        <link rel="next" title="radproc.core.hdf5_to_years" href="radproc.core.hdf5_to_years.html"/>
-        <link rel="prev" title="radproc.core.load_month" href="radproc.core.load_month.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="radproc.core.hdf5_to_years" href="radproc.core.hdf5_to_years.html" />
+    <link rel="prev" title="radproc.core.load_month" href="radproc.core.load_month.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,10 +85,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core functions and Data I/O</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.coordinates_degree_to_stereographic.html">radproc.core.coordinates_degree_to_stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.save_idarray_to_txt.html">radproc.core.save_idarray_to_txt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.import_idarray_from_txt.html">radproc.core.import_idarray_from_txt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.load_months_from_hdf5.html">radproc.core.load_months_from_hdf5</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.load_month.html">radproc.core.load_month</a></li>
@@ -108,8 +102,8 @@
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_hydrologicalSeasons.html">radproc.core.hdf5_to_hydrologicalSeasons</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
 </ul>
@@ -125,7 +119,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">radproc</a>
@@ -133,9 +127,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -160,7 +155,7 @@
         
           <li><a href="../reference.html">Library Reference</a> &raquo;</li>
         
-          <li><a href="../core.html">Core functions and Data I/O</a> &raquo;</li>
+          <li><a href="../core.html">Core Functions and Data I/O</a> &raquo;</li>
         
       <li>radproc.core.load_years_and_resample</li>
     
@@ -181,7 +176,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-core-load-years-and-resample">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-core-load-years-and-resample">
 <h1>radproc.core.load_years_and_resample<a class="headerlink" href="#radproc-core-load-years-and-resample" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="radproc.core.load_years_and_resample">
@@ -197,17 +211,17 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>HDFFile</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path and name of the HDF5 file containing monthly datasets.</dd>
-<dt>year_start</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>First year for which data are to be loaded.</dd>
-<dt>year_end</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer (optional, default: start_year)</span><dd>Last year for which data are to be loaded.</dd>
-<dt>freq</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string (optional, default: &#8220;years&#8221;)</span><dd><p class="first">Target frequency
+<dt>HDFFile <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Path and name of the HDF5 file containing monthly datasets.</dd>
+<dt>year_start <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd>First year for which data are to be loaded.</dd>
+<dt>year_end <span class="classifier-delimiter">:</span> <span class="classifier">integer (optional, default: start_year)</span></dt>
+<dd>Last year for which data are to be loaded.</dd>
+<dt>freq <span class="classifier-delimiter">:</span> <span class="classifier">string (optional, default: “years”)</span></dt>
+<dd><p class="first">Target frequency
 available frequencies for downsampling:</p>
 <blockquote class="last">
-<div>&#8220;years&#8221;, &#8220;months&#8221;, &#8220;days&#8221;, &#8220;hours&#8221;</div></blockquote>
+<div>“years”, “months”, “days”, “hours”</div></blockquote>
 </dd>
 </dl>
 </div></blockquote>
@@ -221,8 +235,8 @@ available frequencies for downsampling:</p>
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>df</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span><dd>resampled to the target frequency and containing [annual | monthly | daily | hourly] precipitation sums.</dd>
+<dt>df <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span></dt>
+<dd>resampled to the target frequency and containing [annual | monthly | daily | hourly] precipitation sums.</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -236,9 +250,9 @@ available frequencies for downsampling:</p>
 <blockquote>
 <div><p>The mean annual precipitation sum can be calculated with the following syntax:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">radproc</span> <span class="k">as</span> <span class="nn">rp</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">meanPrecip</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">load_years_and_resample</span><span class="p">(</span><span class="s2">r&quot;C:\Data\RADOLAN.h5&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="s2">&quot;years&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meanPrecip</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">load_years_and_resample</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Data\RADOLAN.h5&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="s2">&quot;years&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="go"># The resulting pandas Series can be exported to an ESRI Grid:    </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span><span class="o">.</span><span class="n">export_to_raster</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">meanPrecip</span><span class="p">,</span> <span class="n">idRaster</span><span class="o">=</span><span class="n">rp</span><span class="o">.</span><span class="n">import_idarray_from_raster</span><span class="p">(</span><span class="s2">r&quot;C:\GIS_data\idraster&quot;</span><span class="p">),</span> <span class="n">outRaster</span><span class="o">=</span><span class="s2">r&quot;P:\GIS_data\N_mean10_15&quot;</span><span class="p">)</span>       
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span><span class="o">.</span><span class="n">export_to_raster</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">meanPrecip</span><span class="p">,</span> <span class="n">idRaster</span><span class="o">=</span><span class="n">rp</span><span class="o">.</span><span class="n">import_idarray_from_raster</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\GIS_data\idraster&quot;</span><span class="p">),</span> <span class="n">outRaster</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;P:\GIS_data\N_mean10_15&quot;</span><span class="p">)</span>       
 </pre></div>
 </div>
 </div></blockquote>
@@ -248,9 +262,7 @@ available frequencies for downsampling:</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -272,7 +284,7 @@ available frequencies for downsampling:</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -290,7 +302,8 @@ available frequencies for downsampling:</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -308,14 +321,11 @@ available frequencies for downsampling:</p>
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

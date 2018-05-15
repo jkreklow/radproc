@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="radproc" href="../index.html"/>
-        <link rel="up" title="Core functions and Data I/O" href="../core.html"/>
-        <link rel="next" title="radproc.core.load_month" href="radproc.core.load_month.html"/>
-        <link rel="prev" title="radproc.core.import_idarray_from_txt" href="radproc.core.import_idarray_from_txt.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="radproc.core.load_month" href="radproc.core.load_month.html" />
+    <link rel="prev" title="radproc.core.import_idarray_from_txt" href="radproc.core.import_idarray_from_txt.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,10 +85,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core functions and Data I/O</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.coordinates_degree_to_stereographic.html">radproc.core.coordinates_degree_to_stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="radproc.core.save_idarray_to_txt.html">radproc.core.save_idarray_to_txt</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.import_idarray_from_txt.html">radproc.core.import_idarray_from_txt</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.core.load_months_from_hdf5</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.load_month.html">radproc.core.load_month</a></li>
@@ -108,8 +102,8 @@
 <li class="toctree-l3"><a class="reference internal" href="radproc.core.hdf5_to_hydrologicalSeasons.html">radproc.core.hdf5_to_hydrologicalSeasons</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
 </ul>
@@ -125,7 +119,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">radproc</a>
@@ -133,9 +127,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -160,7 +155,7 @@
         
           <li><a href="../reference.html">Library Reference</a> &raquo;</li>
         
-          <li><a href="../core.html">Core functions and Data I/O</a> &raquo;</li>
+          <li><a href="../core.html">Core Functions and Data I/O</a> &raquo;</li>
         
       <li>radproc.core.load_months_from_hdf5</li>
     
@@ -181,7 +176,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-core-load-months-from-hdf5">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-core-load-months-from-hdf5">
 <h1>radproc.core.load_months_from_hdf5<a class="headerlink" href="#radproc-core-load-months-from-hdf5" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="radproc.core.load_months_from_hdf5">
@@ -197,12 +211,12 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>HDFFile</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path and name of the HDF5 file containing monthly datasets.</dd>
-<dt>year</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>Year for which data are to be loaded.</dd>
-<dt>months</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">list of integers (optional, default: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])</span><dd>Months for which data are to be loaded.</dd>
+<dt>HDFFile <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Path and name of the HDF5 file containing monthly datasets.</dd>
+<dt>year <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd>Year for which data are to be loaded.</dd>
+<dt>months <span class="classifier-delimiter">:</span> <span class="classifier">list of integers (optional, default: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])</span></dt>
+<dd>Months for which data are to be loaded.</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -221,9 +235,7 @@
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -245,7 +257,7 @@
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -263,7 +275,8 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -281,14 +294,11 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

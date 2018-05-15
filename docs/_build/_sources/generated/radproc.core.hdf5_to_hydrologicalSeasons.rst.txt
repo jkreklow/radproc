@@ -1,5 +1,5 @@
-radproc.core.hdf5_to_hydrologicalSeasons
-========================================
+radproc\.core\.hdf5\_to\_hydrologicalSeasons
+============================================
 
 .. currentmodule:: radproc.core
 

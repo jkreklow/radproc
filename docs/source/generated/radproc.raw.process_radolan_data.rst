@@ -1,5 +1,5 @@
-radproc.raw.process_radolan_data
-================================
+radproc\.raw\.process\_radolan\_data
+====================================
 
 .. currentmodule:: radproc.raw
 

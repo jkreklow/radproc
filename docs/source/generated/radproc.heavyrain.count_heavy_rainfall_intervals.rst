@@ -1,5 +1,5 @@
-radproc.heavyrain.count_heavy_rainfall_intervals
-================================================
+radproc\.heavyrain\.count\_heavy\_rainfall\_intervals
+=====================================================
 
 .. currentmodule:: radproc.heavyrain
 

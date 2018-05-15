@@ -1,5 +1,5 @@
-radproc.arcgis.export_dfrows_to_gdb
-===================================
+radproc\.arcgis\.export\_dfrows\_to\_gdb
+========================================
 
 .. currentmodule:: radproc.arcgis
 

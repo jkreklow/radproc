@@ -25,27 +25,19 @@
   
 
   
-  
     <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="radproc" href="../index.html"/>
-        <link rel="up" title="Heavy rainfall and erosivity analysis" href="../heavyrain.html"/>
-        <link rel="next" title="RADOLAN Raw Data I/O" href="../wradlib_io.html"/>
-        <link rel="prev" title="radproc.heavyrain.find_heavy_rainfalls" href="radproc.heavyrain.find_heavy_rainfalls.html"/> 
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="RADOLAN Raw Data I/O" href="../wradlib_io.html" />
+    <link rel="prev" title="radproc.heavyrain.find_heavy_rainfalls" href="radproc.heavyrain.find_heavy_rainfalls.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -67,7 +59,7 @@
             
             
               <div class="version">
-                0.1.0dev0
+                0.1.0
               </div>
             
           
@@ -93,16 +85,12 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../gettingstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks.html">Tutorials</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../reference.html">Library Reference</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../core.html">Core functions and Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based functions</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../heavyrain.html">Heavy rainfall and erosivity analysis</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.calc_I30.html">radproc.heavyrain.calc_I30</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.calc_R_factor.html">radproc.heavyrain.calc_R_factor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.monthly_R_factor.html">radproc.heavyrain.monthly_R_factor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.annual_R_factor.html">radproc.heavyrain.annual_R_factor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.annual_R_factor_gauge.html">radproc.heavyrain.annual_R_factor_gauge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.find_heavy_rainfalls.html">radproc.heavyrain.find_heavy_rainfalls</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.heavyrain.count_heavy_rainfall_intervals</a></li>
 </ul>
@@ -122,7 +110,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">radproc</a>
@@ -130,9 +118,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -157,7 +146,7 @@
         
           <li><a href="../reference.html">Library Reference</a> &raquo;</li>
         
-          <li><a href="../heavyrain.html">Heavy rainfall and erosivity analysis</a> &raquo;</li>
+          <li><a href="../heavyrain.html">Heavy Rainfall Analysis</a> &raquo;</li>
         
       <li>radproc.heavyrain.count_heavy_rainfall_intervals</li>
     
@@ -178,7 +167,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="radproc-heavyrain-count-heavy-rainfall-intervals">
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast,
+.nboutput.nblast {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast + .nbinput {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+</style>
+<div class="section" id="radproc-heavyrain-count-heavy-rainfall-intervals">
 <h1>radproc.heavyrain.count_heavy_rainfall_intervals<a class="headerlink" href="#radproc-heavyrain-count-heavy-rainfall-intervals" title="Permalink to this headline">¶</a></h1>
 <dl class="function">
 <dt id="radproc.heavyrain.count_heavy_rainfall_intervals">
@@ -203,19 +211,19 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>HDFFile</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string</span><dd>Path and name of the HDF5 file containing monthly pandas DataFrames with precipitation data.</dd>
-<dt>year_start</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>First year for which data are to be loaded.</dd>
-<dt>year_end</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>Last year for which data are to be loaded.</dd>
-<dt>thresholdValue</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>Rainfall intensity threshold value.</dd>
-<dt>minArea</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">integer</span><dd>Minimum area (number of cells) where intensity threshold value has to be exceeded.</dd>
-<dt>season</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">string or list</span><dd>Season / Time period to analyse. Can be a list with integer values from 1 to 12 or a string describing the season. The following strings are possible:
-[&#8220;Year&#8221; | &#8220;April - September&#8221; | &#8220;October - March&#8221; | &#8220;January/December&#8221; | &#8220;Jan&#8221; | &#8220;Feb&#8221; | &#8220;Mar&#8221; | &#8220;Apr&#8221; | &#8220;May&#8221; | &#8220;Jun&#8221; | &#8220;Jul&#8221; | &#8220;Aug&#8221; | &#8220;Sep&#8221; | &#8220;Oct&#8221; | &#8220;Nov&#8221; | &#8220;Dec&#8221;]</dd>
+<dt>HDFFile <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
+<dd>Path and name of the HDF5 file containing monthly pandas DataFrames with precipitation data.</dd>
+<dt>year_start <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd>First year for which data are to be loaded.</dd>
+<dt>year_end <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd>Last year for which data are to be loaded.</dd>
+<dt>thresholdValue <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd>Rainfall intensity threshold value.</dd>
+<dt>minArea <span class="classifier-delimiter">:</span> <span class="classifier">integer</span></dt>
+<dd>Minimum area (number of cells) where intensity threshold value has to be exceeded.</dd>
+<dt>season <span class="classifier-delimiter">:</span> <span class="classifier">string or list</span></dt>
+<dd>Season / Time period to analyse. Can be a list with integer values from 1 to 12 or a string describing the season. The following strings are possible:
+[“Year” | “May - October” | “November - April” | “January/December” | “Jan” | “Feb” | “Mar” | “Apr” | “May” | “Jun” | “Jul” | “Aug” | “Sep” | “Oct” | “Nov” | “Dec”]</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
@@ -228,8 +236,8 @@
 </table>
 <blockquote>
 <div><dl class="docutils">
-<dt>interval_count</dt>
- <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span><dd>containing the sum of all intervals meeting the given criteria.
+<dt>interval_count <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame</span></dt>
+<dd>containing the sum of all intervals meeting the given criteria.
 Temporal resolution depending on the given season.</dd>
 </dl>
 </div></blockquote>
@@ -239,9 +247,7 @@ Temporal resolution depending on the given season.</dd>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -263,7 +269,7 @@ Temporal resolution depending on the given season.</dd>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -281,7 +287,8 @@ Temporal resolution depending on the given season.</dd>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.0dev0',
+            VERSION:'0.1.0',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -299,14 +306,11 @@ Temporal resolution depending on the given season.</dd>
     <script type="text/javascript" src="../_static/js/theme.js"></script>
   
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
