@@ -28,9 +28,12 @@
 # needs_sphinx = '1.0'
 
 import sys, os, glob
+# point to docs folder:
 #sys.path.insert(0, os.path.abspath('../'))
-#sys.path.insert(0, r"P:\JENNY\FORSCHUNG\RADPROC\version_010sampledatatest\radproc")
-sys.path.insert(0, os.path.abspath('.'))
+# point to radproc folder (two relative directories upward):
+sys.path.insert(0, os.path.abspath('../../'))
+# point to docs/source folder:
+#sys.path.insert(0, os.path.abspath('.'))
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
