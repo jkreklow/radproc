@@ -10,25 +10,29 @@ def write_version_py(filename='radproc/version.py'):
     with open(filename, 'w') as f:
         f.write(content)
 
-write_version_py()
+if __name == '__main__':
+    write_version_py()
+
+    with open('requirements.txt', 'r') as f:
+        INSTALL_REQUIRES = [rq for rq in f.read().split('\n') if rq != '']
     
-setup(
-  name = 'radproc',
-  #packages = ['radproc'], # this must be the same as the name above
-  #packages = find_packages(),
-  packages = ['radproc', 'radproc.sampledata'],
-  package_data={'radproc': ['sampledata/radolan_proj.prj']},
-  include_package_data = True,
-  version = version,
-  description = 'Library for RADOLAN composite processing, analysis and data exchange with ArcGIS.',
-  #long_description=open('README.rst').read(),
-  author = 'Jennifer Kreklow',
-  author_email = 'kreklow@phygeo.uni-hannover.de',
-  #url = 'https://github.com/peterldowns/mypackage', # use the URL to the github repo
-  #download_url = 'https://github.com/peterldowns/mypackage/archive/0.1.tar.gz', # I'll explain this in a second
-  license = 'MIT',
-  keywords = ['RADOLAN', 'weather radar', 'ArcGIS', 'precipitation', 'heavy rainfall'], 
-  classifiers = [],
-  #py_modules = ['radproc.api','radproc.heavyrain', 'radproc.core', 'radproc.wradlib_io', 'radproc.raw', 'radproc.arcgis', 'radproc.dwd_gauge'],
-  install_requires = ['numpy', 'pandas', 'tables']
-)
+    setup(
+      name = 'radproc',
+      #packages = ['radproc'], # this must be the same as the name above
+      #packages = find_packages(),
+      packages = ['radproc', 'radproc.sampledata'],
+      package_data={'radproc': ['sampledata/radolan_proj.prj']},
+      include_package_data = True,
+      version = version,
+      description = 'Library for RADOLAN composite processing, analysis and data exchange with ArcGIS.',
+      #long_description=open('README.rst').read(),
+      author = 'Jennifer Kreklow',
+      author_email = 'kreklow@phygeo.uni-hannover.de',
+      url = 'https://github.com/jkreklow/radproc', # use the URL to the github repo
+      download_url = 'https://github.com/jkreklow/radproc/blob/master/dist/radproc-0.1.0-py2-none-any.whl', 
+      license = 'MIT',
+      keywords = ['RADOLAN', 'weather radar', 'ArcGIS', 'precipitation', 'heavy rainfall'], 
+      classifiers = [],
+      #py_modules = ['radproc.api','radproc.heavyrain', 'radproc.core', 'radproc.wradlib_io', 'radproc.raw', 'radproc.arcgis', 'radproc.dwd_gauge'],
+      install_requires = INSTALL_REQUIRES
+    )
