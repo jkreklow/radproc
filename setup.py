@@ -10,7 +10,7 @@ def write_version_py(filename='radproc/version.py'):
     with open(filename, 'w') as f:
         f.write(content)
 
-if __name == '__main__':
+if __name__ == '__main__':
     write_version_py()
 
     with open('requirements.txt', 'r') as f:
