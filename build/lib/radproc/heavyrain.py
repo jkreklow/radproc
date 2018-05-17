@@ -10,6 +10,9 @@
 
 Module for heavy rainfall analysis.
 
+    - identify and select all intervals in which a specified precipitation threshold is exceeded
+    - count the number of threshold exceedances
+
 .. autosummary::
    :nosignatures:
    :toctree: generated/

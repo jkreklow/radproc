@@ -9,7 +9,7 @@
 =============================
 
 Core functions like coordinate conversion and import of ID-array from textfile. 
-Data import from HDF5-file and data aggregation.
+Data import from HDF5-file and temporal data aggregation.
 
 .. autosummary::
    :nosignatures:
@@ -42,7 +42,7 @@ import sys
 
 def coordinates_degree_to_stereographic(Lambda_degree, Phi_degree):
     """
-    Converts geographic coordinates [°] to cartesian coordinates [km] in stereographic projection.
+    Converts geographic coordinates [°] to cartesian coordinates [km] in stereographic RADOLAN projection.
     
     :Parameters:
     ------------
@@ -57,6 +57,7 @@ def coordinates_degree_to_stereographic(Lambda_degree, Phi_degree):
     
         (x, y) : Tuple with two elements of type float
             Cartesian coordinates x and y in stereographic projection [km]
+            
     """
     
     from math import sin, cos, pi
@@ -95,6 +96,7 @@ def save_idarray_to_txt(idArr, txtFile):
     ---------
     
         No return value
+        
     """
     
     with open(txtFile, "w") as f:
@@ -206,8 +208,8 @@ def load_years_and_resample(HDFFile, year_start, year_end=0, freq="years"):
         year_end : integer (optional, default: start_year)
             Last year for which data are to be loaded.
         freq : string (optional, default: "years")
-            Target frequency
-            available frequencies for downsampling:
+            Target frequency.
+            Available frequencies for downsampling:
                 "years", "months", "days", "hours"
             
     :Returns:
@@ -216,15 +218,20 @@ def load_years_and_resample(HDFFile, year_start, year_end=0, freq="years"):
         df : pandas DataFrame
             resampled to the target frequency and containing [annual | monthly | daily | hourly] precipitation sums.
         
+    
     :Examples:
     ----------
     
-        The mean annual precipitation sum can be calculated with the following syntax:
+    The mean annual precipitation sum can be calculated with the following syntax:
             
         >>> import radproc as rp
         >>> meanPrecip = rp.load_years_and_resample(r"C:\Data\RADOLAN.h5", 2010, 2015, "years").mean()
         # The resulting pandas Series can be exported to an ESRI Grid:    
-        >>> rp.export_to_raster(series=meanPrecip, idRaster=rp.import_idarray_from_raster(r"C:\GIS_data\idraster"), outRaster=r"P:\GIS_data\N_mean10_15")       
+        >>> rp.export_to_raster(series=meanPrecip, idRaster=rp.import_idarray_from_raster(r"C:\Data\idras"), outRaster=r"P:\GIS_data\N_mean10_15")
+    
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+    hence every label describes the precipitation accumulated in the previous interval period.
+    
     """  
     
     if freq.lower() == "years":
@@ -322,6 +329,9 @@ Please check if directory path is correct and file is currently used by any othe
     except TypeError:
         print('Error! Please enter years as integer numbers and path to HDF5 file as string!\n \
 Example: rp.load_years_and_resample(r"P:\User\Data\HDF5\RW.h5", 2008, 2010)')
+    except UnboundLocalError:
+        print('Error! Sorry, this function only works for entire years starting in January! \n \
+To resample smaller time periods, you can import the months with load_months_from_hdf5() and resample them with df.resample()')
     except:
         print("An unexpected error occurred")
         raise
@@ -373,6 +383,10 @@ def hdf5_to_months(HDFFile, year_start, year_end=0):
     
         df : pandas DataFrame
             resampled to monthly precipitation sums.
+            
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+    hence every label describes the precipitation accumulated in the previous interval period.
+    
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "months")
 
@@ -396,6 +410,10 @@ def hdf5_to_days(HDFFile, year_start, year_end=0):
     
         df : pandas DataFrame
             resampled to daily precipitation sums.
+            
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+    hence every label describes the precipitation accumulated in the previous interval period.
+    
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "days")
 
@@ -420,6 +438,13 @@ def hdf5_to_hours(HDFFile, year_start, year_end=0):
     
         df : pandas DataFrame
             resampled to hourly precipitation sums.
+            
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+    hence every label describes the precipitation accumulated in the previous interval period.
+    
+    .. note:: For comparisons between hourly RW data and gauge data/YW data resampled to hours,
+    keep in mind, that hours in RW always start at hh-1:50 whereas the resampled hours begin at hh:00.
+    
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "hours")
 
@@ -449,7 +474,11 @@ def hdf5_to_hydrologicalSeasons(HDFFile, year_start, year_end=0):
         df : pandas DataFrame
             resampled to precipitation sums of hydrological summer and winter seasons.
             In contrast to most other resampling functions from radproc, the index labels the beginning of each resampling period,
-            e.g. the index 2001-05-01 describes the period from May to October 2001.  
+            e.g. the index 2001-05-01 describes the period from May to October 2001.
+            
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+    hence every label describes the precipitation accumulated in the previous interval period.
+    
     """
     if year_end == 0 or (year_end != 0 and year_start > year_end):
         year_end = year_start

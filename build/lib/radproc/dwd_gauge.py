@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# Copyright (c) 2016-2018, Kreklow.
+# Distributed under the MIT License. See LICENSE.txt for more info.
 """
 ================================
- DWD MR90 gauge data processing
+ DWD MR90 Gauge Data Processing
 ================================
 
-Collection of functions for processing DWD gauge data in MR90 format.
+Collection of functions for processing DWD rain gauge data in MR90 format.
 
 Convert gauge data to pandas DataFrames with same format as RADOLAN data and saves them as HDF5 datasets.
 
@@ -26,7 +29,7 @@ Convert gauge data to pandas DataFrames with same format as RADOLAN data and sav
 from __future__ import division, print_function
 import numpy as np
 import pandas as pd
-import os, sys, gc
+import os, gc
 from datetime import datetime
 from multiprocessing import Pool
 import warnings, tables
@@ -276,6 +279,12 @@ def dwd_gauges_to_hdf5(inFolder, HDFFile):
     
         None
         Save monthly DataFrames to specified HDF5 file.
+        
+    :Note:
+    ------
+    
+    To import gauge data from HDF5, you can use the same functions from radproc.core as for RADOLAN data since both are stored the same data format and structure.
+    
     """
     
     stationfiles = [os.path.join(inFolder, f) for f in os.listdir(inFolder)]

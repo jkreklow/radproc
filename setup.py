@@ -13,6 +13,23 @@ def write_version_py(filename='radproc/version.py'):
 if __name__ == '__main__':
     write_version_py()
 
+    CLASSIFIERS = """\
+    Development Status :: 5 - Production/Stable
+    Intended Audience :: Science/Research
+    Intended Audience :: Developers
+    Intended Audience :: Education
+    License :: OSI Approved :: MIT License
+    Programming Language :: Python
+    Programming Language :: Python :: 2
+    Programming Language :: Python :: 2.7
+    Topic :: Scientific/Engineering
+    Topic :: Scientific/Engineering :: Atmospheric Science
+    Topic :: Scientific/Engineering :: GIS
+    Operating System :: POSIX :: Linux
+    Operating System :: MacOS :: MacOS X
+    Operating System :: Microsoft :: Windows
+    """
+    
     with open('requirements.txt', 'r') as f:
         INSTALL_REQUIRES = [rq for rq in f.read().split('\n') if rq != '']
     

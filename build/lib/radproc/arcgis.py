@@ -11,7 +11,6 @@ Collection of all functions based on arcpy.
 
     - Generate and clip ID-raster
     - Import ID-raster to ID-array
-    - Export ID-array to textfile
     - Export pandas Series to raster
     - Export all rows of a DataFrame to rasters in a File-Geodatabase,
         optionally calculating statistics rasters (mean, sum, max, ...)
@@ -84,7 +83,7 @@ def raster_to_array(raster):
     ------------
     
         raster : string
-            Path to raster dataset containing ID values.
+            Path to raster dataset (e.g. containing ID values).
         
     :Returns:
     ---------
@@ -112,7 +111,6 @@ def create_idraster_germany(projectionFile, outRaster, extendedNationalGrid = Tr
     """
     Creates an ID raster in stereographic projection for the extended national RADOLAN grid (900 x 1100 km) or the national grid (900 x 900 km).
     
-    
     ID values range from 0 in the upper left corner to 989999 in the lower right corner for the extended national grid
     and to 809999 in the national grid.
     
@@ -131,6 +129,15 @@ def create_idraster_germany(projectionFile, outRaster, extendedNationalGrid = Tr
     
         outRaster : string
             Path and name of the generated output raster.
+            
+    :Note:
+    ------
+        
+    To use the custom RADOLAN projection as projectionFile for the output ID raster, you can specify the prj-file provided in radproc.sampledata:
+        
+        >>> from radproc.sampledata import get_projection_file_path
+        >>> projectionFile = get_projection_file_path()
+        
     """
     
     if extendedNationalGrid == True:
@@ -183,12 +190,12 @@ def clip_idraster(idRaster, clipFeature, outRaster):
     :Note:
     ------
     
-        The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
-        As there is no transformation method available yet, it is not possible to directly perform
-        any geoprocessing tasks with RADOLAN and geodata with other spatial references.
-        Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
-        The clip function uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
-        Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
+    .. note:: The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
+    As there is no transformation method available yet, it is not possible to directly perform
+    any geoprocessing tasks with RADOLAN and geodata with other spatial references.
+    Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
+    The clip function uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
+    Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
         
     """
     
@@ -217,6 +224,7 @@ def import_idarray_from_raster(idRaster):
     
         idArr : one-dimensional numpy array
             containing ID values of dtype int32
+            
     """  
     
     idArr = raster_to_array(raster=idRaster)
@@ -248,6 +256,22 @@ def create_idarray(projectionFile, idRasterGermany, clipFeature, idRaster, exten
     
         idArr : one-dimensional numpy array
             containing ID values of dtype int32
+            
+    :Note:
+    ------
+        
+    .. note:: The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
+    As there is no transformation method available yet, it is not possible to directly perform
+    any geoprocessing tasks with RADOLAN and geodata with other spatial references.
+    Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
+    The clip function uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
+    Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
+
+    To use the custom RADOLAN projection as projectionFile for the output ID raster, you can specify the prj-file provided in radproc.sampledata:
+        
+        >>> from radproc.sampledata import get_projection_file_path
+        >>> projectionFile = get_projection_file_path()
+                            
     """
 
     idRasGermany = create_idraster_germany(projectionFile=projectionFile, outRaster=idRasterGermany, extendedNationalGrid=extendedNationalGrid)
@@ -337,6 +361,7 @@ def export_dfrows_to_gdb(dataDF, idRaster, outGDBPath, GDBName, statistics=""):
         No return value
         
         Function creates File-Geodatabase at directory specified in outGDBPath.
+
     """
     gdb = arcpy.CreateFileGDB_management(outGDBPath, GDBName)
     n = 0
@@ -411,7 +436,7 @@ def export_dfrows_to_gdb(dataDF, idRaster, outGDBPath, GDBName, statistics=""):
 
 def attribute_table_to_df(inFC):
     """
-    Load data from dbf table into a Pandas Data Frame for subsequent analysis.
+    Load data from dbf table into a pandas DataFrame for subsequent analysis.
     
     :Parameters:
     ------------
@@ -424,6 +449,7 @@ def attribute_table_to_df(inFC):
     
         df : pandas DataFrame
             containing data from attribute table
+            
     """
     # Field Shape has to be excluded because it contains a list which is not supported as array element for DataFrame conversion
     field_list = [f.name for f in arcpy.ListFields(inFC) if not f.name == "Shape"]
@@ -514,7 +540,7 @@ def idTable_to_valueTable(idTable, dataSeries):
     ---------
         valueTable : pandas DataFrame
             of the same format as idTable. IDs are replaced by the corresponding values from dataSeries.
-.    
+    
     """
     
     selectedValues = dataSeries[idTable.values.reshape(idTable.shape[0]*idTable.shape[1])]
@@ -555,7 +581,8 @@ def valueTable_nineGrid(inPointFC, idRaster, outPointFC, indexField, dataSeries)
     ---------
     
         valueTable : pandas DataFrame
-            containing the (precipitation) values of the nine cell grid around every point.   
+            containing the (precipitation) values of the nine cell grid around every point.
+            
     """
     
     idTable = idTable_nineGrid(inPointFC, idRaster, outPointFC, indexField)
@@ -684,7 +711,19 @@ def join_df_columns_to_attribute_table(df, joinField, columns, fc):
     :Returns:
     ---------
     
-        None    
+        None
+        
+    :Note:
+    ------
+    
+    If the join is supposed to be done based on the DataFrame index, you have to
+    create a new column with the same name as the join field of the feature class.
+    So, if you have a DataFrame with gauge station numbers as index and your feature class
+    already contains a field called "Statnr" with the corresponding station numbers,
+    you need to new to create a new column with
+    
+        >>> df['Statnr'] = df.index
+    
     """
     
     columns.insert(0, joinField)

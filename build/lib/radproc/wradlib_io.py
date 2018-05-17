@@ -4,8 +4,9 @@
 # Distributed under the MIT License. See LICENSE.txt for more info.
 
 """
-RADOLAN Raw Data I/O
-====================
+============================
+ RADOLAN Binary File Import
+============================
 
 Copy of all functions necessary for reading in RADOLAN composite files, taken from module wradlib.io (version=0.9.0)
 

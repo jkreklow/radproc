@@ -186,6 +186,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
         inFolder : string
             Path to the directory containing RADOLAN binary files.
             All files ending with '-bin' or '-bin.gz' are read in.
+            The input folder path does not need to have any particular directory structure.
         idArr : one-dimensional numpy array (optional, default: None)
             containing ID values to select RADOLAN data of the cells located in the investigation area.
             If no idArr is specified, the ID array is automatically generated from RADOLAN metadata
@@ -193,12 +194,13 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
         
     :Returns:
     ---------
-        df : pandas DataFrame containing...
-            - RADOLAN data of the cells located in the investigation area
-            - datetime row index with defined frequency depending on the RADOLAN product and time zone UTC
-            - ID values as column names
-        metadata : dictionary
-            containing metadata from the last imported RADOLAN binary file
+        (df, metadata) : tuple with two elements:            
+            df : pandas DataFrame containing...
+                - RADOLAN data of the cells located in the investigation area
+                - datetime row index with defined frequency depending on the RADOLAN product and time zone UTC
+                - ID values as column names
+            metadata : dictionary
+                containing metadata from the last imported RADOLAN binary file
                 
     
     :Format description and examples:
@@ -218,6 +220,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
         >>> df.loc['2008-05-01 00:50', :] #--> returns entire row (= raster) of specified date as one-dimensional DataFrame
         >>> df.loc['2008-05-01', :] #--> returns DataFrame with all rows of specified day (because time of day is omitted)
         >>> df.loc[, 414773] #--> returns time series of the specified cell as Series
+        
     """    
      
     try:    
@@ -289,7 +292,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
     
 def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
     """
-    Wrapper for radolan_binaries_to_dataframe() to import and clip all RADOLAN binary files of one month in a directory into a pandas DataFrame
+    Wrapper for radolan_binaries_to_dataframe() to import and **clip all RADOLAN binary files of one month in a directory** into a pandas DataFrame
     and save the resulting DataFrame as a dataset to an HDF5 file. The name for the HDF5 dataset is derived from the names of the input folder (year and month).
 
     :Parameters:
@@ -299,9 +302,9 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
             Path to the directory containing RADOLAN binary files.
             As the function derives the HDF5 group and dataset names from the directory path, the latter is expected to have the following format:
             
-            *<inFolder>*/YYYY/MM --> *C:/Data/RADOLAN*/2008/5
+                >>> inFolder = "C:/path/to/binaryData/YYYY/MM"  # --> e.g. C:/Data/RADOLAN/2008/5
             
-            In this example, the output dataset will have the path 2008/5 within the HDF5 file.
+            In this example for May 2008, the output dataset will have the path '2008/5' within the HDF5 file.
         HDFFile : string
             Path and name of the HDF5 file.
             If the specified HDF5 file already exists, the new dataset will be appended; if the HDF5 file doesn't exist, it will be created. 
@@ -321,6 +324,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
         No return value
         
         Function creates dataset in HDF5 file specified in parameter HDFFile.
+        
     """    
   
     # Split directory path to prepare node creation in HDF5 file
@@ -395,32 +399,33 @@ def _process_year(yearFolder, HDFFile, idArr, complevel):
         except:
             print("Error at " + monthFolder)
             failed.append(monthFolder)
-            raise
-            #continue
+            #raise
+            continue
     return failed
 
 
 
 def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None, complevel=9):
     """
-    Convert all RADOLAN binary data into an HDF5 file with monthly DataFrames for a given study area.
+    Convert all RADOLAN binary data in directory tree into an HDF5 file with monthly DataFrames for a given study area.
     
     First, an ID raster is generated and clipped to study area.
     The national ID Raster (idras_ger) and the clipped one (idras) are saved in directory of HDF5 file.
     
     Afterwards, all RADOLAN binary files in a directory tree are imported, 
-    clipped to study area, converted into monthly pandas DataFrame and stored in an HDF5 file.
+    clipped to study area, converted into monthly pandas DataFrames and stored in an HDF5 file.
     
     The names for the HDF5 datasets are derived from the names of the input folders (year and month).
     The directory tree containing the raw binary RADOLAN data is expected to have the following format:
     
     *<inFolder>/<year>/<month>/<binaries with RADOLAN data>*
     
-    --> *<inFolder>*/YYYY/MM
-    
-    --> *C:/Data/RADOLAN*/2008/5
+        --> *<inFolder>*/YYYY/MM
+        --> *<inFolder>*/2008/5 or *<inFolder>*/2008/05    
+        --> e.g. *C:/Data/RW*/2008/5
     
     In this example, the output dataset will have the path 2008/5 within the HDF5 file.
+    The necessary format is automatically generated by the functions :func:`radproc.raw.unzip_RW_binaries` and :func:`radproc.raw.unzip_YW_binaries`.
     
     If necessary, a textfile containing all directories which could not be processed due to data format errors is created in directory of HDF5 file.
     
@@ -429,15 +434,14 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
     ------------
     
         inFolder : string
-            Path to the directory containing RADOLAN binary files stored in directory tree of following structure::
+            Path to the **directory tree** containing RADOLAN binary files. The directory tree is expected to have the following structure:
             *<inFolder>*/YYYY/MM --> *C:/Data/RADOLAN*/2008/5
         HDFFile : string
             Path and name of the HDF5 file.
             If the specified HDF5 file already exists, the new dataset will be appended; if the HDF5 file doesn't exist, it will be created. 
-        projectionFile : string
-            Path to a file containing stereographic projection definition. File type may be Feature Class, Shapefile, prj-file or grid.
         clipFeature : string (optional, default: None)
             Path to the clip feature defining the extent of the study area. File type may be Shapefile or Feature Class.
+            The clip Feature does not need to be provided in the RADOLAN projection. See below for further details.
             Default: None (Data are not clipped to any study area)
         complevel : interger (optional, default: 9)
             defines the level of compression for the output HDF5 file.
@@ -455,10 +459,20 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
         all directories which could not be processed due to data format errors are created in directory of HDF5 file.
 
 
-    :Notes:
-    -------
-    See :ref:`ref-filesystem` for further details on data processing.
-    If you don't want to clip your data to a study area or already have an ID Array available, use the function process_radolan_data() instead.
+    :Note:
+    ------
+    
+    .. seealso:: See :ref:`ref-filesystem` for further details on data processing.
+    If you already have an ID Array available, use :func:`radproc.raw.process_radolan_data` instead.
+    
+    .. note:: The RADOLAN data are provided in a custom stereographic projection defined by the DWD
+    and both ID rasters will automatically be generated in this projection by this function.
+    As there is no transformation method available yet, it is not possible to directly perform
+    any geoprocessing tasks with RADOLAN and geodata with other spatial references.
+    Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
+    The clip function implemented in radproc uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
+    Hence, the clipping works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
+    
     """    
     
     # Ignore NaturalNameWarnings --> Group/Dataset names begin with number,
@@ -563,6 +577,7 @@ def process_radolan_data(inFolder, HDFFile, idArr=None, complevel=9):
     :Notes:
     -------
     See :ref:`ref-filesystem` for further details on data processing.
+    
     """    
     # Ignore NaturalNameWarnings --> Group/Dataset names begin with number,
     # doesn't affect generation and access
