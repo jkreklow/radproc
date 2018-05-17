@@ -260,12 +260,15 @@ def create_idarray(projectionFile, idRasterGermany, clipFeature, idRaster, exten
     :Note:
     ------
         
-    .. note:: The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
-    As there is no transformation method available yet, it is not possible to directly perform
-    any geoprocessing tasks with RADOLAN and geodata with other spatial references.
-    Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
-    The clip function uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
-    Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
+    .. note::
+    
+        The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
+        As there is no transformation method available yet, it is not possible to directly perform
+        any geoprocessing tasks with RADOLAN and geodata with other spatial references.
+        Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
+        The clip function uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
+        Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
+    
 
     To use the custom RADOLAN projection as projectionFile for the output ID raster, you can specify the prj-file provided in radproc.sampledata:
         

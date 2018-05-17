@@ -172,7 +172,7 @@ def parse_DWD_quant_composite_header(header):
         of metadata retrieved from file header
         
     ------------------------------------------------------------    
-    *JP: if k == 'VR': 
+    *JK: if k == 'VR': 
                 out['reanalyseversion'] = str(header[v[0]:v[1]])
     added for new data format and if k == 'INT': block replaced
     """
