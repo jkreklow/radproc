@@ -90,8 +90,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="radproc.dwd_gauge.stationfile_to_df.html">radproc.dwd_gauge.stationfile_to_df</a></li>
 <li class="toctree-l3"><a class="reference internal" href="radproc.dwd_gauge.summarize_metadata_files.html">radproc.dwd_gauge.summarize_metadata_files</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">radproc.dwd_gauge.dwd_gauges_to_hdf5</a></li>
@@ -146,7 +146,7 @@
         
           <li><a href="../reference.html">Library Reference</a> &raquo;</li>
         
-          <li><a href="../dwd_gauge.html">DWD MR90 gauge data processing</a> &raquo;</li>
+          <li><a href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a> &raquo;</li>
         
       <li>radproc.dwd_gauge.dwd_gauges_to_hdf5</li>
     
@@ -222,6 +222,15 @@ If the specified HDF5 file already exists, the new dataset will be appended; if 
 <blockquote>
 <div>None
 Save monthly DataFrames to specified HDF5 file.</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>To import gauge data from HDF5, you can use the same functions from radproc.core as for RADOLAN data since both are stored the same data format and structure.</p>
 </dd></dl>
 
 </div>

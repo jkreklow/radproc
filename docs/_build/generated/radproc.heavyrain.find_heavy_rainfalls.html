@@ -95,8 +95,8 @@
 <li class="toctree-l3"><a class="reference internal" href="radproc.heavyrain.count_heavy_rainfall_intervals.html">radproc.heavyrain.count_heavy_rainfall_intervals</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -192,15 +192,13 @@
 <dt id="radproc.heavyrain.find_heavy_rainfalls">
 <code class="descclassname">radproc.heavyrain.</code><code class="descname">find_heavy_rainfalls</code><span class="sig-paren">(</span><em>HDFFile</em>, <em>year_start</em>, <em>year_end</em>, <em>thresholdValue</em>, <em>minArea</em>, <em>season</em><span class="sig-paren">)</span><a class="headerlink" href="#radproc.heavyrain.find_heavy_rainfalls" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a DataFrame containing all heavy rainfalls (intervals) exceeding a specified threshold intensity value.</p>
-<dl class="docutils">
-<dt>Search parameters are</dt>
-<dd><ul class="first last simple">
+<blockquote>
+<div><ul class="simple">
 <li>rainfall intensity</li>
 <li>minimum area (number of cells) where intensity has to be exceeded</li>
 <li>season / time period</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

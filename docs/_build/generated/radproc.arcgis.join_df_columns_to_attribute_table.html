@@ -107,8 +107,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -234,6 +234,22 @@
 </table>
 <blockquote>
 <div>None</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Note:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>If the join is supposed to be done based on the DataFrame index, you have to
+create a new column with the same name as the join field of the feature class.
+So, if you have a DataFrame with gauge station numbers as index and your feature class
+already contains a field called “Statnr” with the corresponding station numbers,
+you need to new to create a new column with</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Statnr&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

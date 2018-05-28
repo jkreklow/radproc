@@ -45,6 +45,7 @@ def find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea,
     Creates a DataFrame containing all heavy rainfalls (intervals) exceeding a specified threshold intensity value.
     
     Search parameters are
+    ---------------------
         * rainfall intensity
         * minimum area (number of cells) where intensity has to be exceeded
         * season / time period

@@ -104,8 +104,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -218,8 +218,8 @@
 <dt>year_end <span class="classifier-delimiter">:</span> <span class="classifier">integer (optional, default: start_year)</span></dt>
 <dd>Last year for which data are to be loaded.</dd>
 <dt>freq <span class="classifier-delimiter">:</span> <span class="classifier">string (optional, default: “years”)</span></dt>
-<dd><p class="first">Target frequency
-available frequencies for downsampling:</p>
+<dd><p class="first">Target frequency.
+Available frequencies for downsampling:</p>
 <blockquote class="last">
 <div>“years”, “months”, “days”, “hours”</div></blockquote>
 </dd>
@@ -247,15 +247,18 @@ available frequencies for downsampling:</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><p>The mean annual precipitation sum can be calculated with the following syntax:</p>
+<p>The mean annual precipitation sum can be calculated with the following syntax:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">radproc</span> <span class="k">as</span> <span class="nn">rp</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">meanPrecip</span> <span class="o">=</span> <span class="n">rp</span><span class="o">.</span><span class="n">load_years_and_resample</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Data\RADOLAN.h5&quot;</span><span class="p">,</span> <span class="mi">2010</span><span class="p">,</span> <span class="mi">2015</span><span class="p">,</span> <span class="s2">&quot;years&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 <span class="go"># The resulting pandas Series can be exported to an ESRI Grid:    </span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span><span class="o">.</span><span class="n">export_to_raster</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">meanPrecip</span><span class="p">,</span> <span class="n">idRaster</span><span class="o">=</span><span class="n">rp</span><span class="o">.</span><span class="n">import_idarray_from_raster</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\GIS_data\idraster&quot;</span><span class="p">),</span> <span class="n">outRaster</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;P:\GIS_data\N_mean10_15&quot;</span><span class="p">)</span>       
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rp</span><span class="o">.</span><span class="n">export_to_raster</span><span class="p">(</span><span class="n">series</span><span class="o">=</span><span class="n">meanPrecip</span><span class="p">,</span> <span class="n">idRaster</span><span class="o">=</span><span class="n">rp</span><span class="o">.</span><span class="n">import_idarray_from_raster</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Data\idras&quot;</span><span class="p">),</span> <span class="n">outRaster</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;P:\GIS_data\N_mean10_15&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All resampling functions set the label of aggregated intervals at the right,
+hence every label describes the precipitation accumulated in the previous interval period.</p>
+</div>
 </dd></dl>
 
 </div>

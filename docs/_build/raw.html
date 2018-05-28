@@ -99,8 +99,8 @@
 <li class="toctree-l2"><a class="reference internal" href="core.html">Core Functions and Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -208,10 +208,10 @@
 <td>Import all RADOLAN binary files in a directory into a pandas DataFrame, optionally clipping the data to the extent of an investigation area specified by an ID array.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_hdf5.html#radproc.raw.radolan_binaries_to_hdf5" title="radproc.raw.radolan_binaries_to_hdf5"><code class="xref py py-obj docutils literal"><span class="pre">radolan_binaries_to_hdf5</span></code></a></td>
-<td>Wrapper for radolan_binaries_to_dataframe() to import and clip all RADOLAN binary files of one month in a directory into a pandas DataFrame and save the resulting DataFrame as a dataset to an HDF5 file.</td>
+<td>Wrapper for radolan_binaries_to_dataframe() to import and <strong>clip all RADOLAN binary files of one month in a directory</strong> into a pandas DataFrame and save the resulting DataFrame as a dataset to an HDF5 file.</td>
 </tr>
 <tr class="row-odd"><td><a class="reference internal" href="generated/radproc.raw.create_idraster_and_process_radolan_data.html#radproc.raw.create_idraster_and_process_radolan_data" title="radproc.raw.create_idraster_and_process_radolan_data"><code class="xref py py-obj docutils literal"><span class="pre">create_idraster_and_process_radolan_data</span></code></a></td>
-<td>Convert all RADOLAN binary data into an HDF5 file with monthly DataFrames for a given study area.</td>
+<td>Convert all RADOLAN binary data in directory tree into an HDF5 file with monthly DataFrames for a given study area.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/radproc.raw.process_radolan_data.html#radproc.raw.process_radolan_data" title="radproc.raw.process_radolan_data"><code class="xref py py-obj docutils literal"><span class="pre">process_radolan_data</span></code></a></td>
 <td>Converts all RADOLAN binary data into an HDF5 file with monthly DataFrames for a given study area without generating a new ID raster.</td>

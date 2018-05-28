@@ -99,8 +99,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -195,7 +195,7 @@
 <dl class="function">
 <dt id="radproc.raw.radolan_binaries_to_hdf5">
 <code class="descclassname">radproc.raw.</code><code class="descname">radolan_binaries_to_hdf5</code><span class="sig-paren">(</span><em>inFolder</em>, <em>HDFFile</em>, <em>idArr=None</em>, <em>complevel=9</em><span class="sig-paren">)</span><a class="headerlink" href="#radproc.raw.radolan_binaries_to_hdf5" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wrapper for radolan_binaries_to_dataframe() to import and clip all RADOLAN binary files of one month in a directory into a pandas DataFrame
+<dd><p>Wrapper for radolan_binaries_to_dataframe() to import and <strong>clip all RADOLAN binary files of one month in a directory</strong> into a pandas DataFrame
 and save the resulting DataFrame as a dataset to an HDF5 file. The name for the HDF5 dataset is derived from the names of the input folder (year and month).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -210,8 +210,10 @@ and save the resulting DataFrame as a dataset to an HDF5 file. The name for the 
 <dt>inFolder <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
 <dd><p class="first">Path to the directory containing RADOLAN binary files.
 As the function derives the HDF5 group and dataset names from the directory path, the latter is expected to have the following format:</p>
-<p><em>&lt;inFolder&gt;</em>/YYYY/MM –&gt; <em>C:/Data/RADOLAN</em>/2008/5</p>
-<p class="last">In this example, the output dataset will have the path 2008/5 within the HDF5 file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">inFolder</span> <span class="o">=</span> <span class="s2">&quot;C:/path/to/binaryData/YYYY/MM&quot;</span>  <span class="c1"># --&gt; e.g. C:/Data/RADOLAN/2008/5</span>
+</pre></div>
+</div>
+<p class="last">In this example for May 2008, the output dataset will have the path ‘2008/5’ within the HDF5 file.</p>
 </dd>
 <dt>HDFFile <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
 <dd>Path and name of the HDF5 file.

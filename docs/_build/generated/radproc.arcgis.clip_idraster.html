@@ -107,8 +107,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -245,13 +245,15 @@ The clip Feature does not need to be provided in the RADOLAN projection. See bel
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div>The RADOLAN data are provided in a custom stereographic projection defined by the DWD.
-As there is no transformation method available yet, it is not possible to directly perform
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The RADOLAN data are provided in a custom stereographic projection defined by the DWD.</p>
+</div>
+<p>As there is no transformation method available yet, it is not possible to directly perform
 any geoprocessing tasks with RADOLAN and geodata with other spatial references.
 Nevertheless, ArcGIS is able to perform a correct on-the-fly transformation to display the data together.
 The clip function uses this as a work-around solution to “push” the clip feature into the RADOLAN projection.
-Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.</div></blockquote>
+Hence, the function works with geodata in different projections, but the locations of the cells might be slightly inaccurate.</p>
 </dd></dl>
 
 </div>

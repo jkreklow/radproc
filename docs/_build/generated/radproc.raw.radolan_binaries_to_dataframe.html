@@ -99,8 +99,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../core.html">Core Functions and Data I/O</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -209,7 +209,8 @@ optionally clipping the data to the extent of an investigation area specified by
 <div><dl class="docutils">
 <dt>inFolder <span class="classifier-delimiter">:</span> <span class="classifier">string</span></dt>
 <dd>Path to the directory containing RADOLAN binary files.
-All files ending with ‘-bin’ or ‘-bin.gz’ are read in.</dd>
+All files ending with ‘-bin’ or ‘-bin.gz’ are read in.
+The input folder path does not need to have any particular directory structure.</dd>
 <dt>idArr <span class="classifier-delimiter">:</span> <span class="classifier">one-dimensional numpy array (optional, default: None)</span></dt>
 <dd>containing ID values to select RADOLAN data of the cells located in the investigation area.
 If no idArr is specified, the ID array is automatically generated from RADOLAN metadata
@@ -226,6 +227,8 @@ and RADOLAN precipitation data are not clipped to any investigation area.</dd>
 </table>
 <blockquote>
 <div><dl class="docutils">
+<dt>(df, metadata) <span class="classifier-delimiter">:</span> <span class="classifier">tuple with two elements:            </span></dt>
+<dd><dl class="first last docutils">
 <dt>df <span class="classifier-delimiter">:</span> <span class="classifier">pandas DataFrame containing…</span></dt>
 <dd><ul class="first last simple">
 <li>RADOLAN data of the cells located in the investigation area</li>
@@ -235,6 +238,8 @@ and RADOLAN precipitation data are not clipped to any investigation area.</dd>
 </dd>
 <dt>metadata <span class="classifier-delimiter">:</span> <span class="classifier">dictionary</span></dt>
 <dd>containing metadata from the last imported RADOLAN binary file</dd>
+</dl>
+</dd>
 </dl>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">

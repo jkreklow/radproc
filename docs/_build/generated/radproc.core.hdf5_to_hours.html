@@ -104,8 +104,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -233,6 +233,16 @@
 <dd>resampled to hourly precipitation sums.</dd>
 </dl>
 </div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All resampling functions set the label of aggregated intervals at the right,
+hence every label describes the precipitation accumulated in the previous interval period.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For comparisons between hourly RW data and gauge data/YW data resampled to hours,
+keep in mind, that hours in RW always start at hh-1:50 whereas the resampled hours begin at hh:00.</p>
+</div>
 </dd></dl>
 
 </div>

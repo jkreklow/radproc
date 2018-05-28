@@ -104,8 +104,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Raw Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 gauge data processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Binary File Import</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
 </ul>
 </li>
 </ul>
@@ -196,7 +196,7 @@
 <span class="target" id="module-radproc.core"></span><div class="section" id="core-functions-and-data-i-o">
 <h1>Core Functions and Data I/O<a class="headerlink" href="#core-functions-and-data-i-o" title="Permalink to this headline">¶</a></h1>
 <p>Core functions like coordinate conversion and import of ID-array from textfile. 
-Data import from HDF5-file and data aggregation.</p>
+Data import from HDF5-file and temporal data aggregation.</p>
 <table border="1" class="longtable docutils">
 <colgroup>
 <col width="10%" />
@@ -204,7 +204,7 @@ Data import from HDF5-file and data aggregation.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td><a class="reference internal" href="generated/radproc.core.coordinates_degree_to_stereographic.html#radproc.core.coordinates_degree_to_stereographic" title="radproc.core.coordinates_degree_to_stereographic"><code class="xref py py-obj docutils literal"><span class="pre">coordinates_degree_to_stereographic</span></code></a></td>
-<td>Converts geographic coordinates [°] to cartesian coordinates [km] in stereographic projection.</td>
+<td>Converts geographic coordinates [°] to cartesian coordinates [km] in stereographic RADOLAN projection.</td>
 </tr>
 <tr class="row-even"><td><a class="reference internal" href="generated/radproc.core.save_idarray_to_txt.html#radproc.core.save_idarray_to_txt" title="radproc.core.save_idarray_to_txt"><code class="xref py py-obj docutils literal"><span class="pre">save_idarray_to_txt</span></code></a></td>
 <td>Write cell ID values to text file.</td>

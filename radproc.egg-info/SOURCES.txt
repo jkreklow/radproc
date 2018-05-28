@@ -50,7 +50,6 @@ docs/source/generated/radproc.raw.radolan_binaries_to_hdf5.rst
 docs/source/generated/radproc.raw.unzip_RW_binaries.rst
 docs/source/generated/radproc.raw.unzip_YW_binaries.rst
 docs/source/generated/radproc.wradlib_io.read_RADOLAN_composite.rst
-docs/source/notebooks/Notebooktest_rst.rst
 radproc/__init__.py
 radproc/api.py
 radproc/arcgis.py

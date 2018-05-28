@@ -229,10 +229,8 @@ def load_years_and_resample(HDFFile, year_start, year_end=0, freq="years"):
         # The resulting pandas Series can be exported to an ESRI Grid:    
         >>> rp.export_to_raster(series=meanPrecip, idRaster=rp.import_idarray_from_raster(r"C:\Data\idras"), outRaster=r"P:\GIS_data\N_mean10_15")
     
-    .. note::
-        
-    All resampling functions set the label of aggregated intervals at the right,
-    hence every label describes the precipitation accumulated in the previous interval period.
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+              hence every label describes the precipitation accumulated in the previous interval period.
     
     """  
     
@@ -332,7 +330,7 @@ Please check if directory path is correct and file is currently used by any othe
         print('Error! Please enter years as integer numbers and path to HDF5 file as string!\n \
 Example: rp.load_years_and_resample(r"P:\User\Data\HDF5\RW.h5", 2008, 2010)')
     except UnboundLocalError:
-        print('Error! Sorry, this function only works for entire years starting in January! \n \
+        print('Error! Sorry, this function currently only works for entire years starting in January! \n \
 To resample smaller time periods, you can import the months with load_months_from_hdf5() and resample them with df.resample()')
     except:
         print("An unexpected error occurred")
@@ -361,6 +359,9 @@ def hdf5_to_years(HDFFile, year_start, year_end=0):
     
         df : pandas DataFrame
             resampled to annual precipitation sums.
+            
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+              hence every label describes the precipitation accumulated in the previous interval period.
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "years")
 
@@ -386,10 +387,8 @@ def hdf5_to_months(HDFFile, year_start, year_end=0):
         df : pandas DataFrame
             resampled to monthly precipitation sums.
             
-    .. note::
-    
-    All resampling functions set the label of aggregated intervals at the right,
-    hence every label describes the precipitation accumulated in the previous interval period.
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+              hence every label describes the precipitation accumulated in the previous interval period.
     
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "months")
@@ -415,10 +414,8 @@ def hdf5_to_days(HDFFile, year_start, year_end=0):
         df : pandas DataFrame
             resampled to daily precipitation sums.
             
-    .. note::
-        
-    All resampling functions set the label of aggregated intervals at the right,
-    hence every label describes the precipitation accumulated in the previous interval period.
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+              hence every label describes the precipitation accumulated in the previous interval period.
     
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "days")
@@ -445,15 +442,11 @@ def hdf5_to_hours(HDFFile, year_start, year_end=0):
         df : pandas DataFrame
             resampled to hourly precipitation sums.
             
-    .. note::
-        
-    All resampling functions set the label of aggregated intervals at the right,
-    hence every label describes the precipitation accumulated in the previous interval period.
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+              hence every label describes the precipitation accumulated in the previous interval period.
     
-    .. note::
-        
-    For comparisons between hourly RW data and gauge data/YW data resampled to hours,
-    keep in mind, that hours in RW always start at hh-1:50 whereas the resampled hours begin at hh:00.
+    .. note:: For comparisons between hourly RW data and gauge data/YW data resampled to hours,
+              keep in mind, that hours in RW always start at hh-1:50 whereas the resampled hours begin at hh:00.
     
     """
     return load_years_and_resample(HDFFile, year_start, year_end, freq = "hours")
@@ -486,10 +479,8 @@ def hdf5_to_hydrologicalSeasons(HDFFile, year_start, year_end=0):
             In contrast to most other resampling functions from radproc, the index labels the beginning of each resampling period,
             e.g. the index 2001-05-01 describes the period from May to October 2001.
             
-    .. note::
-        
-    All resampling functions set the label of aggregated intervals at the right,
-    hence every label describes the precipitation accumulated in the previous interval period.
+    .. note:: All resampling functions set the label of aggregated intervals at the right,
+              hence every label describes the precipitation accumulated in the previous interval period.
     
     """
     if year_end == 0 or (year_end != 0 and year_start > year_end):
