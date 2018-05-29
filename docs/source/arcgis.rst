@@ -15,8 +15,7 @@ Collection of all functions based on arcpy.
     - Extract values from rasters to new fields in a Point Feature Class
     - Calculate zonal statistics and join to zone Feature Class
 
- .. toctree:: generated/
-
+ .. toctree:: prebuilt/
    
    radproc.arcgis.raster_to_array
    radproc.arcgis.create_idraster_germany
