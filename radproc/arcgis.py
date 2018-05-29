@@ -374,7 +374,7 @@ def export_dfrows_to_gdb(dataDF, idRaster, outGDBPath, GDBName, statistics=""):
                 outRaster = "R_%i" % (index.year)
             elif dataDF.index.is_month_end.all() == True or dataDF.index.is_month_start.all() == True:
                 outRaster = "R_%i%02i" % (index.year, index.month)            
-            elif dataDF.index.hour.all() == 0:
+            elif dataDF.index.hour.all() != 0:
                 outRaster = "R_%i%02i%02i" % (index.year, index.month, index.day)
             else:
                 outRaster = "R_%i%02i%02i_%02i%02i" % (index.year, index.month, index.day, index.hour, index.minute)

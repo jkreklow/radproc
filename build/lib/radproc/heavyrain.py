@@ -182,10 +182,13 @@ def count_heavy_rainfall_intervals(HDFFile, year_start, year_end, thresholdValue
     #Find all intervals in which a rainfall intensity of x mm is exceeded in y raster cells.
     #Returns boolean raster with True == threshold value exceeded and  False for not exceeded.
     hr_intervals_bool = find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea, season) >= thresholdValue
+    # Convert booleans to 0/1
+    hr_intervals = hr_intervals_bool.astype('int32')
     # Calculate the sum of exceedances per cell in the given time period by resampling.
-    # Choose syntax for resample method depending on pandas version. how = "sum" is deprecated in newer version, but ArcGIS has an older version of pandas.    
+    # Choose syntax for resample method depending on pandas version. how = "sum" is deprecated in newer version, but ArcGIS has an older version of pandas.
+      
     if pd_version >= 19:    
-        interval_count = hr_intervals_bool.resample(freq, closed = 'right', label = 'right').sum().dropna()
+        interval_count = hr_intervals.resample(freq, closed = 'right', label = 'right').sum().dropna()
     elif pd_version < 19:
-        interval_count = hr_intervals_bool.resample(freq, how = "sum", closed = 'right', label = 'right').dropna()
+        interval_count = hr_intervals.resample(freq, how = "sum", closed = 'right', label = 'right').dropna()
     return interval_count
