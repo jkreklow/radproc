@@ -177,7 +177,7 @@
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.1.0</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 28, 2018</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">May 29, 2018</td>
 </tr>
 </tbody>
 </table>
@@ -237,18 +237,99 @@ Moreover, radproc’s arcgis module includes a collection of functions for data 
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/Tutorial_Raw_Data_Processing.html">Tutorial: RW Raw Data Processing with Radproc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html">Tutorial: Aggregation to Precipitation Sums</a></li>
-<li class="toctree-l2"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html">Tutorial: Heavy Rainfall Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/Tutorial_Raw_Data_Processing.html">Tutorial: RW Raw Data Processing with Radproc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Raw_Data_Processing.html#1.-Import-radproc">1. Import radproc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Raw_Data_Processing.html#2.-Unzip-Raw-Data-Archives">2. Unzip Raw Data Archives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Raw_Data_Processing.html#3.-Import-Unzipped-Data-into-HDF5">3. Import Unzipped Data into HDF5</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html">Tutorial: Aggregation to Precipitation Sums</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#Example-1:-Annual-Precipitation-Sums">Example 1: Annual Precipitation Sums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#1.-Import-radproc">1. Import radproc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#2.-Load-Data-from-HDF5-and-Aggregate-to-Annual-Precipitation-Sums">2. Load Data from HDF5 and Aggregate to Annual Precipitation Sums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#3.-Export-Results-into-ArcGIS-Geodatabase">3. Export Results into ArcGIS Geodatabase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#Example-2:-Monthly-Precipitation-Sums">Example 2: Monthly Precipitation Sums</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#1.-Import-radproc">1. Import radproc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#2.-Load-Data-from-HDF5-and-Aggregate-to-Monthly-Precipitation-Sums">2. Load Data from HDF5 and Aggregate to Monthly Precipitation Sums</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Aggregation_to_Precipitation_Sums.html#3.-Export-Results-into-ArcGIS-Geodatabase">3. Export Results into ArcGIS Geodatabase</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html">Tutorial: Heavy Rainfall Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#Example-1:-Identification-of-Heavy-Rainfall-Intervals">Example 1: Identification of Heavy Rainfall Intervals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#1.-Import-radproc">1. Import radproc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#2.-Identify-Heavy-Rainfall-Intervals">2. Identify Heavy Rainfall Intervals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#3.-Export-Results-into-ArcGIS-Geodatabase">3. Export Results into ArcGIS Geodatabase</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#Example-2:-Counting-Heavy-Rainfall-Intervals">Example 2: Counting Heavy Rainfall Intervals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#1.-Identify-and-Count-Heavy-Rainfall-Intervals">1. Identify and Count Heavy Rainfall Intervals</a></li>
+<li class="toctree-l4"><a class="reference internal" href="notebooks/Tutorial_Identification_of_Heavy_Rainfall.html#2.-Export-to-Raster">2. Export to Raster</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Library Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="raw.html">Raw Data Processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="core.html">Core Functions and Data I/O</a></li>
-<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based Functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy Rainfall Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Binary File Import</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 Gauge Data Processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raw.html">Raw Data Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.unzip_RW_binaries.html">radproc.raw.unzip_RW_binaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.unzip_YW_binaries.html">radproc.raw.unzip_YW_binaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_dataframe.html">radproc.raw.radolan_binaries_to_dataframe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.radolan_binaries_to_hdf5.html">radproc.raw.radolan_binaries_to_hdf5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.create_idraster_and_process_radolan_data.html">radproc.raw.create_idraster_and_process_radolan_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.raw.process_radolan_data.html">radproc.raw.process_radolan_data</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="core.html">Core Functions and Data I/O</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.coordinates_degree_to_stereographic.html">radproc.core.coordinates_degree_to_stereographic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.save_idarray_to_txt.html">radproc.core.save_idarray_to_txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.import_idarray_from_txt.html">radproc.core.import_idarray_from_txt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.load_months_from_hdf5.html">radproc.core.load_months_from_hdf5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.load_month.html">radproc.core.load_month</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.load_years_and_resample.html">radproc.core.load_years_and_resample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.hdf5_to_years.html">radproc.core.hdf5_to_years</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.hdf5_to_months.html">radproc.core.hdf5_to_months</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.hdf5_to_days.html">radproc.core.hdf5_to_days</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.hdf5_to_hours.html">radproc.core.hdf5_to_hours</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.core.hdf5_to_hydrologicalSeasons.html">radproc.core.hdf5_to_hydrologicalSeasons</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="arcgis.html">ArcGIS-based Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.raster_to_array.html">radproc.arcgis.raster_to_array</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.create_idraster_germany.html">radproc.arcgis.create_idraster_germany</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.clip_idraster.html">radproc.arcgis.clip_idraster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.import_idarray_from_raster.html">radproc.arcgis.import_idarray_from_raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.create_idarray.html">radproc.arcgis.create_idarray</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.export_to_raster.html">radproc.arcgis.export_to_raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.export_dfrows_to_gdb.html">radproc.arcgis.export_dfrows_to_gdb</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.attribute_table_to_df.html">radproc.arcgis.attribute_table_to_df</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.join_df_columns_to_attribute_table.html">radproc.arcgis.join_df_columns_to_attribute_table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.idTable_nineGrid.html">radproc.arcgis.idTable_nineGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.idTable_to_valueTable.html">radproc.arcgis.idTable_to_valueTable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.valueTable_nineGrid.html">radproc.arcgis.valueTable_nineGrid</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.rastervalues_to_points.html">radproc.arcgis.rastervalues_to_points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.arcgis.zonalstatistics.html">radproc.arcgis.zonalstatistics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="heavyrain.html">Heavy Rainfall Analysis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.heavyrain.find_heavy_rainfalls.html">radproc.heavyrain.find_heavy_rainfalls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.heavyrain.count_heavy_rainfall_intervals.html">radproc.heavyrain.count_heavy_rainfall_intervals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="wradlib_io.html">RADOLAN Binary File Import</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.wradlib_io.read_RADOLAN_composite.html">radproc.wradlib_io.read_RADOLAN_composite</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dwd_gauge.html">DWD MR90 Gauge Data Processing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.dwd_gauge.stationfile_to_df.html">radproc.dwd_gauge.stationfile_to_df</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.dwd_gauge.summarize_metadata_files.html">radproc.dwd_gauge.summarize_metadata_files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/radproc.dwd_gauge.dwd_gauges_to_hdf5.html">radproc.dwd_gauge.dwd_gauges_to_hdf5</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
