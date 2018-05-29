@@ -18,17 +18,17 @@ Collection of all functions based on arcpy.
  .. toctree:: generated/
 
    
-   raster_to_array
-   create_idraster_germany
-   clip_idraster
-   import_idarray_from_raster
-   create_idarray
-   export_to_raster
-   export_dfrows_to_gdb
-   attribute_table_to_df
-   join_df_columns_to_attribute_table
-   idTable_nineGrid
-   idTable_to_valueTable
-   valueTable_nineGrid
-   rastervalues_to_points
-   zonalstatistics
+   radproc.arcgis.raster_to_array
+   radproc.arcgis.create_idraster_germany
+   radproc.arcgis.clip_idraster
+   radproc.arcgis.import_idarray_from_raster
+   radproc.arcgis.create_idarray
+   radproc.arcgis.export_to_raster
+   radproc.arcgis.export_dfrows_to_gdb
+   radproc.arcgis.attribute_table_to_df
+   radproc.arcgis.join_df_columns_to_attribute_table
+   radproc.arcgis.idTable_nineGrid
+   radproc.arcgis.idTable_to_valueTable
+   radproc.arcgis.valueTable_nineGrid
+   radproc.arcgis.rastervalues_to_points
+   radproc.arcgis.zonalstatistics
