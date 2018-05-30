@@ -42,3 +42,5 @@ Analysis
 	* Data quality assessment
 	* Comparison of RADOLAN and rain gauge data
 	* *In preparation: Erosivity analysis, e.g. calculation of monthly, seasonal or annual R-factors*
+	
+The full documentation for radproc including installation information and tutorials is hosted at http://www.pgweb.uni-hannover.de/
