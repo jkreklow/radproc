@@ -9,6 +9,10 @@ def write_version_py(filename='radproc/version.py'):
     content = "# THIS FILE IS GENERATED FROM RADPROC SETUP.PY\nversion = '%s'" % version
     with open(filename, 'w') as f:
         f.write(content)
+        
+def readme():
+    with open('README.rst') as f:
+        return f.read()
 
 if __name__ == '__main__':
     write_version_py()
@@ -41,11 +45,11 @@ if __name__ == '__main__':
       include_package_data = True,
       version = version,
       description = 'Library for RADOLAN composite processing, analysis and data exchange with ArcGIS.',
-      #long_description=open('README.rst').read(),
+      long_description=readme(),
       author = 'Jennifer Kreklow',
       author_email = 'kreklow@phygeo.uni-hannover.de',
-      url = 'https://github.com/jkreklow/radproc/tree/release/0.1.0', # use the URL to the github repo
-      download_url = 'https://github.com/jkreklow/radproc/tree/release/0.1.0/dist/radproc-0.1.0.tar.gz', 
+      url = 'https://github.com/jkreklow/radproc/tree/%s' % version, # use the URL to the github repo
+      download_url = 'https://github.com/jkreklow/radproc/tree/%s/dist/radproc-%s.tar.gz' % (version, version), 
       license = 'MIT',
       keywords = ['RADOLAN', 'weather radar', 'ArcGIS', 'precipitation', 'rainfall'], 
       classifiers = CLASSIFIERS,
