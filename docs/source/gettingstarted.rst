@@ -26,7 +26,7 @@ First, install ArcMap for Desktop and its extension 64-Bit background processing
 Next, download and install the latest Anaconda distribution from https://www.anaconda.com/download/ (Windows, 64-Bit, Python version 2.7).
 
 radproc is currently distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
-You can download the radproc wheel from the GitHub repository at https://www.github.com
+You can download the radproc wheel from the GitHub repository at https://github.com/jkreklow/radproc/tree/0.1.0/dist
 
 To install radproc using Anaconda and pip...
 
