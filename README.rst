@@ -13,7 +13,7 @@ Moreover, radproc's arcgis module includes a collection of functions for data ex
 Radproc's Main Features 
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-Raw Data processing
+Raw Data Processing
 -------------------
 	
 	* Support for the reanalyzed RADOLAN products RW (60 min), YW and RY (both 5 min. resolution)
@@ -43,4 +43,12 @@ Analysis
 	* Comparison of RADOLAN and rain gauge data
 	* *In preparation: Erosivity analysis, e.g. calculation of monthly, seasonal or annual R-factors*
 	
-The full documentation for radproc including installation information and tutorials is hosted at http://www.pgweb.uni-hannover.de/
+Documentation
+~~~~~~~~~~~~~
+
+The full documentation for the latest radproc version is available at http://www.pgweb.uni-hannover.de/
+
+Most of the docs are also hosted at https://radproc.readthedocs.io which will provide support for docs of older versions in future,
+but unfortunately Readthedocs doesn't seem to support sphinx autodocs for the arcpy module which is not hosted at PyPI.
+Consequently, the docs for the radproc.arcgis module are missing here.
+If you have any idea how to fix this issue, please let me know.
