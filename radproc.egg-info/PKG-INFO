@@ -2,12 +2,25 @@ Metadata-Version: 1.1
 Name: radproc
 Version: 0.1.0
 Summary: Library for RADOLAN composite processing, analysis and data exchange with ArcGIS.
-Home-page: https://github.com/jkreklow/radproc
+Home-page: https://github.com/jkreklow/radproc/tree/release/0.1.0
 Author: Jennifer Kreklow
 Author-email: kreklow@phygeo.uni-hannover.de
 License: MIT
-Download-URL: https://github.com/jkreklow/radproc/blob/master/dist/radproc-0.1.0-py2-none-any.whl
-Description-Content-Type: UNKNOWN
+Download-URL: https://github.com/jkreklow/radproc/tree/release/0.1.0/dist/radproc-0.1.0.tar.gz
 Description: UNKNOWN
-Keywords: RADOLAN,weather radar,ArcGIS,precipitation,heavy rainfall
+Keywords: RADOLAN,weather radar,ArcGIS,precipitation,rainfall
 Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Classifier: Topic :: Scientific/Engineering :: GIS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Operating System :: Microsoft :: Windows

@@ -52,6 +52,7 @@ Analysis
 	* *In preparation: Erosivity analysis, e.g. calculation of monthly, seasonal or annual R-factors*
 
 .. toctree::
+   :maxdepth: 3
    
    gettingstarted
    notebooks
