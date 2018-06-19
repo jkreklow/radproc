@@ -14,15 +14,15 @@ Unzip, import, clip and convert RADOLAN raw data and write DataFrames to HDF5.
 .. autosummary::
    :nosignatures:
    :toctree: generated/
-
+   
    unzip_RW_binaries
    unzip_YW_binaries
    radolan_binaries_to_dataframe
    radolan_binaries_to_hdf5
    create_idraster_and_process_radolan_data
    process_radolan_data
-
-
+   
+   
 .. module:: radproc.raw
     :platform: Windows
     :synopsis: Python package radproc (Radar data processing), Module raw
@@ -62,7 +62,7 @@ def unzip_RW_binaries(zipFolder, outFolder):
             Path of directory containing RW data as monthly tar / tar.gz archives to be unzipped.
             Archive names must contain year and month at end of basename: RWrea_200101.tar or RWrea_200101.tar.gz 
         outFolder : string
-            Path of output directory. 
+            Path of output directory.  Will be created if it doesn't exist, yet.
         
     :Returns:
     ---------
@@ -70,6 +70,9 @@ def unzip_RW_binaries(zipFolder, outFolder):
         No return value
     """
             
+    if not os.path.exists(outFolder):
+        os.mkdir(outFolder)
+    
     # create list of all tar files and identify years
     tarFileList = os.listdir(zipFolder)
     years = np.unique([f[-10:-6] if f.endswith(".tar") else f[-13:-9] for f in tarFileList])
@@ -122,19 +125,17 @@ def unzip_YW_binaries(zipFolder, outFolder):
             Path of directory containing YW data as monthly tar / tar.gz archives to be unzipped.
             Archive names must contain year and month at end of basename: YWrea_200101.tar or YWrea_200101.tar.gz 
         outFolder : string
-            Path of output directory. 
+            Path of output directory. Will be created if it doesn't exist, yet. 
         
     :Returns:
     ---------
     
         No return value
-    """
-    
-    #zipFolder = r"P:\JENNY\FORSCHUNG\Daten\RADOLAN\Reanalyse2\RW_rea_Original"
-    #outFolder = r"P:\JENNY\FORSCHUNG\Daten\RADOLAN\Reanalyse2\RW_Rea_gz"
-    #firstYear = 2001
-    #lastYear = 2015
+    """   
             
+    if not os.path.exists(outFolder):
+        os.mkdir(outFolder)
+    
     # create list of all tar files
     tarFileList = os.listdir(zipFolder)
     years = np.unique([f[-10:-6] if f.endswith(".tar") else f[-13:-9] for f in tarFileList])
@@ -180,7 +181,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
     """
     Import all RADOLAN binary files in a directory into a pandas DataFrame,
     optionally clipping the data to the extent of an investigation area specified by an ID array.
-
+    
     :Parameters:
     ------------
         inFolder : string
@@ -294,7 +295,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
     """
     Wrapper for radolan_binaries_to_dataframe() to import and **clip all RADOLAN binary files of one month in a directory** into a pandas DataFrame
     and save the resulting DataFrame as a dataset to an HDF5 file. The name for the HDF5 dataset is derived from the names of the input folder (year and month).
-
+    
     :Parameters:
     ------------
     
@@ -395,7 +396,7 @@ def _process_year(yearFolder, HDFFile, idArr, complevel):
     for monthFolder in monthFolders:
         try:
             radolan_binaries_to_hdf5(inFolder=monthFolder, HDFFile=HDFFile, idArr=idArr, complevel=complevel)
-            print(monthFolder + " imported, clipped and saved")
+            print(monthFolder + " processed")
         except:
             print("Error at " + monthFolder)
             failed.append(monthFolder)
@@ -431,7 +432,6 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
     
     If necessary, a textfile containing all directories which could not be processed due to data format errors is created in directory of HDF5 file.
     
-
     :Parameters:
     ------------
     
@@ -450,7 +450,6 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
             complevel may range from 0 to 9, where 9 is the highest compression possible.
             Using a high compression level reduces data size significantly,
             but writing data to HDF5 takes more time and data import from HDF5 is slighly slower.
-
         
     :Returns:
     ---------
@@ -460,9 +459,6 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
         Additionally, two ID Rasters and - if necessary - a textfile containing
         all directories which could not be processed due to data format errors are created in directory of HDF5 file.
 
-
-    :Note:
-    ------
     
     .. seealso:: See :ref:`ref-filesystem` for further details on data processing.
                  If you already have an ID Array available, use :func:`radproc.raw.process_radolan_data` instead.
@@ -548,7 +544,7 @@ def process_radolan_data(inFolder, HDFFile, idArr=None, complevel=9):
     
     Additionally, a textfile containing all directories which could not be processed due to data format errors is created in directory of HDF5 file.
     
-
+    
     :Parameters:
     ------------
     
@@ -574,11 +570,12 @@ def process_radolan_data(inFolder, HDFFile, idArr=None, complevel=9):
         No return value
         Function creates datasets for every month in HDF5 file specified in parameter HDFFile.
         Additionally, a textfile containing all directories which could not be processed due to data format errors is created in HDFFolder.
-
-
+        
     :Notes:
     -------
     See :ref:`ref-filesystem` for further details on data processing.
+    
+    This function can be used to process RADOLAN data without having ArcGIS installed.
     
     """    
     # Ignore NaturalNameWarnings --> Group/Dataset names begin with number,

@@ -55,10 +55,8 @@ import radproc.core as _core
 
 try:
     import arcpy
-
 except ImportError:
     print("Import Error! Module arcpy not found")
-    pass
 
 
 class LicenseError(Exception):
@@ -154,7 +152,7 @@ def create_idraster_germany(projectionFile, outRaster, extendedNationalGrid = Tr
         idArr = np.arange(0,1100*900).reshape(1100,900)
         
         
-    idRaster = arcpy.NumPyArrayToRaster (idArr, arcpy.Point(x, y), 1, 1, -9999)
+    idRaster = arcpy.NumPyArrayToRaster (idArr, arcpy.Point(x, y), 1000, 1000, -9999)
     
     if projectionFile.endswith(".prj"):
         spatialRef = projectionFile

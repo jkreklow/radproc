@@ -12,6 +12,7 @@ docs/source/notebooks.rst
 docs/source/radproc.sampledata.rst
 docs/source/raw.rst
 docs/source/reference.rst
+docs/source/releasenotes.rst
 docs/source/wradlib_io.rst
 docs/source/generated/radproc.arcgis.attribute_table_to_df.rst
 docs/source/generated/radproc.arcgis.clip_idraster.rst

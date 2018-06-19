@@ -42,7 +42,7 @@ import sys
 
 def coordinates_degree_to_stereographic(Lambda_degree, Phi_degree):
     """
-    Converts geographic coordinates [°] to cartesian coordinates [km] in stereographic RADOLAN projection.
+    Converts geographic coordinates [°] to cartesian coordinates [m] in stereographic RADOLAN projection.
     
     :Parameters:
     ------------
@@ -56,13 +56,13 @@ def coordinates_degree_to_stereographic(Lambda_degree, Phi_degree):
     ---------
     
         (x, y) : Tuple with two elements of type float
-            Cartesian coordinates x and y in stereographic projection [km]
+            Cartesian coordinates x and y in stereographic projection [m]
             
     """
     
     from math import sin, cos, pi
-    # Earth Radius in km
-    R = 6370.04
+    # Earth Radius in m
+    R = 6370.04 * 1000
     
     # Convert decimal degrees to radian
     Phi = Phi_degree * pi/180 

@@ -56,7 +56,8 @@ Analysis
    
    gettingstarted
    notebooks
-   reference   
+   reference
+   releasenotes
    
 Indices and tables
 ==================
