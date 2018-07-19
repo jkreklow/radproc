@@ -6,7 +6,6 @@
    :target: https://doi.org/10.5281/zenodo.1313701
 
 
-
 Radproc is an open source Python library intended to facilitate precipitation data processing and analysis for GIS-users.
 It provides functions for processing, analysis and export of RADOLAN (Radar Online Adjustment) composites and rain gauge data in MR90 format.
 The German Weather Service (DWD) provides the RADOLAN RW composites for free in the Climate Data Center
