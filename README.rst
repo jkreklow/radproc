@@ -16,8 +16,8 @@ Moreover, radproc's arcgis module includes a collection of functions for data ex
 
 
 .. note:: Please cite radproc as
-		  Kreklow, J. (2018): Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis.
-		  Zenodo. http://doi.org/10.5281/zenodo.1313701
+	Kreklow, J. (2018): Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis.
+	Zenodo. http://doi.org/10.5281/zenodo.1313701
 
 
 Radproc's Main Features 
