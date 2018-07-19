@@ -59,7 +59,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'radproc'
-copyright = u'2016-2018, Jennifer Kreklow'
+copyright = u'2018, Jennifer Kreklow'
 author = u'Jennifer Kreklow'
 
 
@@ -73,7 +73,7 @@ author = u'Jennifer Kreklow'
 
 # The full version, including alpha/beta/rc tags.
 #version = radproc.__version__
-version = "0.1.1"
+version = "0.1.2"
 #release = u'0.1.0dev0'
 release = version
 

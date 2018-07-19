@@ -4,6 +4,15 @@
  Release Notes
 ===============
 
+.. _ref-v0-1-2:
+
+Version 0.1.2
+~~~~~~~~~~~~~
+
+Changes to licensing conditions. License provision for free re-use of modified software versions has been added to all source code files.
+No changes to the source code itself.
+
+
 .. _ref-v0-1-1:
 
 Version 0.1.1

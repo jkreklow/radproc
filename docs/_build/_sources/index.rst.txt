@@ -3,20 +3,28 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-=====================================================================================
- radproc: An ArcGIS-compatible Library for RADOLAN Composite Processing and Analysis
-=====================================================================================
+===================================================================================================
+ Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis
+===================================================================================================
 
 :Release: |release|
 :Date: |today|
 
-Radproc is an open source Python library intended to faciliate precipitation data processing and analysis for ArcGIS-users.
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.1313701.svg
+   :target: https://doi.org/10.5281/zenodo.1313701
+
+Radproc is an open source Python library intended to facilitate precipitation data processing and analysis for GIS-users.
 It provides functions for processing, analysis and export of RADOLAN (Radar Online Adjustment) composites and rain gauge data in MR90 format.
 The German Weather Service (DWD) provides the RADOLAN-Online RW composites for free in the Climate Data Center (ftp://ftp-cdc.dwd.de/pub/CDC/grids_germany/hourly/radolan/)
 but the data processing represents a big challenge for many potential users.
 Radproc's goal is to lower the barrier for using these data, especially in conjunction with ArcGIS.
 Therefore, radproc provides an automated ArcGIS-compatible data processing workflow based on pandas DataFrames and HDF5.
 Moreover, radproc's arcgis module includes a collection of functions for data exchange between pandas and ArcGIS.
+
+
+.. note:: Please cite radproc as Kreklow, J. (2018): Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis. Zenodo. http://doi.org/10.5281/zenodo.1313701
+
+
 
 Radproc's Main Features 
 ~~~~~~~~~~~~~~~~~~~~~~~
