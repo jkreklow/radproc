@@ -289,11 +289,16 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
     # check for RADOLAN product type and set frequency of DataFrame index
     # lists can be extended for other products...    
     if metadata['producttype'] in ["RW"]:
-        #df = df.asfreq('H')
-        df.index.freq = pd.tseries.offsets.Hour()
+        try:
+            # try to prevent dataframe copying by .asfreq(). this does not seem to work in all pandas versions --> try - except
+            df.index.freq = pd.tseries.offsets.Hour()            
+        except:
+            df = df.asfreq('H')
     elif metadata['producttype'] in ["RY", "RZ", "YW"]:
-        #df = df.asfreq('5min')
-        df.index.freq = 5 * pd.tseries.offsets.Minute()
+        try:            
+            df.index.freq = 5 * pd.tseries.offsets.Minute()
+        except:
+            df = df.asfreq('5min')
        
     return df, metadata
     
