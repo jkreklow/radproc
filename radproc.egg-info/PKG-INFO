@@ -1,12 +1,12 @@
 Metadata-Version: 1.1
 Name: radproc
-Version: 0.1.2
+Version: 0.1.3
 Summary: Library for RADOLAN composite processing, analysis and data exchange with ArcGIS.
-Home-page: https://github.com/jkreklow/radproc/tree/0.1.2
+Home-page: https://github.com/jkreklow/radproc/tree/0.1.3
 Author: Jennifer Kreklow
 Author-email: kreklow@phygeo.uni-hannover.de
 License: MIT
-Download-URL: https://github.com/jkreklow/radproc/tree/0.1.2/dist/radproc-0.1.2.tar.gz
+Download-URL: https://github.com/jkreklow/radproc/tree/0.1.3/dist/radproc-0.1.3.tar.gz
 Description: ===================================================================================================
          Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis
         ===================================================================================================

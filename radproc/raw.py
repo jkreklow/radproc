@@ -325,7 +325,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
             containing ID values to select RADOLAN data of the cells located in the investigation area.
             If no idArr is specified, the ID array is automatically generated from RADOLAN metadata
             and RADOLAN precipitation data are not clipped to any investigation area.
-        complevel : interger (optional, default: 9)
+        complevel : integer (optional, default: 9)
             defines the level of compression for the output HDF5 file.
             complevel may range from 0 to 9, where 9 is the highest compression possible.
             Using a high compression level reduces data size significantly,

@@ -4,6 +4,33 @@
  Release Notes
 ===============
 
+
+.. _ref-v0-1-3:
+
+Version 0.1.3
+~~~~~~~~~~~~~
+
+New Functions
+-------------
+
+- :py:func:`radproc.heavyrain.duration_sum` has been added. The function can calculate duration sums (Dauerstufen, e.g. D=15, 30, 60 or 120 minutes)
+  from precipitation data in 5-minute resolution (e.g. RADOLAN YW). The output is saved in a new HDF5 file with the same monthly structure as the input data.
+  Hence, this new file can be used as input for all other radproc functions accessing HDF5.
+  
+Changes and Bugfixes
+--------------------
+
+- The syntax and join method of :py:func:`radproc.arcgis.join_df_columns_to_attribute_table` has been revised.
+  The parameter joinField has been renamed to fcJoinField and now only describes the name of the join field contained in the Feature Class.
+  For the DataFrame, the index is now used as join field. Only in case the DataFrame contains a column with exactly the same name as fcJoinField,
+  the join will be based on this column instead of the DataFrame index.
+  Moreover, a bug, due to which columns of data type string could not be joined, was fixed.
+  
+- :py:func:`radproc.raw.radolan_binaries_to_dataframe`: A bug was fixed, which caused a failure of data import for some months and on some Python environments
+  when setting the DataFrame frequency.
+  
+
+
 .. _ref-v0-1-2:
 
 Version 0.1.2

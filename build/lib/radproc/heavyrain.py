@@ -18,6 +18,7 @@ Module for heavy rainfall analysis.
 
     - identify and select all intervals in which a specified precipitation threshold is exceeded
     - count the number of threshold exceedances
+    - calculate duration sums
 
 .. autosummary::
    :nosignatures:
@@ -25,6 +26,7 @@ Module for heavy rainfall analysis.
 
    find_heavy_rainfalls
    count_heavy_rainfall_intervals
+   duration_sum
    
    
 .. module:: radproc.heavyrain
@@ -39,6 +41,7 @@ import pandas as pd
 import numpy as np
 import radproc.core as _core
 import gc
+import warnings, tables
 
 
 def _exceeding(rowseries, thresholdValue, minArea):
@@ -198,3 +201,87 @@ def count_heavy_rainfall_intervals(HDFFile, year_start, year_end, thresholdValue
     elif pd_version < 19:
         interval_count = hr_intervals.resample(freq, how = "sum", closed = 'right', label = 'right').dropna()
     return interval_count
+
+
+def duration_sum(inHDFFile, D, year_start, year_end, outHDFFile, complevel=9):
+    """
+    Calculate duration sum (Dauerstufe) of a defined time window D.
+    The output time series will have the same frequency as the input data,
+    but will contain the rolling sum of the defined time window with the label on the right,
+    e.g. for D = 15 the time step at 10:15 contains the precipitation sum from 10:00 until 10:15 o'clock.
+    Calculation can only be carried out for entire years since time windows between consecutive months are considered and included in calculations.
+    Output data will be saved in a new HDF5 file with the same  monthly structure as the input data.
+    Consequently, the duration sum data can be loaded and processed with the same functions as the other precipitation data stored in HDF5.
+
+    :Parameters:
+    ------------
+    
+    inHDFFile : string
+        Path and name of the input HDF5 file containing precipitation data with a temporal resolution of 5 minutes.
+    D : integer
+        Duration (length of time window) in minutes. Value must be divisible by 5.
+    year_start : integer
+        First year for which duration sums are to be calculated.    
+    year_end : integer
+        Last year for which duration sums are to be calculated.
+    outHDFFile : string
+        Path and name of the output HDF5 file.
+        If the specified HDF5 file already exists, the new dataset will be appended; if the HDF5 file doesn't exist, it will be created. 
+    complevel : integer (optional, default: 9)
+        defines the level of compression for the output HDF5 file.
+        complevel may range from 0 to 9, where 9 is the highest compression possible.
+        Using a high compression level reduces data size significantly,
+        but writing data to HDF5 takes more time and data import from HDF5 is slighly slower.
+        
+    :Returns:
+    ---------
+    
+        No return value
+        
+    """
+    
+    warnings.filterwarnings('ignore', category=tables.NaturalNameWarning)
+
+
+    months = [m for m in range(1,13)]
+    years = [y for y in range(year_start, year_end+1)]
+    freqYW = 5
+    duration = '%smin' % D
+    
+    for year in years:
+        for month in months:
+                #---only for first month in first year: initiate process----------------
+                if year == years[0] and month == months[0]:                    
+                    # open outHDF, only month for which the previous month shall not be considered
+                    # calculate number of intervals at end of month, which need to be passed to following month
+                    # this only works for durations that can be divided by 5!
+                    nIntervalsAtEndOfMonth = D/freqYW - 1
+                    df = _core.load_month(HDFFile=inHDFFile, month=month, year=year)
+                    # to be able to perform calculations on other than 5 min data in future: freq = df.index.freq
+                    # set up rolling window of size=duration and calculate the sum of every window
+                    # shift index 5 min forwards (to label = right). needed because index label is at beginning of 5 min interval in YW
+                    # consequently, without shifting, the label describes the end of the duration interval - 5 minutes
+                    durDF = df.rolling(duration).sum().shift(periods=1, freq = '5min')
+                    HDFDataset = "%s/%s" %(year, month)
+                    durDF.to_hdf(path_or_buf=outHDFFile, key=HDFDataset, mode="a", format="fixed", data_columns = True, index = True, complevel=complevel, complib="zlib")
+                    del durDF
+                    gc.collect()
+                    print("%s-%s done!" %(year, month))
+                    # continue in next loop iteration (next month) and skip remaining statements
+                    continue
+                #-----------------------------------------------------------------------    
+                # Only keep end of month (e.g. last two intervals for D=15 min) and append next month to it
+                df = df.iloc[-nIntervalsAtEndOfMonth: , ]
+                df = df.append(_core.load_month(HDFFile=inHDFFile, month=month, year=year)).asfreq('5min')
+                # rolling window of specified duration. sum is calculated for each window with label on the right (+5 minutes / shift(1), see above)
+                # remove first intervals (number equal to the intervals taken from previous month) with incorrect results due to missing data (intervals contained in previous month)
+                durDF = df.rolling(duration).sum().shift(periods=1, freq = '5min').iloc[nIntervalsAtEndOfMonth: , ]
+                HDFDataset = "%s/%s" %(year, month)
+                durDF.to_hdf(path_or_buf=outHDFFile, key=HDFDataset, mode="a", format="fixed", data_columns = True, index = True, complevel=complevel, complib="zlib")
+                del durDF
+                gc.collect()
+                print("%s-%s done!" %(year, month))
+                
+                
+                
+                

@@ -73,7 +73,7 @@ author = u'Jennifer Kreklow'
 
 # The full version, including alpha/beta/rc tags.
 #version = radproc.__version__
-version = "0.1.2"
+version = "0.1.3"
 #release = u'0.1.0dev0'
 release = version
 
