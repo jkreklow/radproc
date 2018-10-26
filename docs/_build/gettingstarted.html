@@ -193,35 +193,40 @@
 <span id="ref-installation"></span><h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>First, install ArcMap for Desktop and its extension 64-Bit background processing.</p>
 <p>Next, download and install the latest Anaconda distribution from <a class="reference external" href="https://www.anaconda.com/download/">https://www.anaconda.com/download/</a> (Windows, 64-Bit, Python version 2.7).</p>
-<p>radproc is currently distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
-You can download the radproc wheel from the GitHub repository at <a class="reference external" href="https://github.com/jkreklow/radproc/tree/0.1.0/dist">https://github.com/jkreklow/radproc/tree/0.1.0/dist</a></p>
+<p>All radproc versions are hosted at the Python Package Index (PyPI). Thus, they can be directly downloaded and installed using pip.</p>
 <p>To install radproc using Anaconda and pip…</p>
 <ol class="arabic">
 <li><p class="first">Open the Windows terminal by typing CMD into the Windows search (Administrator rights may be necessary!).</p>
 </li>
 <li><p class="first">Type:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">C</span><span class="p">:</span>\<span class="n">path</span>\<span class="n">to</span>\<span class="n">wheelfile</span>\<span class="n">radproc_wheel</span><span class="o">.</span><span class="n">whl</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">radproc</span>
 </pre></div>
 </div>
-<p>Now radproc is automatically installed into your Anaconda root environment.
+<p>Now radproc is automatically downloaded from PyPI and installed into your Anaconda root environment.
 You can check by opening Spyder or Jupyter Notebook and entering:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">radproc</span>
 </pre></div>
 </div>
+<p>Alternative installation procedure:</p>
+<p>radproc is also available as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
+You can download the radproc wheel (radproc-0.1.x-py2-none-any.whl) of any version from the GitHub repository at <a class="reference external" href="https://github.com/jkreklow/radproc/tree/0.1.3/dist">https://github.com/jkreklow/radproc/tree/0.1.3/dist</a>
+To install the wheel file type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">C</span><span class="p">:</span>\<span class="n">path</span>\<span class="n">to</span>\<span class="n">wheelfile</span>\<span class="n">radproc_wheel</span><span class="o">.</span><span class="n">whl</span>
+</pre></div>
+</div>
 </li>
-<li><p class="first">To enable your Anaconda distribution to “see” the arcpy package from your separate ArcGIS Python installation,
+</ol>
+<p>To enable your Anaconda distribution to “see” the arcpy package from your separate ArcGIS Python installation,
 you need to <strong>copy the Path file DTBGGP64.pth</strong> which is usually located at <em>C:\Python27\ArcGISx6410.4\Lib\site-packages</em>
 into the corresponding site-packages folder of your Anaconda distribution, e.g. <em>C:\ProgramData\Anaconda2\Lib\site-packages</em></p>
 <p>To check if arcpy is now visible for Anaconda, import arcpy to Spyder or Jupyter Notebook:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">arcpy</span>
 </pre></div>
 </div>
-</li>
-</ol>
 </div>
 <div class="section" id="file-system-description">
 <span id="ref-filesystem"></span><h2>File system description<a class="headerlink" href="#file-system-description" title="Permalink to this headline">¶</a></h2>
-<a class="reference internal image-reference" href="_images/Workflow.png"><img alt="_images/Workflow.png" src="_images/Workflow.png" style="width: 675px; height: 375px;" /></a>
+<a class="reference internal image-reference" href="_images/Workflow_english.png"><img alt="_images/Workflow_english.png" src="_images/Workflow_english.png" style="width: 675px; height: 375px;" /></a>
 <p>File system and processing workflow used by radproc.</p>
 </div>
 </div>

@@ -25,26 +25,34 @@ First, install ArcMap for Desktop and its extension 64-Bit background processing
 
 Next, download and install the latest Anaconda distribution from https://www.anaconda.com/download/ (Windows, 64-Bit, Python version 2.7).
 
-radproc is currently distributed as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
-You can download the radproc wheel from the GitHub repository at https://github.com/jkreklow/radproc/tree/0.1.0/dist
+All radproc versions are hosted at the Python Package Index (PyPI). Thus, they can be directly downloaded and installed using pip.
 
 To install radproc using Anaconda and pip...
 
 1. Open the Windows terminal by typing CMD into the Windows search (Administrator rights may be necessary!).
 2. Type::
 
-	pip install C:\path\to\wheelfile\radproc_wheel.whl
-
-   Now radproc is automatically installed into your Anaconda root environment.
+	pip install radproc
+	
+   Now radproc is automatically downloaded from PyPI and installed into your Anaconda root environment.
    You can check by opening Spyder or Jupyter Notebook and entering::
 
 	import radproc
 	
-3. To enable your Anaconda distribution to "see" the arcpy package from your separate ArcGIS Python installation,
-   you need to **copy the Path file DTBGGP64.pth** which is usually located at *C:\\Python27\\ArcGISx6410.4\\Lib\\site-packages*
-   into the corresponding site-packages folder of your Anaconda distribution, e.g. *C:\\ProgramData\\Anaconda2\\Lib\\site-packages*
+   Alternative installation procedure:
+   
+   radproc is also available as wheel file for Python version 2.7 on Windows operating systems (64-Bit only!).
+   You can download the radproc wheel (radproc-0.1.x-py2-none-any.whl) of any version from the GitHub repository at https://github.com/jkreklow/radproc/tree/0.1.3/dist
+   To install the wheel file type::
+	
+	pip install C:\path\to\wheelfile\radproc_wheel.whl
+	
 
-   To check if arcpy is now visible for Anaconda, import arcpy to Spyder or Jupyter Notebook::
+To enable your Anaconda distribution to "see" the arcpy package from your separate ArcGIS Python installation,
+you need to **copy the Path file DTBGGP64.pth** which is usually located at *C:\\Python27\\ArcGISx6410.4\\Lib\\site-packages*
+into the corresponding site-packages folder of your Anaconda distribution, e.g. *C:\\ProgramData\\Anaconda2\\Lib\\site-packages*
+
+To check if arcpy is now visible for Anaconda, import arcpy to Spyder or Jupyter Notebook::
 
 	import arcpy
 
@@ -53,7 +61,7 @@ To install radproc using Anaconda and pip...
 
 File system description
 ~~~~~~~~~~~~~~~~~~~~~~~
-.. image:: images/Workflow.png
+.. image:: images/Workflow_english.png
 	:height: 375
 	:width: 675
 	
