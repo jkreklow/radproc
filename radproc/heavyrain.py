@@ -255,7 +255,7 @@ def duration_sum(inHDFFile, D, year_start, year_end, outHDFFile, complevel=9):
                     # open outHDF, only month for which the previous month shall not be considered
                     # calculate number of intervals at end of month, which need to be passed to following month
                     # this only works for durations that can be divided by 5!
-                    nIntervalsAtEndOfMonth = D/freqYW - 1
+                    nIntervalsAtEndOfMonth = int(D/freqYW - 1)
                     df = _core.load_month(HDFFile=inHDFFile, month=month, year=year)
                     # to be able to perform calculations on other than 5 min data in future: freq = df.index.freq
                     # set up rolling window of size=duration and calculate the sum of every window
