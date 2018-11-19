@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis &mdash; radproc</title>
+  <title>Radproc - A GIS-compatible Python Package for automated RADOLAN Composite Processing and Analysis &mdash; radproc</title>
   
 
   
@@ -87,6 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Library Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="releasenotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing</a></li>
 </ul>
 
             
@@ -132,7 +133,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis</li>
+      <li>Radproc - A GIS-compatible Python Package for automated RADOLAN Composite Processing and Analysis</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -171,22 +172,21 @@
 }
 </style>
 <div class="section" id="radproc-a-gis-compatible-python-package-for-automated-radolan-composite-processing-and-analysis">
-<h1>Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis<a class="headerlink" href="#radproc-a-gis-compatible-python-package-for-automated-radolan-composite-processing-and-analysis" title="Permalink to this headline">¶</a></h1>
+<h1>Radproc - A GIS-compatible Python Package for automated RADOLAN Composite Processing and Analysis<a class="headerlink" href="#radproc-a-gis-compatible-python-package-for-automated-radolan-composite-processing-and-analysis" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.1.3</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">September 04, 2018</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">November 17, 2018</td>
 </tr>
 </tbody>
 </table>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.1313701"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.1313701.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.1313701.svg" /></a>
 <p>Radproc is an open source Python library intended to facilitate precipitation data processing and analysis for GIS-users.
-It provides functions for processing, analysis and export of RADOLAN (Radar Online Adjustment) composites and rain gauge data in MR90 format.
-The German Weather Service (DWD) provides the RADOLAN-Online RW composites for free in the Climate Data Center (<a class="reference external" href="ftp://ftp-cdc.dwd.de/pub/CDC/grids_germany/hourly/radolan/">ftp://ftp-cdc.dwd.de/pub/CDC/grids_germany/hourly/radolan/</a>)
-but the data processing represents a big challenge for many potential users.
+It provides functions for processing, analysis and export of RADOLAN (Radar Online Adjustment) and RADKLIM (Radar Climatology) composites and rain gauge data in MR90 format.
+The German Weather Service (DWD) provides many of its RADOLAN and RADKLIM data free of charge in the Climate Data Center (see <a class="reference internal" href="gettingstarted.html#ref-gettingdata"><span class="std std-ref">Getting data</span></a>) but the data processing represents a big challenge for many potential users.
 Radproc’s goal is to lower the barrier for using these data, especially in conjunction with ArcGIS.
 Therefore, radproc provides an automated ArcGIS-compatible data processing workflow based on pandas DataFrames and HDF5.
 Moreover, radproc’s arcgis module includes a collection of functions for data exchange between pandas and ArcGIS.</p>
@@ -200,13 +200,13 @@ Moreover, radproc’s arcgis module includes a collection of functions for data 
 <h3>Raw Data processing<a class="headerlink" href="#raw-data-processing" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li>Support for the reanalyzed RADOLAN products RW (60 min), YW and RY (both 5 min. resolution)</li>
-<li>Automatically reading in all binary RADOLAN composites from a predefined directory structure</li>
+<li>Support for the RADOLAN and RADKLIM composite products RW (60 min), YW, RY and RZ (all 5 min. resolution)</li>
+<li>Automatically reading in all binary RADOLAN/RADKLIM composites from a predefined directory structure</li>
 <li>Optionally clipping the composites to a study area in order to reduce data size</li>
 <li>Default data structure: Monthly pandas DataFrames with full support for time series analysis and spatial location of each pixel</li>
 <li>Efficient data storage in HDF5 format with fast data access and optional data compression</li>
 <li>Easy downsampling of time series</li>
-<li>Reading in DWD rain gauge data in MR90 format into the same data structure as RADOLAN.</li>
+<li>Reading in DWD rain gauge data in MR90 format into the same data structure as RADOLAN/RADKLIM.</li>
 </ul>
 </div></blockquote>
 </div>
@@ -214,7 +214,7 @@ Moreover, radproc’s arcgis module includes a collection of functions for data 
 <h3>Data Exchange with ArcGIS<a class="headerlink" href="#data-exchange-with-arcgis" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li>Export of single RADOLAN composites or analysis results into projected raster datasets or ESRI grids for your study area</li>
+<li>Export of single RADOLAN/RADKLIM composites or analysis results into projected raster datasets or ESRI grids for your study area</li>
 <li>Export of all DataFrame rows into raster datasets in a new file geodatabase, optionally including several statistics rasters</li>
 <li>Import of dbf tables (stand-alone or attribute tables of feature classes) into pandas DataFrames</li>
 <li>Joining DataFrame columns to attribute tables</li>
@@ -229,9 +229,10 @@ Moreover, radproc’s arcgis module includes a collection of functions for data 
 <div><ul class="simple">
 <li>Calculation of precipitation sums for arbitrary periods of time</li>
 <li>Heavy rainfall analysis, e.g. identification, counting and export of rainfall intervals exceeding defined thresholds</li>
+<li>Calculation of duration sums</li>
 <li>Data quality assessment</li>
-<li>Comparison of RADOLAN and rain gauge data</li>
-<li><em>In preparation: Erosivity analysis, e.g. calculation of monthly, seasonal or annual R-factors</em></li>
+<li>Comparison of RADOLAN/RADKLIM and rain gauge data</li>
+<li><em>In preparation: Erosivity analysis, e.g. calculation of monthly and annual R-factors</em></li>
 </ul>
 </div></blockquote>
 <div class="toctree-wrapper compound">
@@ -240,6 +241,7 @@ Moreover, radproc’s arcgis module includes a collection of functions for data 
 <li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#system-requirements">System requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#file-system-description">File system description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gettingstarted.html#getting-data">Getting data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a><ul>
@@ -332,6 +334,7 @@ Moreover, radproc’s arcgis module includes a collection of functions for data 
 <li class="toctree-l2"><a class="reference internal" href="releasenotes.html#version-0-1-0">Version 0.1.0</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing</a></li>
 </ul>
 </div>
 <div class="section" id="indices-and-tables">

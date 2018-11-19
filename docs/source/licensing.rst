@@ -1,6 +1,10 @@
+===========
+ Licensing
+===========
+
 LICENSE: MIT
 
-Copyright (c) <2018> <Kreklow, Jennifer>
+Copyright (c) 2018, Jennifer Kreklow
 
 Radproc is distributed under the MIT License, complemented with the following provision:
 For the scientific transparency and verification of results obtained and communicated to the public after

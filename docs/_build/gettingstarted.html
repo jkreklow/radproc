@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tutorials" href="notebooks.html" />
-    <link rel="prev" title="Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis" href="index.html" /> 
+    <link rel="prev" title="Radproc - A GIS-compatible Python Package for automated RADOLAN Composite Processing and Analysis" href="index.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -88,11 +88,13 @@
 <li class="toctree-l2"><a class="reference internal" href="#system-requirements">System requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#file-system-description">File system description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-data">Getting data</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks.html">Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="reference.html">Library Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="releasenotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="licensing.html">Licensing</a></li>
 </ul>
 
             
@@ -182,11 +184,11 @@
 <span id="ref-requirements"></span><h2>System requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h2>
 <p>To be able to use all features offered by radproc, you need…</p>
 <ul class="simple">
-<li>a 64-Bit operating system (32-Bit systems can not allocate more than 3 GB memory, which is not sufficient for radar data processing)</li>
+<li>a 64-Bit operating system (32-Bit systems can not allocate more than 3 GB memory, which is not sufficient for weather radar data processing)</li>
 <li>Python version 2.7 (64-Bit). It is strongly recommended to use the Anaconda distribution since this already includes all needed scientific site-packages.</li>
 <li>ArcMap version 10.4 or newer</li>
 <li>ArcGIS 64-Bit background processing</li>
-<li>for processing of RADOLAN data in 5-minute resolution at least 16 GB RAM are recommended</li>
+<li>for processing of RADOLAN/RADKLIM data in 5-minute resolution at least 16 GB RAM are recommended</li>
 </ul>
 </div>
 <div class="section" id="installation">
@@ -229,6 +231,20 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
 <a class="reference internal image-reference" href="_images/Workflow_english.png"><img alt="_images/Workflow_english.png" src="_images/Workflow_english.png" style="width: 675px; height: 375px;" /></a>
 <p>File system and processing workflow used by radproc.</p>
 </div>
+<div class="section" id="getting-data">
+<span id="ref-gettingdata"></span><h2>Getting data<a class="headerlink" href="#getting-data" title="Permalink to this headline">¶</a></h2>
+<p>RADOLAN is a weather radar product intended for operational applications in precipitation monitoring and nowcasting, water management, flood protection etc.
+with the composite being provided about 20 minutes after the end of the respective measurement interval.</p>
+<p>RADKLIM is a reanalysis of all available weather radar data in Germany back to the year 2001 and primarily intended for climatological applications and heavy rainfall analysis.
+It is based on the RADOLAN software but more rain gauges are used for adjustment and more correction algorithms are applied homogeneously on the entire time series.</p>
+<blockquote>
+<div><ul class="simple">
+<li>RADOLAN RW composites (900*900 1*1 km pixels, hourly resolution, since 05.2006) are available at <a class="reference external" href="ftp://ftp-cdc.dwd.de/pub/CDC/grids_germany/hourly/radolan/">ftp://ftp-cdc.dwd.de/pub/CDC/grids_germany/hourly/radolan/</a></li>
+<li>RADKLIM RW (1100*900 1*1 km pixels, hourly resolution, 2001 - 2017, DOI: 10.5676/DWD/RADKLIM_RW_V2017.002) and</li>
+<li>RADKLIM YW (1100*900 1*1 km pixels, 5 minute resolution, 2001 - 2017, DOI: 10.5676/DWD/RADKLIM_YW_V2017.002) are available at <a class="reference external" href="ftp://ftp-anon.dwd.de/pub/data/gpcc/radarklimatologie/doi_landingpage_2017.002.html">ftp://ftp-anon.dwd.de/pub/data/gpcc/radarklimatologie/doi_landingpage_2017.002.html</a></li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -242,7 +258,7 @@ into the corresponding site-packages folder of your Anaconda distribution, e.g. 
         <a href="notebooks.html" class="btn btn-neutral float-right" title="Tutorials" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Radproc - A GIS-compatible Python-Package for automated RADOLAN Composite Processing and Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="Radproc - A GIS-compatible Python Package for automated RADOLAN Composite Processing and Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
