@@ -59,6 +59,7 @@ import numpy as np
 import pandas as pd
 import os
 import radproc.core as _core
+from datetime import datetime
 
 try:
     import arcpy
@@ -112,7 +113,7 @@ def raster_to_array(raster):
     return arr
 
 
-def create_idraster_germany(projectionFile, outRaster, extendedNationalGrid = True):
+def create_idraster_germany(projectionFile, outRaster, extendedNationalGrid=True):
     """
     Creates an ID raster in stereographic projection for the extended national RADOLAN grid (900 x 1100 km) or the national grid (900 x 900 km).
     
@@ -238,19 +239,20 @@ def import_idarray_from_raster(idRaster):
 
 def create_idarray(projectionFile, idRasterGermany, clipFeature, idRaster, extendedNationalGrid=True):
     """
-    Creates an ID-Array for a study area.
+    Creates an ID Array for a study area.
     
-    Creates a new ID-raster for Germany, clips it to study area and exports the raster to a one-dimensional numpy-array.
+    Creates a new ID raster for Germany, clips it to study area and converts the raster to a one-dimensional numpy array.
     
     :Parameters:
     ------------
     
         projectionFile : string
-            Path to a file containing stereographic projection definition. File type may be Feature Class, Shapefile, prj-file or grid.
+            Path to a file containing stereographic projection definition. File type may be Feature Class, Shapefile, prj file or grid.
         idRasGermany : string
             Path and name for the output ID raster of Germany to be created.
         clipFeature : string
             Path to the clip feature defining the extent of the study area. File type may be Shapefile or Feature Class.
+            If clipFeature == None, the nationwide ID raster will not be clipped.
         idRas : string
             Path and name for the output ID raster of the study area to be created.
         extendedNationalGrid : bool (optional, default: True)
@@ -283,8 +285,14 @@ def create_idarray(projectionFile, idRasterGermany, clipFeature, idRaster, exten
     """
 
     idRasGermany = create_idraster_germany(projectionFile=projectionFile, outRaster=idRasterGermany, extendedNationalGrid=extendedNationalGrid)
-    idRas = clip_idraster(idRaster=idRasGermany, clipFeature=clipFeature, outRaster=idRaster)
-    idArr = import_idarray_from_raster(idRaster=idRas)
+    arcpy.BuildRasterAttributeTable_management (in_raster=idRasGermany, overwrite="Overwrite")
+    if not clipFeature == None:
+        idRas = clip_idraster(idRaster=idRasGermany, clipFeature=clipFeature, outRaster=idRaster)
+        arcpy.BuildRasterAttributeTable_management (in_raster=idRas, overwrite="Overwrite")
+        idArr = import_idarray_from_raster(idRaster=idRas)
+    # if no clipFeature is specified, return the ID array for the national grid
+    else:
+        idArr = import_idarray_from_raster(idRaster=idRasGermany)
     return idArr
 
 
@@ -340,6 +348,14 @@ def export_to_raster(series, idRaster, outRaster):
     return outRaster
 
 
+# build vectorized function for datetime to string conversion to check for duplicate days
+# needed for naming of exported raster datasets 
+def _datetime_to_string(datetimeObject):
+    return datetimeObject.strftime('%Y%m%d')
+_datetime_to_string_v = np.vectorize(_datetime_to_string)
+
+
+
 def export_dfrows_to_gdb(dataDF, idRaster, outGDBPath, GDBName, statistics=""):
     """
     Exports all rows of a DataFrame to rasters in a File-Geodatabase.
@@ -378,8 +394,10 @@ def export_dfrows_to_gdb(dataDF, idRaster, outGDBPath, GDBName, statistics=""):
             if dataDF.index.is_year_end.all() == True or dataDF.index.is_year_start.all() == True:
                 outRaster = "R_%i" % (index.year)
             elif dataDF.index.is_month_end.all() == True or dataDF.index.is_month_start.all() == True:
-                outRaster = "R_%i%02i" % (index.year, index.month)            
-            elif dataDF.index.hour.all() != 0:
+                outRaster = "R_%i%02i" % (index.year, index.month)
+            elif pd.Series(_datetime_to_string_v(dataDF.index.date)).duplicated().any() == False:
+                # if no day is duplicated, daily naming is detailed enough
+                # if dates are duplicated, exact time stamps are required
                 outRaster = "R_%i%02i%02i" % (index.year, index.month, index.day)
             else:
                 outRaster = "R_%i%02i%02i_%02i%02i" % (index.year, index.month, index.day, index.hour, index.minute)
