@@ -3,7 +3,7 @@ from setuptools import setup
 #from distutils.core import setup
 import os
 
-version = '0.1.3'
+version = '0.1.4'
 
 def write_version_py(filename='radproc/version.py'):
     content = "# THIS FILE IS GENERATED FROM RADPROC SETUP.PY\nversion = '%s'" % version

@@ -8,6 +8,7 @@ docs/source/dwd_gauge.rst
 docs/source/gettingstarted.rst
 docs/source/heavyrain.rst
 docs/source/index.rst
+docs/source/licensing.rst
 docs/source/notebooks.rst
 docs/source/radproc.sampledata.rst
 docs/source/raw.rst
@@ -43,6 +44,7 @@ docs/source/generated/radproc.dwd_gauge.dwd_gauges_to_hdf5.rst
 docs/source/generated/radproc.dwd_gauge.stationfile_to_df.rst
 docs/source/generated/radproc.dwd_gauge.summarize_metadata_files.rst
 docs/source/generated/radproc.heavyrain.count_heavy_rainfall_intervals.rst
+docs/source/generated/radproc.heavyrain.duration_sum.rst
 docs/source/generated/radproc.heavyrain.find_heavy_rainfalls.rst
 docs/source/generated/radproc.raw.create_idraster_and_process_radolan_data.rst
 docs/source/generated/radproc.raw.process_radolan_data.rst

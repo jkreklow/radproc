@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.3
+                0.1.4
               </div>
             
           
@@ -104,6 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licensing.html">Licensing</a></li>
 </ul>
 
             
@@ -255,6 +256,33 @@ Additionally, a textfile containing all directories which could not be processed
 </table>
 <p>See <a class="reference internal" href="../gettingstarted.html#ref-filesystem"><span class="std std-ref">File system description</span></a> for further details on data processing.</p>
 <p>This function can be used to process RADOLAN data without having ArcGIS installed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Format description and examples:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>After the import, individual DataFrames can be loaded into memory from the generated HDF5 file using <a class="reference internal" href="radproc.core.load_month.html#radproc.core.load_month" title="radproc.core.load_month"><code class="xref py py-func docutils literal"><span class="pre">radproc.core.load_month()</span></code></a> or
+several DataFrames within the same year can be loaded together using <a class="reference internal" href="radproc.core.load_months_from_hdf5.html#radproc.core.load_months_from_hdf5" title="radproc.core.load_months_from_hdf5"><code class="xref py py-func docutils literal"><span class="pre">radproc.core.load_months_from_hdf5()</span></code></a></p>
+<p>Every row of the output DataFrames equals a precipitation raster of the investigation area at the specific date.
+Every column equals a time series of the precipitation at a specific raster cell.</p>
+<p>Data can be accessed and sliced with the following Syntax:</p>
+<p><strong>df.loc[row_index, column_name]</strong></p>
+<p>with row index as string in date format ‘YYYY-MM-dd hh:mm’ and column names as integer values</p>
+<p><strong>Examples::</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataHDF5</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Data\HDF5\RW.h5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">radproc</span><span class="o">.</span><span class="n">load_month</span><span class="p">(</span><span class="n">HDFFile</span><span class="o">=</span><span class="n">dataHDF5</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="mi">2008</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01 00:50&#39;</span><span class="p">,</span><span class="mi">414773</span><span class="p">]</span> <span class="c1">#--&gt; returns single float value of specified date and cell</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01 00:50&#39;</span><span class="p">,</span> <span class="p">:]</span> <span class="c1">#--&gt; returns entire row (= raster) of specified date as one-dimensional DataFrame</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01&#39;</span><span class="p">,</span> <span class="p">:]</span> <span class="c1">#--&gt; returns DataFrame with all rows of specified day (because time of day is omitted)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[,</span> <span class="mi">414773</span><span class="p">]</span> <span class="c1">#--&gt; returns time series of the specified cell as Series</span>
+</pre></div>
+</div>
+</div></blockquote>
 </dd></dl>
 
 </div>
@@ -301,7 +329,7 @@ Additionally, a textfile containing all directories which could not be processed
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.3',
+            VERSION:'0.1.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',

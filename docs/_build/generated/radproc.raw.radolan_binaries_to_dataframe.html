@@ -59,7 +59,7 @@
             
             
               <div class="version">
-                0.1.3
+                0.1.4
               </div>
             
           
@@ -104,6 +104,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../releasenotes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../licensing.html">Licensing</a></li>
 </ul>
 
             
@@ -242,6 +243,11 @@ and RADOLAN precipitation data are not clipped to any investigation area.</dd>
 </dl>
 </dd>
 </dl>
+<p>In case any binary files could not be read in due to processing errors,
+these are skipped and the respective intervals are filled with NoData (NaN) values.
+A textfile with the names and error messages for the respective monthly input data folder is written for information.
+For example, errors due to obviously corrupted file formats are known for the RADOLAN RW dataset
+in July and August 2005 and May 2007.</p>
 </div></blockquote>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -258,7 +264,7 @@ Every column equals a time series of the precipitation at a specific raster cell
 <p>Data can be accessed and sliced with the following Syntax:</p>
 <p><strong>df.loc[row_index, column_name]</strong></p>
 <p>with row index as string in date format ‘YYYY-MM-dd hh:mm’ and column names as integer values</p>
-<p><strong>Examples::</strong></p>
+<p><strong>Examples:</strong></p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01 00:50&#39;</span><span class="p">,</span><span class="mi">414773</span><span class="p">]</span> <span class="c1">#--&gt; returns single float value of specified date and cell</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01 00:50&#39;</span><span class="p">,</span> <span class="p">:]</span> <span class="c1">#--&gt; returns entire row (= raster) of specified date as one-dimensional DataFrame</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="s1">&#39;2008-05-01&#39;</span><span class="p">,</span> <span class="p">:]</span> <span class="c1">#--&gt; returns DataFrame with all rows of specified day (because time of day is omitted)</span>
@@ -312,7 +318,7 @@ Every column equals a time series of the precipitation at a specific raster cell
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'0.1.3',
+            VERSION:'0.1.4',
             LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
