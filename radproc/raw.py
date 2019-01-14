@@ -44,6 +44,7 @@ import os, sys
 import tarfile as _tarfile
 import gzip as _gzip
 import shutil as _shutil
+from datetime import datetime
 
 #from radproc.wradlib_io import read_RADOLAN_composite
 #from radproc.sampledata import get_projection_file_path
@@ -210,9 +211,16 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
             metadata : dictionary
                 containing metadata from the last imported RADOLAN binary file
                 
+        In case any binary files could not be read in due to processing errors,
+        these are skipped and the respective intervals are filled with NoData (NaN) values.
+        A textfile with the names and error messages for the respective monthly input data folder is written for information.
+        For example, errors due to obviously corrupted file formats are known for the RADOLAN RW dataset
+        in July and August 2005 and May 2007.
+                
     
     :Format description and examples:
     ---------------------------------    
+        
         Every row of the output DataFrame equals a precipitation raster of the investigation area at the specific date.
         Every column equals a time series of the precipitation at a specific raster cell.
         
@@ -222,7 +230,7 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
         
         with row index as string in date format 'YYYY-MM-dd hh:mm' and column names as integer values
             
-        **Examples::**
+        **Examples:**
             
         >>> df.loc['2008-05-01 00:50',414773] #--> returns single float value of specified date and cell
         >>> df.loc['2008-05-01 00:50', :] #--> returns entire row (= raster) of specified date as one-dimensional DataFrame
@@ -243,11 +251,29 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
     files = [f for f in files if f.endswith('-bin') or f.endswith('-bin.gz')]
     
     # Load first binary file to access header information
-    data, metadata = _wrl_io.read_RADOLAN_composite(os.path.join(inFolder, files[0]))
-    del data
+    try:
+        data, metadata = _wrl_io.read_RADOLAN_composite(os.path.join(inFolder, files[0]))
+        del data
+    except:
+        # if file could not be read, try next file until metadata of one file could be accessed
+        got_metadata = False
+        i=0
+        while got_metadata == False:
+            print("Can not open %s to access metadata. Trying next file." % files[i])
+            i+=1
+            try:
+                data, metadata = _wrl_io.read_RADOLAN_composite(os.path.join(inFolder, files[i]))
+                del data
+                got_metadata = True
+            except:
+                got_metadata = False
+                # interrupt after first 100 files to avoid infinite loops
+                if i == 100:
+                    print('Could not read the first 100 files in. Exit script. Please check your input files and parameters.')
+                    raise
     
-    # different RADOLAN products have different grid sizes (e.g. 900*900 for the RADOLAN-Online national grid,
-    # 1100*900 for the extended national grid used in the RADOLAN reanalysis)
+    # different RADOLAN products have different grid sizes (e.g. 900*900 for the RADOLAN national grid,
+    # 1100*900 for the extended national grid used for RADKLIM)
     gridSize = metadata['nrow'] * metadata['ncol']
     
     # if no ID array is specified, generate it from metadata
@@ -257,25 +283,41 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
     # Create two-dimensiona array of dtype float32 filled with zeros. One row per file in inFolder, one column per ID in idArr.
     dataArr = np.zeros((len(files), len(idArr)), dtype = np.float32)
     
+    skipped_files = []
+    error_messages = []
     # For each file in directory...
     for i in range(0, len(files)):
         # Read data and header of RADOLAN binary file
-        data, metadata = _wrl_io.read_RADOLAN_composite(os.path.join(inFolder, files[i]))
-        # append datetime object to index list. Pandas automatically interprets this list as timeseries.
-        ind.append(metadata['datetime'])
+        try:
+            data, metadata = _wrl_io.read_RADOLAN_composite(os.path.join(inFolder, files[i]))
+            # append datetime object to index list. Pandas automatically interprets this list as timeseries.
+            ind.append(metadata['datetime'])
          
-        # binary data block starts in the lower left corner but ESRI Grids are created starting in the upper left corner by default
-        # [::-1] --> reverse row order of 2D-array so the first row ist located in the geographic north
-        # reshape(gridSize,) --> convert to one-dimensional array
-        data = data[::-1].reshape(gridSize,)
+            # binary data block starts in the lower left corner but ESRI Grids are created starting in the upper left corner by default
+            # [::-1] --> reverse row order of 2D-array so the first row ist located in the geographic north
+            # reshape(gridSize,) --> convert to one-dimensional array
+            data = data[::-1].reshape(gridSize,)
         
-        # Replace NoData values with NaN
-        data[data == metadata['nodataflag']] = np.nan
+            # Replace NoData values with NaN
+            data[data == metadata['nodataflag']] = np.nan
                
-        # Clip data to investigation area by selecting all values with a corresponding ID in idArr
-        # and insert data as row in the two-dimensional data array.
-        dataArr[i,:] = data[idArr]
-    
+            # Clip data to investigation area by selecting all values with a corresponding ID in idArr
+            # and insert data as row in the two-dimensional data array.
+            dataArr[i,:] = data[idArr]
+        
+        except Exception, e:
+            skipped_files.append(files[i])
+            error_messages.append(str(e))
+            # extract datetime from filename instead of metadata
+            date_str = files[i].split("-")[2]
+            datetime_obj = datetime.strptime(date_str, '%y%m%d%H%M')
+            # some early RADOLAN intervals start at HH:45, but in file name stands HH:50
+            if ind[0].minute == 45:
+                datetime_obj = datetime_obj.replace(minute=45)
+            # append extracted date to index and insert NaN to all cells of the skipped interval
+            ind.append(datetime_obj)
+            dataArr[i,:] = np.zeros((1, len(idArr)), dtype=np.float32).fill(np.nan)
+            
     # Convert 2D data array to DataFrame, set timeseries index and column names and localize to time zone UTC 
     df = pd.DataFrame(dataArr, index = ind, columns = idArr) 
     df.columns.name = 'Cell-ID'
@@ -299,7 +341,18 @@ def radolan_binaries_to_dataframe(inFolder, idArr=None):
             df.index.freq = 5 * pd.tseries.offsets.Minute()
         except:
             df = df.asfreq('5min')
-       
+    
+    # export list of skipped files and corresponding error messages to txt file
+    # if any errors occurred
+    if len(skipped_files) > 0:
+        two_dirs_up = os.path.split(os.path.split(inFolder)[0])[0]
+        outtxt = os.path.join(two_dirs_up, 'skipped_files_%i_%i.txt' % (datetime_obj.year, datetime_obj.month))
+        print('%i files had to be skipped due to processing errors.\nIntervals were filled with NaN' % len(skipped_files))
+        print('Please check skipped files and error list in created text file %s' % outtxt)
+        txt = open(outtxt, 'w')
+        for skipped_file, error_message in zip(skipped_files, error_messages):
+            txt.write('%s\n%s\n\n' %(skipped_file, error_message))        
+        txt.close()
     return df, metadata
     
     
@@ -337,6 +390,12 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
         No return value
         
         Function creates dataset in HDF5 file specified in parameter HDFFile.
+        
+        In case any binary files could not be read in due to processing errors,
+        these are skipped and the respective intervals are filled with NoData (NaN) values.
+        A textfile with the names and error messages for the respective monthly input data folder is written for information.
+        For example, issues due to obviously corrupt file formats are known for the RADOLAN RW dataset
+        in July and August 2005 and May 2007.
         
     """    
   
@@ -400,6 +459,7 @@ def radolan_binaries_to_hdf5(inFolder, HDFFile, idArr=None, complevel=9):
 
 def _process_year(yearFolder, HDFFile, idArr, complevel):
     monthFolders = [os.path.join(yearFolder, monthDir) for monthDir in os.listdir(yearFolder)]
+    monthFolders = [monthDir for monthDir in monthFolders if os.path.isdir(monthDir)]
     failed = []
     
     # create directory for every month
@@ -468,8 +528,14 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
     
         No return value
         Function creates datasets for every month in HDF5 file specified in parameter HDFFile.
-        Additionally, two ID Rasters and - if necessary - a textfile containing
-        all directories which could not be processed due to data format errors are created in directory of HDF5 file.
+        Additionally, two ID Rasters are created in the directory of the HDF5 file.
+        
+        In case any binary files could not be read in due to processing errors,
+        these are skipped and the respective intervals are filled with NoData (NaN) values.
+        A textfile with the names and error messages for the respective monthly input data folder is written
+        and stored in inFolder for information.
+        For example, issues due to obviously corrupt file formats are known for the RADOLAN RW dataset
+        in July and August 2005 and May 2007.
 
     
     .. seealso:: See :ref:`ref-filesystem` for further details on data processing.
@@ -483,12 +549,37 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
               The clip function implemented in radproc uses this as a work-around solution to "push" the clip feature into the RADOLAN projection.
               Hence, the clipping works with geodata in different projections, but the locations of the cells might be slightly inaccurate.
     
+    
+    :Format description and examples:
+    ---------------------------------    
+        
+        After the import, individual DataFrames can be loaded into memory from the generated HDF5 file using :func:`radproc.core.load_month` or
+        several DataFrames within the same year can be loaded together using :func:`radproc.core.load_months_from_hdf5`
+    
+        Every row of the output DataFrames equals a precipitation raster of the investigation area at the specific date.
+        Every column equals a time series of the precipitation at a specific raster cell.
+        
+        Data can be accessed and sliced with the following Syntax:
+            
+        **df.loc[row_index, column_name]**
+        
+        with row index as string in date format 'YYYY-MM-dd hh:mm' and column names as integer values
+            
+        **Examples:**
+            
+        >>> dataHDF5 = r'C:\Data\HDF5\RW.h5'
+        >>> df = radproc.load_month(HDFFile=dataHDF5, year=2008, month=5)
+        >>> df.loc['2008-05-01 00:50',414773] #--> returns single float value of specified date and cell
+        >>> df.loc['2008-05-01 00:50', :] #--> returns entire row (= raster) of specified date as one-dimensional DataFrame
+        >>> df.loc['2008-05-01', :] #--> returns DataFrame with all rows of specified day (because time of day is omitted)
+        >>> df.loc[, 414773] #--> returns time series of the specified cell as Series
+    
     """    
     
     # Ignore NaturalNameWarnings --> Group/Dataset names begin with number,
     # doesn't affect generation and access
     warnings.filterwarnings('ignore', category=tables.NaturalNameWarning)
-    fails = []
+    
     try:
         import radproc.arcgis as _arcgis        
     except:
@@ -499,6 +590,8 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
     # get RADOLAN binary file of first month in first year and read it in
     # needed to obtain the RADOLAN metadata
     yearFolders = [os.path.join(inFolder, yearDir) for yearDir in os.listdir(inFolder)]
+    yearFolders = [yearDir for yearDir in yearFolders if os.path.isdir(yearDir)]
+    
     firstMonthFolder = os.path.join(yearFolders[0], os.listdir(yearFolders[0])[0])
     dummyFile = os.path.join(firstMonthFolder, os.listdir(firstMonthFolder)[0])
     # Load first binary file to access header information
@@ -520,19 +613,11 @@ def create_idraster_and_process_radolan_data(inFolder, HDFFile, clipFeature=None
         extendedNationalGrid = False
     
     idArr = _arcgis.create_idarray(projectionFile=projectionFile, idRasterGermany=idRasGermany, idRaster=idRas, clipFeature=clipFeature, extendedNationalGrid=extendedNationalGrid)
-    # For every year folder...
-
     
+    # For every year folder...
     for yearFolder in yearFolders:
-        failed = _process_year(yearFolder=yearFolder, HDFFile=HDFFile, idArr=idArr, complevel=complevel)
-        if len(failed) > 0:
-            [fails.append(f) for f in failed]
-            
-    if len(fails) > 0:
-        txtFile = open(os.path.join(os.path.split(HDFFile)[0], "fails.txt"), "w")
-        for fail in fails:
-            txtFile.write("%s\n" % fail)
-        txtFile.close()
+        _process_year(yearFolder=yearFolder, HDFFile=HDFFile, idArr=idArr, complevel=complevel)
+
 
 
 
@@ -589,22 +674,36 @@ def process_radolan_data(inFolder, HDFFile, idArr=None, complevel=9):
     
     This function can be used to process RADOLAN data without having ArcGIS installed.
     
+    :Format description and examples:
+    ---------------------------------    
+        After the import, individual DataFrames can be loaded into memory from the generated HDF5 file using :func:`radproc.core.load_month` or
+        several DataFrames within the same year can be loaded together using :func:`radproc.core.load_months_from_hdf5`
+    
+        Every row of the output DataFrames equals a precipitation raster of the investigation area at the specific date.
+        Every column equals a time series of the precipitation at a specific raster cell.
+        
+        Data can be accessed and sliced with the following Syntax:
+            
+        **df.loc[row_index, column_name]**
+        
+        with row index as string in date format 'YYYY-MM-dd hh:mm' and column names as integer values
+            
+        **Examples::**
+            
+        >>> dataHDF5 = r'C:\Data\HDF5\RW.h5'
+        >>> df = radproc.load_month(HDFFile=dataHDF5, year=2008, month=5)
+        >>> df.loc['2008-05-01 00:50',414773] #--> returns single float value of specified date and cell
+        >>> df.loc['2008-05-01 00:50', :] #--> returns entire row (= raster) of specified date as one-dimensional DataFrame
+        >>> df.loc['2008-05-01', :] #--> returns DataFrame with all rows of specified day (because time of day is omitted)
+        >>> df.loc[, 414773] #--> returns time series of the specified cell as Series
+    
     """    
     # Ignore NaturalNameWarnings --> Group/Dataset names begin with number,
     # doesn't affect generation and access
     warnings.filterwarnings('ignore', category=tables.NaturalNameWarning)
-    fails = []
    
     # For every year folder...
     yearFolders = [os.path.join(inFolder, yearDir) for yearDir in os.listdir(inFolder)]
-    
+    yearFolders = [yearDir for yearDir in yearFolders if os.path.isdir(yearDir)]
     for yearFolder in yearFolders:
-        failed = _process_year(yearFolder=yearFolder, HDFFile=HDFFile, idArr=idArr, complevel=complevel)
-        if len(failed) > 0:
-            [fails.append(f) for f in failed]
-            
-    if len(fails) > 0:
-        txtFile = open(os.path.join(os.path.split(HDFFile)[0], "fails.txt"), "w")
-        for fail in fails:
-            txtFile.write("%s\n" % fail)
-        txtFile.close()
+        _process_year(yearFolder=yearFolder, HDFFile=HDFFile, idArr=idArr, complevel=complevel)
