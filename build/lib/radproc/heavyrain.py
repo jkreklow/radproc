@@ -49,7 +49,7 @@ def _exceeding(rowseries, thresholdValue, minArea):
     return minYcellsgreqXmm_bool
 
 
-def find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea, season):
+def find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea=1, season='Year'):
     """
     Creates a DataFrame containing all heavy rainfalls (intervals) exceeding a specified threshold intensity value.
     
@@ -70,11 +70,11 @@ def find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea,
             Last year for which data are to be loaded.
         thresholdValue : integer
             Rainfall intensity threshold value.
-        minArea : integer
+        minArea : integer (optional, default: 1)
             Minimum area where intensity threshold value has to be exceeded.
-        season : string or list
+        season : string or list of integers (optional, default: 'Year')
             Season / Time period to analyse. Can be a list with integer values from 1 to 12 or a string describing the season. The following strings are possible:
-            ["Year" | "May - October" | "November - April" | "January/December" | "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec"]
+            ["Year" | "May - October" | "November - April" | "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec"]
     
     
     :Returns:
@@ -83,37 +83,41 @@ def find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea,
         heavy_rains : pandas DataFrame
             containing all intervals meeting the given criteria.
     """
-    if season == "Year":
+    # if season is a list (of months), this will be used
+    if type(season) == list:
+        months = season
+    else:
+        season = season.lower()
+    
+    if season == "year":
         months = [1,2,3,4,5,6,7,8,9,10,11,12]
-    elif season == "May - October":
+    elif season in ["may - october", "may-october"]:
         months = [5,6,7,8,9,10]
-    elif season == "November - April":
+    elif season in ["november - april", "november-april"]:
         months = [1,2,3,4,11,12]
-    elif season == "January/December":
-        months = [1,12]
-    elif season == "Jan":
+    elif season in ["jan", "january"]:
         months = [1]
-    elif season == "Feb":
+    elif season in ["feb", "february"]:
         months = [2]
-    elif season == "Mar":
+    elif season in ["mar", "march"]:
         months = [3]
-    elif season == "Apr":
+    elif season in ["apr", "april"]:
         months = [4]
-    elif season == "May":
+    elif season == "may":
         months = [5]
-    elif season == "Jun":
+    elif season in ["jun", "june"]:
         months = [6]
-    elif season == "Jul":
+    elif season in ["jul", "july"]:
         months = [7]
-    elif season == "Aug":
+    elif season in ["aug", "august"]:
         months = [8]
-    elif season == "Sep":
+    elif season in ["sep", "september"]:
         months = [9]
-    elif season == "Oct":
+    elif season in ["oct", "october"]:
         months = [10]
-    elif season == "Nov":
+    elif season in ["nov", "november"]:
         months = [11]
-    elif season == "Dec":
+    elif season in ["dec", "december"]:
         months = [12]
     
     years = np.arange(year_start,year_end + 1)
@@ -137,7 +141,7 @@ def find_heavy_rainfalls(HDFFile, year_start, year_end, thresholdValue, minArea,
     return heavy_rains
 
 
-def count_heavy_rainfall_intervals(HDFFile, year_start, year_end, thresholdValue, minArea, season):
+def count_heavy_rainfall_intervals(HDFFile, year_start, year_end, thresholdValue, minArea=1, season='Year'):
     """
     Creates a DataFrame containing the sum of all heavy rainfalls intervals exceeding a specified threshold intensity value.
     
@@ -157,11 +161,11 @@ def count_heavy_rainfall_intervals(HDFFile, year_start, year_end, thresholdValue
             Last year for which data are to be loaded.
         thresholdValue : integer
             Rainfall intensity threshold value.
-        minArea : integer
+        minArea : integer (optional, default: 1)
             Minimum area (number of cells) where intensity threshold value has to be exceeded.
-        season : string or list
+        season : string or list (optional, default: 'Year')
             Season / Time period to analyse. Can be a list with integer values from 1 to 12 or a string describing the season. The following strings are possible:
-            ["Year" | "May - October" | "November - April" | "January/December" | "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec"]
+            ["Year" | "May - October" | "November - April" | "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec"]
     
     
     :Returns:
@@ -173,17 +177,17 @@ def count_heavy_rainfall_intervals(HDFFile, year_start, year_end, thresholdValue
     """
 
     #Define frequency for data aggregation depending on selected season
-    if season == "Year" or season == [1,2,3,4,5,6,7,8,9,10,11,12]:
+    if type(season) == str:
+        season = season.lower()
+    
+    
+    if season == "year" or season == [1,2,3,4,5,6,7,8,9,10,11,12]:
         freq = "A-DEC"
-    elif season == "May - October":
+    elif season in ["may - october", "may-october"]:
         freq = "A-OCT"
-    elif season == "November - April":
+    elif season in ["november - april", "november-april"]:
         freq = "A-APR"
-    elif season == "January/December":
-        freq = "A-JAN"
-    elif season in ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]:
-        freq = "M"
-    elif type(season) == list:
+    else:
         freq = "M"
 
     pd_version = int(pd.__version__.split('.')[-2])
@@ -255,7 +259,7 @@ def duration_sum(inHDFFile, D, year_start, year_end, outHDFFile, complevel=9):
                     # open outHDF, only month for which the previous month shall not be considered
                     # calculate number of intervals at end of month, which need to be passed to following month
                     # this only works for durations that can be divided by 5!
-                    nIntervalsAtEndOfMonth = D/freqYW - 1
+                    nIntervalsAtEndOfMonth = int(D/freqYW - 1)
                     df = _core.load_month(HDFFile=inHDFFile, month=month, year=year)
                     # to be able to perform calculations on other than 5 min data in future: freq = df.index.freq
                     # set up rolling window of size=duration and calculate the sum of every window
